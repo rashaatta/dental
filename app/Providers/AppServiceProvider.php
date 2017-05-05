@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Dental\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
