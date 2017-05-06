@@ -11,7 +11,7 @@ return [
     'home' => 'Home',
     'login' => 'Login',
     'register' => 'Register',
-    'name' => 'Dental Center',
+    'name' => 'Mustafa International Dental Center',
     'dashboard'=> 'Dashboard',
     'loggedin'=> 'You are logged in!'
 ];

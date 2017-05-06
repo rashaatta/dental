@@ -19,7 +19,7 @@
             "database"
         ],
         "psr-4": {
-            "Dental\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

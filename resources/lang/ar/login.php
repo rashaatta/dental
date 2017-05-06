@@ -9,6 +9,7 @@
 return [
     'header' => 'الدخول',
     'email' => 'اسم المستخدم',
+    'name' => 'اسم المستخدم',
     'password' => 'كلمة المرور',
     'submit' => 'دخول',
     'forgotpassword' => 'نسيت كلمة السر؟',

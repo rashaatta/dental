@@ -6,7 +6,7 @@
  * Time: 11:08 PM
  */
 
-namespace Dental\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
 use \Illuminate\Foundation\Application;

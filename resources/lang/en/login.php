@@ -9,6 +9,7 @@
 return [
     'header' => 'Login',
     'email' => 'E-Mail Address',
+    'name' => 'User Name',
     'password' => 'Password',
     'submit' => 'Login',
     'forgotpassword' => 'Forgot Your Password?',

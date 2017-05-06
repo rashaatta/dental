@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Dental\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Dental\Http\Controllers\Controller;
-use Dental\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
 use Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

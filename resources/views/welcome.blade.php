@@ -74,7 +74,6 @@
                         <a href="{{ url('/login') }}">@lang('welcome.login')</a>
                         <a href="{{ url('/register') }}">@lang('welcome.register')</a>
 
-
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -103,7 +102,7 @@
 
 
             </div>
-             <!--   <div class="links">
+         <!--   <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
