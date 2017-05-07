@@ -1,0 +1,12 @@
+1-open hosts file and add this line
+127.0.0.1     dental.dev
+
+2-go to project folder and in cmd run this
+php artisan serve --host=dental.dev --port=80
+
+
+
+note:
+leave this running and minimize it so the application is running and u need just refresh page to see last updates
+if u need to run a command open a new command window and run your cmd but let the server running
+
