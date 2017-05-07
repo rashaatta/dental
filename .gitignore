@@ -5,6 +5,7 @@
 /vendor
 /.idea
 /.vagrant
+/public/php_errors.log
 Homestead.json
 Homestead.yaml
 npm-debug.log
