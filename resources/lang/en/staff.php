@@ -13,7 +13,7 @@ return [
     'mobile' => 'Mobile ',
     'telephone' => 'Telephone ',
     'Wednesday' => 'Wednesday',
-    'specialty ' => 'Specialty ',
+    'specialty' => 'Specialty ',
     'salary' => 'Salary ',
     'percent' => 'Percent ',
     'session_duration' => 'Session Duration',

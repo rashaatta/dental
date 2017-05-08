@@ -33,11 +33,14 @@
         <div class="form-group">
             <label for="specialty" class="control-label col-md-2">@lang('staff.specialty'): </label>
             <div class="col-md-10">
-            <!--  <input type="text" class="form-control" id="specialty" name="specialty"
-                       value="{{ $staff->specialty }}"/>-->
 
-                <select class="form-control" id="specialty" name="specialty"  value="{{ $staff->specialty }}">
-                    <option value="General">@lang('staff.General')</option>
+                <select class="form-control" id="specialty" name="specialty" value="{{ $staff->specialty }}">
+
+                    {{--@foreach(['item1'=>'1', 'item2'=>'2','item3'=>'3']  as $spi=>$spe)--}}
+                        {{--<option value="{{$spe}}">{{$spi}}</option>--}}
+                    {{--@endforeach--}}
+
+                  <option value="General">@lang('staff.General')</option>
                     <option value="Gum">@lang('staff.Gum')</option>
                     <option value="Orthodontist">@lang('staff.Orthodontist')</option>
                     <option value="Pediatric">@lang('staff.Pediatric')</option>
