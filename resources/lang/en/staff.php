@@ -29,7 +29,7 @@ return [
     'Pediatric' => 'Pediatric Dentist',
     'Preventive' => 'Preventive dentistry and general dental health',
     'maxillofacial' => 'Specialist prosthetic prostheses',
-    'prosthetic' => 'Thursday',
+    'Pediatric' => 'Pediatric Dentist',
     'OralDisease' => 'Specialist of Oral Diseases',
     'roottreatment' => 'Specialist in the treatment of the root of the teeth',
     'conservative' => 'Specialist of conservative treatment',

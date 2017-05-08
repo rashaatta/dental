@@ -11,9 +11,6 @@ use Illuminate\Validation\Rule;
 
 class StaffController extends Controller
 {
-    //
-
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -25,31 +22,33 @@ class StaffController extends Controller
         return view('staff.index', compact('staff'));
     }
 
+    public function add()
+    {
+        return view('staff.add');
+    }
+
     public function edit(Request $request, $id)
     {
-
-
         $this->validate($request, [
-            'name' => ['required','max:255', Rule::unique('staff')->ignore($id)],
-            'mobile' => ['required','max:150', Rule::unique('staff')->ignore($id)],
-            'specialty' => ['required','max:150', ],
+            'name' => ['required', 'max:255', Rule::unique('staff')->ignore($id)],
+            'mobile' => ['required', 'max:150', Rule::unique('staff')->ignore($id)],
+            'specialty' => ['required', 'max:150',],
             'salary' => ['required',],
-            'address' => ['required','max:300', ],
+            'address' => ['required', 'max:300',],
         ]);
 
-        DB::table('staff')->where('id', $id)->update(
-            ['name' => request('name'),
-
-                'mobile' => request('mobile'),
-                'telephone' => request('telephone'),
-                'specialty' => request('specialty'),
-                'salary' => request('salary'),
-                'percent' => request('percent'),
-                'session_duration' => request('session_duration'),
-                'address' => request('address'),
-                'entry_time' => request('entry_time'),
-                'exit_time' => request('exit_time')
-            ]);
+        DB::table('staff')->where('id', $id)->update([
+            'name' => request('name'),
+            'mobile' => request('mobile'),
+            'telephone' => request('telephone'),
+            'specialty' => request('specialty'),
+            'salary' => request('salary'),
+            'percent' => request('percent'),
+            'session_duration' => request('session_duration'),
+            'address' => request('address'),
+            'entry_time' => request('entry_time'),
+            'exit_time' => request('exit_time')
+        ]);
 
         return redirect('/staff');
     }
@@ -59,26 +58,26 @@ class StaffController extends Controller
         $staff = DB::table('staff')->where('id', $id)->first();
 
         //$wd = DB::table('work_days')->where('staff_id', $id)->get();
-       // $arr = array('staff' => $staff, 'wd' => $wd);
+        // $arr = array('staff' => $staff, 'wd' => $wd);
 
         return view('staff.edit', compact('staff'));
-       // return view('staff.edit', $arr);
+        // return view('staff.edit', $arr);
     }
 
-    public function destroy($id){
+    public function delete($id)
+    {
         DB::table('staff')->where('id', $id)->delete();
         return redirect('/staff');
     }
 
     public function create(Request $request)
     {
-
         $this->validate($request, [
-            'name' => ['required','max:255', 'unique:staff'],
-            'mobile' => ['required','max:150', 'unique:staff'],
-            'specialty' => ['required','max:150', ],
+            'name' => ['required', 'max:255', 'unique:staff'],
+            'mobile' => ['required', 'max:150', 'unique:staff'],
+            'specialty' => ['required', 'max:150',],
             'salary' => ['required',],
-            'address' => ['required','max:300', ],
+            'address' => ['required', 'max:300',],
         ]);
 
         $staff = new Staff();
