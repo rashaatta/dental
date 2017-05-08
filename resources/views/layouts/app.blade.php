@@ -31,6 +31,7 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
 </head>
 <body>
 <div id="app">
@@ -92,7 +93,7 @@
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
+                                           @lang('welcome.logout')
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"

@@ -19,7 +19,15 @@ return [
         'roottreatment' => 'Specialist in the treatment of the root of the teeth',
         'conservative' => 'Specialist of conservative treatment'
     ],
-
+    'en_workdays' => [
+        'Saturday' => 'Saturday',
+        'Sunday' => 'Sunday',
+        'Monday' => 'Monday',
+        'Tuesday' => 'Tuesday',
+        'Wednesday' => 'Wednesday',
+        'Thursday' => 'Thursday',
+        'Friday' => 'Friday'
+    ],
     'ar_specialist' => [
         'General' => 'طبيب الأسنان العام',
         'Gum' => 'اختصاصى علاج اللثة',
@@ -31,5 +39,16 @@ return [
         'OralDisease' => 'اختصاصي أمراض الفم',
         'roottreatment' => 'اختصاصى علاج لب جذور الأسنان',
         'conservative' => 'اختصاصى العلاج التحفظى'
+    ],
+    'ar_workdays' => [
+        'Saturday' => 'السبت',
+        'Sunday' => 'الاحد',
+        'Monday' => 'الاثنين',
+        'Tuesday' => 'الثلاثاء',
+        'Wednesday' => 'الاربعاء',
+        'Thursday' => 'الخميس',
+        'Friday' => 'الجمعة'
     ]
+
+
 ];

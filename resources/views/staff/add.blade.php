@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>@lang('staff.header')</h1>
-
+    @include('layouts.error')
     <form class="form-horizontal" method="post" action="/staff/add/">
         {{csrf_field()}}
         <div class="form-group">
@@ -60,9 +60,7 @@
         <div class="form-group">
             <label for="salary" class="control-label col-md-2">@lang('staff.salary'): </label>
             <div class="col-md-10">
-
                 <input type="text" class="form-control" id="salary" name="salary" value="{{ old('salary') }}"/>
-
             </div>
         </div>
         <div class="form-group">
@@ -105,13 +103,15 @@
         <div class="form-group">
             <label for="entry_time" class="control-label col-md-2">@lang('staff.workdays'): </label>
             <div class="col-md-10">
-                <input type="checkbox" value="Saturday"><span>@lang('staff.Saturday')</span>
-                <input type="checkbox" value="Sunday"><span>@lang('staff.Sunday')</span>
-                <input type="checkbox" value="Monday"><span>@lang('staff.Monday')</span>
-                <input type="checkbox" value="Tuesday"><span>@lang('staff.Tuesday')</span>
-                <input type="checkbox" value="Wednesday"><span>@lang('staff.Wednesday')</span>
-                <input type="checkbox" value="Thursday"><span>@lang('staff.Thursday')</span>
-                <input type="checkbox" value="Friday"><span>@lang('staff.Friday')</span>
+                @if (App::getLocale() =='ar')
+                    @foreach (Config::get('staff.ar_workdays') as $wd=> $workdays)
+                        <input type="checkbox" value="{{$wd}}"><span> {{$workdays}}</span>
+                    @endforeach
+                @elseif (App::getLocale() =='en')
+                    @foreach (Config::get('staff.en_workdays') as $wd=> $workdays)
+                        <input type="checkbox" value="{{$wd}}"><span> {{$workdays}}</span>
+                    @endforeach
+                @endif
             </div>
         </div>
 
@@ -119,7 +119,8 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-2">
 
-                <button type="submit" class="form-control btn btn-primary"> <i class="fa fa-backward"></i> <span>@lang('staff.btnSave')</span></button>
+                <button type="submit" class="form-control btn btn-primary"><i class="fa fa-backward"></i>
+                    <span>@lang('staff.btnSave')</span></button>
             </div>
             <div class="col-md-offset-2 col-md-2">
                 <a href="/staff" class="form-control btn btn-primary">@lang('staff.btnCancel')</a>
@@ -128,5 +129,5 @@
     </form>
 
     <br/>
-    @include('layouts.error')
+
 @endsection

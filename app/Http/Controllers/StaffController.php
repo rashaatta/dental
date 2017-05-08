@@ -18,7 +18,11 @@ class StaffController extends Controller
 
     public function index()
     {
-        $staff = DB::table('staff')->orderBy('name', 'asc')->offset(0)->limit(10)->get();
+        $staff = DB::table('staff')
+            ->join('work_days', 'staff.id', '=', 'work_days.staff_id')
+            ->select(DB::raw('group_concat(work_days.day_name separator ", ") as days,staff.*'))
+            ->groupBy('staff.id')
+            ->orderBy('name', 'asc')->offset(0)->limit(10)->get();
         return view('staff.index', compact('staff'));
     }
 
@@ -35,7 +39,7 @@ class StaffController extends Controller
             'address' => ['required', 'max:300',],
             'mobile' => ['required', 'max:150', Rule::unique('staff')->ignore($id)],
             'specialty' => ['required', 'max:150',],
-            'salary' => ['required',],
+            'Salary' => ['required',],
 
         ]);
 
@@ -78,11 +82,10 @@ class StaffController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'max:255', 'unique:staff'],
-
-            'address' => ['required', 'max:300',],
+            'address' => ['required', 'max:300'],
             'mobile' => ['required', 'max:150', 'unique:staff'],
-            'specialty' => ['required', 'max:150',],
-            'salary' => ['required',],
+            'specialty' => ['required', 'max:150'],
+            'salary' => ['required','max:10'],
 
         ]);
 
