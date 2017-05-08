@@ -19,16 +19,15 @@ class StaffController extends Controller
 
     public function index()
     {
-        $staff = DB::table('staff')->orderBy('name', 'asc')->offset(0)->limit(10)
-            ->get();
-
+        $staff = DB::table('staff')->orderBy('name', 'asc')->offset(0)->limit(10)->get();
         return view('staff.index', compact('staff'));
     }
 
     public function edit($id)
     {
-        DB::table('staff')->where('id', $id)->update(
-            ['name' => request('name'),
+        DB::table('staff')->where('id', $id)
+            ->update([
+                'name' => request('name'),
                 'mobile' => request('mobile'),
                 'telephone' => request('telephone'),
                 'specialty' => request('specialty'),
@@ -46,7 +45,11 @@ class StaffController extends Controller
     public function update($id)
     {
         $staff = DB::table('staff')->where('id', $id)->first();
-//        dd($staff);
+
+        //$wd = DB::table('work_days')->where('staff_id', $id)->get();
+       // $arr = array('staff' => $staff, 'wd' => $wd);
+
         return view('staff.edit', compact('staff'));
+       // return view('staff.edit', $arr);
     }
 }
