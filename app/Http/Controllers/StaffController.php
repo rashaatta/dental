@@ -30,11 +30,11 @@ class StaffController extends Controller
 
 
         $this->validate($request, [
-            'name' => ['required','max:255', Rule::unique('staff')->ignore($id)],
-            'mobile' => ['required','max:150', Rule::unique('staff')->ignore($id)],
-            'specialty' => ['required','max:150', ],
+            'name' => ['required', 'max:255', Rule::unique('staff')->ignore($id)],
+            'address' => ['required', 'max:300',],
+            'mobile' => ['required', 'max:150', Rule::unique('staff')->ignore($id)],
+            'specialty' => ['required', 'max:150',],
             'salary' => ['required',],
-            'address' => ['required','max:300', ],
         ]);
 
         DB::table('staff')->where('id', $id)->update(
@@ -59,26 +59,32 @@ class StaffController extends Controller
         $staff = DB::table('staff')->where('id', $id)->first();
 
         //$wd = DB::table('work_days')->where('staff_id', $id)->get();
-       // $arr = array('staff' => $staff, 'wd' => $wd);
+        // $arr = array('staff' => $staff, 'wd' => $wd);
 
         return view('staff.edit', compact('staff'));
-       // return view('staff.edit', $arr);
+        // return view('staff.edit', $arr);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         DB::table('staff')->where('id', $id)->delete();
         return redirect('/staff');
+    }
+
+    public function add()
+    {
+        return view('staff.add');
     }
 
     public function create(Request $request)
     {
 
         $this->validate($request, [
-            'name' => ['required','max:255', 'unique:staff'],
-            'mobile' => ['required','max:150', 'unique:staff'],
-            'specialty' => ['required','max:150', ],
+            'name' => ['required', 'max:255', 'unique:staff'],
+            'address' => ['required', 'max:300',],
+            'mobile' => ['required', 'max:150', 'unique:staff'],
+            'specialty' => ['required', 'max:150',],
             'salary' => ['required',],
-            'address' => ['required','max:300', ],
         ]);
 
         $staff = new Staff();
