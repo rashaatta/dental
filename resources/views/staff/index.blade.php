@@ -1,45 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-4">
-            <h3>Staff</h3>
-        </div>
-        <div class="col-md-offset-10 col-md-2">
-            <form>
-                <div class="form-group">
-                    <button class="btn btn-primary form-control">Add Staff</button>
+    <!--<ul>
+        @foreach($staff as $st)
+        <li><a href="/staff/edit/{{$st->id}}" >{{ $st->name }}</a></li>
+        @endforeach
+            </ul>-->
+    <h1 class="page-heading"><i class="fa fa-user-md" aria-hidden="true"></i>
+        Doctors</h1>
 
-                </div>
-            </form>
-        </div>
-
-    </div>
-    <br/>
-    <table class="table table-bordered table-striped table-hover">
+    <table class="table table-bordered table-responsive table-striped">
         <thead>
         <tr>
-            <td>Name</td>
-            <td>Manage</td>
+            <th>اسم الطبيب</th>
+            <th>
+                <a href="/staff/add/">
+                    <i class="fa fa-plus" aria-hidden="true" title="add"></i>
+                    {{--<span class="glyphicon glyphicon-trash"></span>--}}
+                </a></td>
+
+            </th>
         </tr>
         </thead>
         <tbody>
         @foreach($staff as $st)
             <tr>
+
+
                 <td>{{ $st->name }}</td>
-                <td>
-                    <a href="/staff/edit/{{$st->id}}">
-                        <span class="glyphicon glyphicon-edit" title="edit"></span>
+                <td><a href="/staff/edit/{{$st->id}}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" title="edit"></i>
+                        {{--<span class="glyphicon glyphicon-edit"></span>--}}
                     </a>
                     <a href="/staff/delete/{{$st->id}}">
-                        <span class="glyphicon glyphicon-trash" title="delete"></span>
-                    </a>
-                </td>
+                        <i class="fa fa-remove" aria-hidden="true" title="delete"></i>
+                        {{--<span class="glyphicon glyphicon-trash"></span>--}}
+                    </a></td>
+
             </tr>
         @endforeach
+
         </tbody>
     </table>
-
-    @include('layouts.error')
 
 @endsection

@@ -1,0 +1,81 @@
+body{
+    background:#f2f2f2 !important;
+}
+.navbar-right{
+    margin-top:0px;
+}
+.flex-center{
+    background-image:url("../images/dental.jpg") ;
+    background-size:cover;
+}
+.content{
+    color:#fff;
+}
+.links a{
+    color:#3498db !important;
+    border-bottom: 1px solid #3498db !important;
+    padding-bottom: 3px !important;
+    padding:0 10px !important;
+    font-size:14px !important;
+    display: inline-block;
+}
+.dropdown a{
+    font-size:14px !important;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.navbar-default{
+ background: #3498db !important;
+}
+.navbar-header a,.navbar-nav a{
+    color:#fff !important;
+}
+.panel-default > .panel-heading {
+    color: #fff  !important;
+    background-color: #2980b9 !important;
+    border-color: #ddd;
+}
+.table thead{
+    background: #34495e;
+}
+
+.table thead tr th{
+   color: #fff;
+}
+
+.table thead tr th:last-child,
+.table tbody tr td:last-child{
+    text-align:center;
+}
+.table tbody tr td:last-child a{
+    margin-left:4px;
+    margin-right:4px;
+}
+.nav>li>a:focus, .nav>li>a:hover,.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus,.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    background:transparent !important;
+}
+.dropdown-menu{
+background:#3498db !important;
+}
+.dropdown-menu li a{
+    color:#fff !important;
+}
+.top-right{
+    width:98%;
+}
+.navbar-right{
+    margin-right:8px;
+}
+.page-heading{
+    font-size:16px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom:4px;
+    color: #34495e;
+    font-weight: 600;
+}
+.page-heading i{
+    color: #34495e;
+    margin-right:5px;
+    font-size:15px;
+}

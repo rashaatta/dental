@@ -11,13 +11,21 @@
 <!--<title>{{ config('app.name', 'Laravel') }}</title>-->
     <title>@lang('welcome.name')</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- Scripts -->
+    @if (App::getLocale() =='ar')
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/bootstrapRTL.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/appRtl.css') }}" rel="stylesheet">
+    @endif
+
+
+<!-- Scripts -->
+
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
