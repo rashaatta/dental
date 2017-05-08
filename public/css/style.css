@@ -79,3 +79,41 @@ background:#3498db !important;
     margin-right:5px;
     font-size:15px;
 }
+
+.editDoctor label{
+width:145px !important;
+    text-align: left !important;
+}
+.sectionStyle{
+    padding:15px;
+    background:#f2f2f2;
+    border:1px solid #ccc;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius:8px;
+}
+
+.editDoctor .col-md-8 .col-md-10 {
+    width: 72.33333%;
+}
+.sectionStyle label{
+    margin-top:0 !important;
+
+    padding-top:0 !important;
+}
+.editDoctor .col-md-4 .col-md-10 {
+    width: 56%;
+}
+.formButtons {
+    float:right;
+}
+
+.formButtons button{
+    margin-left: 8px;
+}
+.editDoctor .form-control{
+    height:28px !important;
+}
+th a{
+    color:#fff !important;
+}

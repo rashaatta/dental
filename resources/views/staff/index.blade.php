@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\URL;
 
  function buttonDelete($id)
 {
-    $format = '<a href="%s" data-toggle="tooltip" data-delete="%s" title="%s" class="btn btn-default"><i
+    $format = '<a href="%s" data-toggle="tooltip" data-delete="%s" title="%s" class=""><i
             class="fa fa-trash-o"></i></a>';
     $link = "/staff/delete/$id";
     $token = csrf_token();
@@ -54,7 +54,7 @@ use Illuminate\Support\Facades\URL;
         @foreach($staff as $st)
             <tr>
                 <td>{{ $st->name }}</td>
-                <td>{{ $st->specialty }}</td>
+                <td>{{ $st->specialty_id }}</td>
                 <td>{{ $st->mobile }}</td>
                 <td>{{ $st->session_duration }}</td>
                 <td>{{ $st->salary }}</td>
@@ -63,9 +63,9 @@ use Illuminate\Support\Facades\URL;
                     <a href="/staff/edit/{{$st->id}}">
                         <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
                     </a>
-                    <a href="/staff/delete/{{$st->id}}" >
-                        <i class="fa fa-remove red" aria-hidden="true" title="Delete record"></i>
-                    </a>
+                    {{--<a href="/staff/delete/{{$st->id}}" >--}}
+                        {{--<i class="fa fa-remove red" aria-hidden="true" title="Delete record"></i>--}}
+                    {{--</a>--}}
 
                 {{--<a href="/staff/delete/{{$st->id}}">--}}
                 {{--<i class="fa fa-remove" aria-hidden="true" title="delete"></i>--}}

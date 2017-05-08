@@ -77,3 +77,16 @@ margin-right:29% !important;
 .page-heading i{float:right; margin-left:5px;
 }
 
+.formButtons {
+    float:left !important;
+}
+.editDoctor .col-md-8{
+    float:right !important;
+}
+
+.editDoctor label{
+    text-align:right !important;
+}
+.navbar-nav{
+    margin-right:25px;
+}
