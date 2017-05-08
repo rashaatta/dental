@@ -76,4 +76,6 @@
         </div>
     </form>
 
+    <br/>
+    @include('layouts.error')
 @endsection
