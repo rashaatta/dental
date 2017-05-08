@@ -8,31 +8,40 @@
         <div class="form-group">
             <label for="name" class="control-label col-md-2">@lang('staff.name'): </label>
             <div class="col-md-10">
-                <input type="text" class="form-control" id="name" name="name" value=""/>
+
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"/>
+
             </div>
         </div>
         <div class="form-group">
             <label for="address" class="control-label col-md-2">@lang('staff.address'): </label>
             <div class="col-md-10">
-                <input type="text" class="form-control" id="address" name="address" value=""/>
+
+                <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}"/>
+
             </div>
         </div>
         <div class="form-group">
             <label for="mobile" class="control-label col-md-2">@lang('staff.mobile'): </label>
             <div class="col-md-10">
-                <input type="text" class="form-control" id="mobile" name="mobile" value=""/>
+
+                <input type="text" class="form-control" id="mobile" name="mobile" value="{{ old('mobile') }}"/>
+
             </div>
         </div>
         <div class="form-group">
             <label for="telephone" class="control-label col-md-2">@lang('staff.telephone'): </label>
             <div class="col-md-10">
                 <input type="text" class="form-control" id="telephone" name="telephone"
-                       value=""/>
+
+                       value="{{ old('telephone') }}"/>
+
             </div>
         </div>
         <div class="form-group">
             <label for="specialty" class="control-label col-md-2">@lang('staff.specialty'): </label>
             <div class="col-md-10">
+
 
                 <select class="form-control" id="specialty" name="specialty">
                     @if (App::getLocale() =='ar')
@@ -45,58 +54,50 @@
                         @endforeach
                     @endif
                 </select>
-             <!--   <select class="form-control" id="specialty" name="specialty">
-
-                    {{--@foreach(['item1'=>'1', 'item2'=>'2','item3'=>'3']  as $spi=>$spe)--}}
-                    {{--<option value="{{$spe}}">{{$spi}}</option>--}}
-                    {{--@endforeach--}}
-
-                    <option value="General">@lang('staff.General')</option>
-                    <option value="Gum">@lang('staff.Gum')</option>
-                    <option value="Orthodontist">@lang('staff.Orthodontist')</option>
-                    <option value="Pediatric">@lang('staff.Pediatric')</option>
-                    <option value="Preventive">@lang('staff.Preventive')</option>
-                    <option value="maxillofacial">@lang('staff.maxillofacial')</option>
-                    <option value="prosthetic">@lang('staff.prosthetic')</option>
-                    <option value="OralDisease">@lang('staff.OralDisease')</option>
-                    <option value="roottreatment">@lang('staff.roottreatment')</option>
-                    <option value="OralDisease">@lang('staff.conservative')</option>
-
-                </select>-->
 
             </div>
         </div>
         <div class="form-group">
             <label for="salary" class="control-label col-md-2">@lang('staff.salary'): </label>
             <div class="col-md-10">
-                <input type="text" class="form-control" id="salary" name="salary" value=""/>
+
+                <input type="text" class="form-control" id="salary" name="salary" value="{{ old('salary') }}"/>
+
             </div>
         </div>
         <div class="form-group">
             <label for="percent" class="control-label col-md-2">@lang('staff.percent'): </label>
             <div class="col-md-10">
-                <input type="text" class="form-control" id="percent" name="percent" value=""/>
+
+                <input type="text" class="form-control" id="percent" name="percent" value="{{ old('percent') }}"/>
+
             </div>
         </div>
         <div class="form-group">
             <label for="session_duration" class="control-label col-md-2">@lang('staff.session_duration'): </label>
             <div class="col-md-10">
                 <input type="time" class="form-control" id="session_duration" name="session_duration"
-                       value=""/>
+
+                       value="{{ old('session_duration') }}"/>
+
             </div>
         </div>
         <div class="form-group">
             <label for="entry_time" class="control-label col-md-2">@lang('staff.entry_time'): </label>
             <div class="col-md-10">
                 <input type="time" class="form-control" id="entry_time" name="entry_time"
-                       value=""/>
+
+                       value="{{ old('entry_time') }}"/>
+
             </div>
         </div>
         <div class="form-group">
             <label for="exit_time" class="control-label col-md-2">@lang('staff.exit_time'): </label>
             <div class="col-md-10">
                 <input type="datetime" class="form-control" id="exit_time" name="exit_time"
-                       value=""/>
+
+                       value="{{ old('exit_time') }}"/>
+
             </div>
         </div>
 
@@ -117,13 +118,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-2">
-                <button type="submit" class="form-control btn btn-primary pull-right">
-                    <i class="fa fa-backward"></i> <span>@lang('staff.btnSave')</span></button>
+
+                <button type="submit" class="form-control btn btn-primary"> <i class="fa fa-backward"></i> <span>@lang('staff.btnSave')</span></button>
             </div>
             <div class="col-md-offset-2 col-md-2">
-                <button class="form-control btn btn-primary pull-right" data-ui-sref="/staff/">
-                    <i class="fa fa-close"></i> <span>@lang('staff.btnCancel')</span>
-                </button>
+                <a href="/staff" class="form-control btn btn-primary">@lang('staff.btnCancel')</a>
             </div>
         </div>
     </form>

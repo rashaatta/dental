@@ -104,9 +104,9 @@
                     <i class="fa fa-backward"></i> <span>@lang('staff.btnSave')</span></button>
             </div>
             <div class="col-md-offset-2 col-md-2">
-                <button  class="form-control btn btn-primary pull-right"   data-ui-sref="/staff/">
-                    <i class="fa fa-close"></i> <span>@lang('staff.btnCancel')</span>
-                </button>
+
+                <a href="/staff" class="form-control btn btn-primary">@lang('staff.btnCancel')</a>
+
             </div>
         </div>
     </form>

@@ -31,10 +31,12 @@ class StaffController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'max:255', Rule::unique('staff')->ignore($id)],
+
+            'address' => ['required', 'max:300',],
             'mobile' => ['required', 'max:150', Rule::unique('staff')->ignore($id)],
             'specialty' => ['required', 'max:150',],
             'salary' => ['required',],
-            'address' => ['required', 'max:300',],
+
         ]);
 
         DB::table('staff')->where('id', $id)->update([
@@ -64,20 +66,24 @@ class StaffController extends Controller
         // return view('staff.edit', $arr);
     }
 
-    public function delete($id)
+
+    public function destroy($id)
     {
         DB::table('staff')->where('id', $id)->delete();
         return redirect('/staff');
     }
 
+
     public function create(Request $request)
     {
         $this->validate($request, [
             'name' => ['required', 'max:255', 'unique:staff'],
+
+            'address' => ['required', 'max:300',],
             'mobile' => ['required', 'max:150', 'unique:staff'],
             'specialty' => ['required', 'max:150',],
             'salary' => ['required',],
-            'address' => ['required', 'max:300',],
+
         ]);
 
         $staff = new Staff();
