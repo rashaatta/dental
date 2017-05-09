@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row log ">
         <div class="col-md-8 col-md-offset-2 login">
             <div class="panel panel-default">
                 <div class="panel-heading" > <i class="fa fa-user" aria-hidden="true"></i> @lang('login.header')</div>

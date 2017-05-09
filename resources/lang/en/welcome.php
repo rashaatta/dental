@@ -13,5 +13,7 @@ return [
     'register' => 'Register',
     'name' => 'El Mustafa International Dental Center',
     'dashboard'=> 'Dashboard',
-    'loggedin'=> 'You are logged in!'
+    'loggedin'=> 'You are logged in!',
+    'staff'=>'Doctors',
+    'logout'=>'Logout'
 ];

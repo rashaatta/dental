@@ -18,7 +18,7 @@ class CreateStaffTable extends Migration
             $table->string('name', 191)->unique();
             $table->string('mobile', 150);
             $table->string('telephone', 150)->nullable();
-            $table->string('specialty', 150);
+            $table->unsignedInteger('specialty_id');
             $table->float('salary')->default(0);
             $table->float('percent')->nullable();
             $table->time('session_duration')->default(10);
@@ -27,6 +27,7 @@ class CreateStaffTable extends Migration
             $table->time('exit_time')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+//            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('NO ACTION');
             $table->timestamps();
         });
     }

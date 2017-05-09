@@ -11,9 +11,6 @@ use Illuminate\Validation\Rule;
 
 class StaffController extends Controller
 {
-    //
-
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,35 +18,43 @@ class StaffController extends Controller
 
     public function index()
     {
-        $staff = DB::table('staff')->orderBy('name', 'asc')->offset(0)->limit(10)->get();
+        $staff = DB::table('staff')
+            ->join('work_days', 'staff.id', '=', 'work_days.staff_id')
+            ->select(DB::raw('group_concat(work_days.day_name separator ", ") as days,staff.*'))
+            ->groupBy('staff.id')
+            ->orderBy('name', 'asc')->offset(0)->limit(10)->get();
         return view('staff.index', compact('staff'));
+    }
+
+    public function add()
+    {
+        $specialty = DB::table('specialties')->get();
+        return view('staff.add', compact('specialty'));
     }
 
     public function edit(Request $request, $id)
     {
-
-
         $this->validate($request, [
             'name' => ['required', 'max:255', Rule::unique('staff')->ignore($id)],
             'address' => ['required', 'max:300',],
             'mobile' => ['required', 'max:150', Rule::unique('staff')->ignore($id)],
-            'specialty' => ['required', 'max:150',],
+            'specialty_id' => ['required', 'max:150',],
             'salary' => ['required',],
+
         ]);
 
-        DB::table('staff')->where('id', $id)->update(
-            ['name' => request('name'),
-
-                'mobile' => request('mobile'),
-                'telephone' => request('telephone'),
-                'specialty' => request('specialty'),
-                'salary' => request('salary'),
-                'percent' => request('percent'),
-                'session_duration' => request('session_duration'),
-                'address' => request('address'),
-                'entry_time' => request('entry_time'),
-                'exit_time' => request('exit_time')
-            ]);
+        DB::table('staff')->where('id', $id)->update([
+            'name' => request('name'),
+            'mobile' => request('mobile'),
+            'telephone' => request('telephone'),
+            'specialty_id' => request('specialty_id'),
+            'salary' => request('salary'),
+            'percent' => request('percent'),
+            'session_duration' => request('session_duration'),
+            'address' => request('address'),
+            'entry_time' => request('entry_time'),
+            'exit_time' => request('exit_time')
+        ]);
 
         return redirect('/staff');
     }
@@ -57,13 +62,17 @@ class StaffController extends Controller
     public function update($id)
     {
         $staff = DB::table('staff')->where('id', $id)->first();
+        $specialty = DB::table('specialties')->get();
+
+        $arr = array('staff' => $staff, 'specialty' => $specialty);
 
         //$wd = DB::table('work_days')->where('staff_id', $id)->get();
         // $arr = array('staff' => $staff, 'wd' => $wd);
 
-        return view('staff.edit', compact('staff'));
-        // return view('staff.edit', $arr);
+        //return view('staff.edit', compact('staff'));
+         return view('staff.edit', $arr);
     }
+
 
     public function destroy($id)
     {
@@ -71,27 +80,23 @@ class StaffController extends Controller
         return redirect('/staff');
     }
 
-    public function add()
-    {
-        return view('staff.add');
-    }
 
     public function create(Request $request)
     {
-
         $this->validate($request, [
             'name' => ['required', 'max:255', 'unique:staff'],
-            'address' => ['required', 'max:300',],
+            'address' => ['required', 'max:300'],
             'mobile' => ['required', 'max:150', 'unique:staff'],
-            'specialty' => ['required', 'max:150',],
-            'salary' => ['required',],
+            'specialty_id' => ['required', 'max:150'],
+            'salary' => ['required','max:10'],
+
         ]);
 
         $staff = new Staff();
         $staff->name = request('name');
         $staff->mobile = request('mobile');
         $staff->telephone = request('telephone');
-        $staff->specialty = request('specialty');
+        $staff->specialty_id = request('specialty_id');
         $staff->salary = request('salary');
         $staff->percent = request('percent');
         $staff->session_duration = request('session_duration');
@@ -102,4 +107,6 @@ class StaffController extends Controller
 
         return redirect('/staff');
     }
+
+
 }

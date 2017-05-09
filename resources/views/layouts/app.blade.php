@@ -32,6 +32,7 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
 </head>
 <body>
 <div id="app">
@@ -58,7 +59,19 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    &nbsp;<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">الاطباء</a>
+
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="">اضافه طبيب</a></li>
+                            <li><a href="">اضافه طبيب</a></li>
+                            <li><a href="">اضافه طبيب</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li><a href="">المرضي</a></li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -93,7 +106,7 @@
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
+                                           @lang('welcome.logout')
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
