@@ -1,0 +1,92 @@
+
+@import url(//fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+body{
+    text-align: right;
+    direction: rtl;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    padding:0 !important;
+
+
+}
+h1,h2,h3,h4,h5,h6,p,ul,li,a,span,table,td,th,div,.title{
+
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+}
+.title{
+    font-size:65px !important;
+}
+.form-group label{
+    float:right;
+}
+.top-right{
+    width:100% !important;
+    right:0 !important;
+}
+
+.navbar-nav>li>a{
+    margin-right:0;
+    margin-left: 8px;
+}
+.navbar-right{
+    float:left !important;
+}
+.col-md-8 {
+    float: left;
+
+}
+.form-horizontal label{
+    text-align: left !important;
+}
+.login .col-md-offset-4{
+    float:left !important;
+}
+.login  .radio input[type="radio"],.login .radio-inline input[type="radio"],.login  .checkbox input[type="checkbox"],.login .checkbox-inline input[type="checkbox"]{
+
+    margin-right: -21px;
+}
+.login  .form-group button{
+margin-right:29% !important;
+}
+
+.login  .radio input[type="radio"],.login  .radio-inline input[type="radio"],.login  .checkbox input[type="checkbox"],.login  .checkbox-inline input[type="checkbox"] {
+    margin-right: 16px;
+}
+.login
+.login  .radio input[type="radio"], .login  .radio-inline input[type="radio"], .login  .checkbox input[type="checkbox"],.login  .checkbox-inline input[type="checkbox"] {
+    position: static;
+    margin-top: 4px \9;
+    margin-left: 8px;
+}
+
+.login  .checkbox label,.login   .radio label{
+    width:100% !important;
+    text-align: right !important;
+}
+
+.navbar-right .dropdown-menu {
+    left: 8px !important;
+    right: auto !important;
+}
+.nav>li>a:focus, .nav>li>a:hover{
+    background:transparent !important;
+}
+
+.page-heading{
+    text-align:right;
+}
+.page-heading i{float:right; margin-left:5px;
+}
+
+.formButtons {
+    float:left !important;
+}
+.editDoctor .col-md-8{
+    float:right !important;
+}
+
+.editDoctor label{
+    text-align:right !important;
+}
+.navbar-nav{
+    margin-right:25px;
+}

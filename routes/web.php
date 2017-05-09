@@ -18,5 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// staff
 Route::get('/staff', 'StaffController@index');
-Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
+Route::get('/staff/add', 'StaffController@add');
+Route::post('/staff/add', 'StaffController@create');
+Route::get('/staff/edit/{id}', 'StaffController@update');
+Route::post('/staff/edit/{id}', 'StaffController@edit');
+Route::get('/staff/delete/{id}', 'StaffController@destroy');
+
+Route::get('/lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);

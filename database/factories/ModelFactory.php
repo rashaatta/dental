@@ -34,7 +34,7 @@ $factory->define(App\Staff::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'mobile' => $faker->phoneNumber,
         'telephone' => $faker->phoneNumber,
-        'specialty' => $faker->jobTitle,
+        'specialty_id' => $faker->jobTitle,
         'salary' => $faker->randomFloat(2, 10, 1000000),
         'percent' => $faker->randomFloat(2, 1, 100),
         'session_duration' => $faker->time(),
