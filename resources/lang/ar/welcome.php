@@ -14,5 +14,8 @@ return [
     'dashboard'=> 'الرئيسة',
     'loggedin'=> '!لقد سجلت دخول',
     'staff'=>'الاطباء',
-    'logout'=>'خروج'
+    'logout'=>'خروج',
+    'patients' => 'المرضى',
+    'sessions'=> 'المواعيد',
+    'accounting'=>'المحاسبة'
 ];

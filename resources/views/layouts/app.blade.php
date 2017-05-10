@@ -58,21 +58,22 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
+                @if (!Auth::guest())
                 <ul class="nav navbar-nav">
-                    &nbsp;<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">الاطباء</a>
-
-                        <ul role="menu" class="dropdown-menu">
-                            <li><a href="">اضافه طبيب</a></li>
-                            <li><a href="">اضافه طبيب</a></li>
-                            <li><a href="">اضافه طبيب</a></li>
-
-                        </ul>
+                    &nbsp;<li class="dropdown">
+                        <a href="/staff">@lang('welcome.staff')</a>
+                        {{--<a href="/staff" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.staff')</a>--}}
+                        {{--<ul role="menu" class="dropdown-menu">--}}
+                            {{--<li><a href="">اضافه طبيب</a></li>--}}
+                            {{--<li><a href="">اضافه طبيب</a></li>--}}
+                            {{--<li><a href="">اضافه طبيب</a></li>--}}
+                        {{--</ul>--}}
                     </li>
-
-
-                    <li><a href="">المرضي</a></li>
-
+                    <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.patients')</a></li>
+                    <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.sessions')</a></li>
+                    <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.accounting')</a></li>
                 </ul>
+                @endif
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

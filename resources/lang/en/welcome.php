@@ -15,5 +15,8 @@ return [
     'dashboard'=> 'Dashboard',
     'loggedin'=> 'You are logged in!',
     'staff'=>'Doctors',
-    'logout'=>'Logout'
+    'logout'=>'Logout',
+    'patients' => 'Patients',
+    'sessions'=> 'Sessions',
+    'accounting'=>'Accounting'
 ];

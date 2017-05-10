@@ -90,3 +90,6 @@ margin-right:29% !important;
 .navbar-nav{
     margin-right:25px;
 }
+. ExtAgencyboxs input[type='checkbox']{
+    margin: 0 4px 0 0 !important;
+}

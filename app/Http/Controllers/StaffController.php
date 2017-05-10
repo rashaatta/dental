@@ -88,7 +88,7 @@ class StaffController extends Controller
             'address' => ['required', 'max:300'],
             'mobile' => ['required', 'max:150', 'unique:staff'],
             'specialty_id' => ['required', 'max:150'],
-            'salary' => ['required','max:10'],
+            'salary' => ['required'],
 
         ]);
 
