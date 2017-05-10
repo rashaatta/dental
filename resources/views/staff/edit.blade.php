@@ -81,6 +81,12 @@
                 <div class="col-md-10">
                     <input type="time" class="form-control" id="session_duration" name="session_duration"
                            value="{{ $staff->session_duration }}"/>
+
+                    <select class="form-control" id="session_duration" name="session_duration">
+                        @for($i = 5;$i <= 60 ;$i += 5)
+                            <option @if (old('session_duration') == $i) selected @endif value="{{$i}}">{{$i}}</option>
+                        @endfor
+                    </select>Minutes
                 </div>
             </div>
         </div>
@@ -97,9 +103,10 @@
             <div class="form-group col-md-4">
                 <label for="exit_time" class="control-label col-md-2">@lang('staff.exit_time'): </label>
                 <div class="col-md-10">
-                    <input type="datetime" class="form-control" id="exit_time" name="exit_time"
-                           value="{{ $staff->exit_time }}"/>
+                <input type="datetime" class="form-control" id="exit_time" name="exit_time"
+                value="{{ $staff->exit_time }}"/>
                 </div>
+
             </div>
 
 
@@ -109,7 +116,7 @@
 
                     @if (App::getLocale() =='ar')
                         @foreach ($days as $d)
-                            <input type="checkbox" value="{{$d->id}}"  name="{{$d->id}}"  @if ($swd->contains($d->id)))
+                            <input type="checkbox" value="{{$d->id}}" name="{{$d->id}}" @if ($swd->contains($d->id)))
                                    checked @endif >
                             <span> {{$d->ar_value}}</span>
                         @endforeach
@@ -139,4 +146,9 @@
 
     <br/>
     @include('layouts.error')
+@endsection
+
+
+@section('script')
+
 @endsection

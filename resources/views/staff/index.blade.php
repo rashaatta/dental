@@ -88,18 +88,7 @@ function buttonDelete($id)
         @endforeach
 
         </tbody>
-        <tfoot class="tablehead">
-        <tr>
-            <td colspan="7">
-                <div class="col-sm-8">
-                    <span><small>Total: {{count($staff)}} </small></span>
-                </div>
-                <div class="col-sm-3 col-sm-offset-1">
-                    <span><small>Page: {{count($staff)}} </small></span>
-                </div>
-            </td>
-        </tr>
-        </tfoot>
+        
     </table>
 
 @endsection
