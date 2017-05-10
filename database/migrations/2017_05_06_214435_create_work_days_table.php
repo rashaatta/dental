@@ -15,9 +15,9 @@ class CreateWorkDaysTable extends Migration
     {
         Schema::create('work_days', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('staff_id');
-            $table->string('day_name', 150);
-            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
+            $table->string('key_name', 100)->unique();
+            $table->string('en_value');
+            $table->string('ar_value');
             $table->timestamps();
         });
     }

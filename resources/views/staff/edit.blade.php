@@ -106,13 +106,18 @@
             <div class="form-group col-md-12 sectionStyle">
                 <label for="entry_time" class="control-label col-md-2">@lang('staff.workdays'): </label>
                 <div class="col-md-10">
+
                     @if (App::getLocale() =='ar')
-                        @foreach (Config::get('staff.ar_workdays') as $wd=> $workdays)
-                            <input type="checkbox" value="{{$wd}}"><span> {{$workdays}}</span>
+                        @foreach ($days as $d)
+                            <input type="checkbox" value="{{$d->id}}"
+                                   @if ($swd->contains($d->id)))    checked @endif >
+                            <span> {{$d->ar_value}}</span>
                         @endforeach
                     @elseif (App::getLocale() =='en')
-                        @foreach (Config::get('staff.en_workdays') as $wd=> $workdays)
-                            <input type="checkbox" value="{{$wd}}"><span> {{$workdays}}</span>
+                        @foreach ($days as $d)
+{{--                            {{ dd($swd->contains('7')) }}--}}
+                            <input type="checkbox" value="{{$d->id}}"   @if ($swd->contains($d->id)))  checked @endif >
+                            <span> {{$d->en_value}}</span>
                         @endforeach
                     @endif
                 </div>

@@ -1,1 +1,0 @@
-php artisan serve --host=dental.dev --port=8080

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
+use App\StaffWorkDays;
+use App\WorkDays;
 use App\Staff;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+
 
 class StaffController extends Controller
 {
@@ -19,8 +23,9 @@ class StaffController extends Controller
     public function index()
     {
         $staff = DB::table('staff')
-            ->join('work_days', 'staff.id', '=', 'work_days.staff_id')
-            ->select(DB::raw('group_concat(work_days.day_name separator ", ") as days,staff.*'))
+            ->join('staff_work_days', 'staff.id', '=', 'staff_work_days.staff_id')
+            ->join('work_days', 'work_days.id', '=', 'staff_work_days.work_day_id')
+            ->select(DB::raw('group_concat(work_days.en_value separator ", ") as en_days,group_concat(work_days.ar_value separator ", ") as ar_days,staff.*'))
             ->groupBy('staff.id')
             ->orderBy('name', 'asc')->offset(0)->limit(10)->get();
         return view('staff.index', compact('staff'));
@@ -29,7 +34,10 @@ class StaffController extends Controller
     public function add()
     {
         $specialty = DB::table('specialties')->get();
-        return view('staff.add', compact('specialty'));
+        $days = DB::table('work_days')->get();
+        $arr = array('specialty' => $specialty, 'days' => $days);
+
+        return view('staff.add', $arr);
     }
 
     public function edit(Request $request, $id)
@@ -43,18 +51,23 @@ class StaffController extends Controller
 
         ]);
 
-        DB::table('staff')->where('id', $id)->update([
-            'name' => request('name'),
-            'mobile' => request('mobile'),
-            'telephone' => request('telephone'),
-            'specialty_id' => request('specialty_id'),
-            'salary' => request('salary'),
-            'percent' => request('percent'),
-            'session_duration' => request('session_duration'),
-            'address' => request('address'),
-            'entry_time' => request('entry_time'),
-            'exit_time' => request('exit_time')
-        ]);
+        $staff = Staff::with('work_days')->find($id);
+
+        $staff->name = request('name');
+        $staff->mobile = request('mobile');
+        $staff->telephone = request('telephone');
+        $staff->specialty_id = request('specialty_id');
+        $staff->salary = request('salary');
+        $staff->percent = request('percent');
+        $staff->session_duration = request('session_duration');
+        $staff->address = request('address');
+        $staff->entry_time = request('entry_time');
+        $staff->exit_time = request('exit_time');
+        $staff->work_days()->detach();
+
+        $s = new WorkDays();
+        $s->id = 7;
+        $staff->work_days()->attach($s);
 
         return redirect('/staff');
     }
@@ -63,14 +76,13 @@ class StaffController extends Controller
     {
         $staff = DB::table('staff')->where('id', $id)->first();
         $specialty = DB::table('specialties')->get();
+        $swd = DB::table('staff_work_days')->where('staff_id', $id)->pluck('work_day_id');
 
-        $arr = array('staff' => $staff, 'specialty' => $specialty);
+        $days = DB::table('work_days')->get();
 
-        //$wd = DB::table('work_days')->where('staff_id', $id)->get();
-        // $arr = array('staff' => $staff, 'wd' => $wd);
+        $arr = array('staff' => $staff, 'swd' => $swd, 'specialty' => $specialty, 'days' => $days);
 
-        //return view('staff.edit', compact('staff'));
-         return view('staff.edit', $arr);
+        return view('staff.edit', $arr);
     }
 
 
@@ -103,10 +115,17 @@ class StaffController extends Controller
         $staff->address = request('address');
         $staff->entry_time = request('entry_time');
         $staff->exit_time = request('exit_time');
+
         $staff->save();
+
 
         return redirect('/staff');
     }
 
-
+    public function fillData()
+    {
+        factory(Staff::class, 100)->create();
+//        factory(WorkDays::class, 7)->create();
+        factory(StaffWorkDays::class, 100)->create();
+    }
 }

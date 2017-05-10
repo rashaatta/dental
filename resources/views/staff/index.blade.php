@@ -58,7 +58,11 @@ use Illuminate\Support\Facades\URL;
                 <td>{{ $st->mobile }}</td>
                 <td>{{ $st->session_duration }}</td>
                 <td>{{ $st->salary }}</td>
-                <td>{{ $st->days }}</td>
+                @if (App::getLocale() =='ar')
+                    <td>{{ $st->ar_days }}</td>
+                @elseif (App::getLocale() =='en')
+                    <td>{{ $st->en_days }}</td>
+                @endif
                 <td>
                     <a href="/staff/edit/{{$st->id}}">
                         <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
