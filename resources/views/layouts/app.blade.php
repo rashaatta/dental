@@ -133,7 +133,7 @@
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 
-
+<script src="{{ asset('js/site.js') }}"></script>
 <script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/datatable/dataTables.bootstrap.min.js') }}"></script>
 
