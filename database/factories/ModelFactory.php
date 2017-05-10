@@ -12,9 +12,6 @@
 */
 
 
-use App\User;
-use App\Staff;
-
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
@@ -47,10 +44,14 @@ $factory->define(App\Staff::class, function (Faker\Generator $faker) {
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\WorkDays::class, function (Faker\Generator $faker) {
 
+    do {
+        $key_name = $faker->dayOfWeek;
+    } while (App\WorkDays::where("key_name", "=", $key_name)->first() instanceof App\WorkDays);
+
     return [
-        'key_name' => $faker->dayOfWeek,
-        'en_value' => $faker->dayOfWeek,
-        'ar_value' => $faker->dayOfWeek
+        'key_name' => $key_name,
+        'en_value' => $key_name,
+        'ar_value' => $key_name
     ];
 });
 
@@ -68,8 +69,13 @@ $factory->define(App\Specialty::class, function (Faker\Generator $faker) {
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\StaffWorkDays::class, function (Faker\Generator $faker) {
 
+    do {
+        $staff_id = $faker->numberBetween(1, 50);
+        $work_days_id = $faker->numberBetween(1, 7);
+    } while (App\StaffWorkDays::where("staff_id", "=", $staff_id)->where("work_days_id", "=", $work_days_id)->first() instanceof App\StaffWorkDays);
+
     return [
-        'staff_id' => $faker->numberBetween(1,50),
-        'work_days_id' => $faker->numberBetween(1,7)
+        'staff_id' => $staff_id,
+        'work_days_id' => $work_days_id
     ];
 });

@@ -134,11 +134,11 @@
                 <div class="col-md-10">
                     @if (App::getLocale() =='ar')
                         @foreach ($days as $d)
-                            <input type="checkbox" name="{{$d->id}}"  value="{{$d->id}}"><span> {{$d->ar_value}}</span>
+                            <input type="checkbox" name="{{$d->id}}" value="{{$d->id}}"><span> {{$d->ar_value}}</span>
                         @endforeach
                     @elseif (App::getLocale() =='en')
                         @foreach ($days as $d)
-                            <input type="checkbox" name="{{$d->id}}"  value="{{$d->id}}"><span> {{$d->en_value}}</span>
+                            <input type="checkbox" name="{{$d->id}}" value="{{$d->id}}"><span> {{$d->en_value}}</span>
                         @endforeach
                     @endif
                 </div>
@@ -154,6 +154,7 @@
                 <a href="/staff" class=" btn btn-primary">@lang('staff.btnCancel')</a>
 
             </div>
+        </div>
     </form>
 
     <br/>

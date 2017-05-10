@@ -50,8 +50,8 @@ class StaffController extends Controller
             'name' => ['required', 'max:255', Rule::unique('staff')->ignore($id)],
             'address' => ['required', 'max:300',],
             'mobile' => ['required', 'max:150', Rule::unique('staff')->ignore($id)],
-            'specialty_id' => ['required', 'max:150',],
             'salary' => ['required',],
+            'specialty_id' => ['required', 'max:150',],
 
         ]);
 
@@ -70,7 +70,7 @@ class StaffController extends Controller
 
         $staff->work_days()->detach();
         for ($i = 1; $i <= 7; $i++) {
-            if( request($i) ){
+            if (request($i)) {
                 $s = WorkDays::find($i);
                 $staff->work_days()->attach($s);
             }
@@ -130,9 +130,11 @@ class StaffController extends Controller
 
     public function fillData()
     {
-        //factory(Specialty::class, 10)->create();
-        factory(Staff::class, 100)->create();
-        // factory(WorkDays::class, 7)->create();
+        factory(Specialty::class, 10)->create();
+//        factory(Staff::class, 100)->create();
+//        for ($i = 0; $i < 7; $i++)
+//            factory(WorkDays::class)->create();
+
         factory(StaffWorkDays::class, 100)->create();
     }
 }
