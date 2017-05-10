@@ -16,8 +16,8 @@ class StaffWorkDays extends Migration
         Schema::create('staff_work_days', function (Blueprint $table) {
             $table->unsignedInteger('staff_id');
             $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
-            $table->unsignedInteger('work_day_id');
-            $table->foreign('work_day_id')->references('id')->on('work_days')->onDelete('cascade');
+            $table->unsignedInteger('work_days_id');
+            $table->foreign('work_days_id')->references('id')->on('work_days')->onDelete('cascade');
             $table->timestamps();
             $table->primary('staff_id', 'work_day_id');
         });

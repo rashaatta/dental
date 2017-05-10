@@ -56,6 +56,16 @@ $factory->define(App\WorkDays::class, function (Faker\Generator $faker) {
 
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Specialty::class, function (Faker\Generator $faker) {
+
+    return [
+        'key_name' => $faker->jobTitle,
+        'en_value' => $faker->jobTitle,
+        'ar_value' => $faker->jobTitle
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\StaffWorkDays::class, function (Faker\Generator $faker) {
 
     return [
