@@ -70,6 +70,6 @@ $factory->define(App\StaffWorkDays::class, function (Faker\Generator $faker) {
 
     return [
         'staff_id' => $faker->numberBetween(1,50),
-        'work_day_id' => $faker->numberBetween(1,7)
+        'work_days_id' => $faker->numberBetween(1,7)
     ];
 });

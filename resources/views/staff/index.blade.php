@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\URL;
         <i class="fa fa-user-md" aria-hidden="true">
         </i>Doctors</h1>
 
-    <table class="table table-bordered table-responsive table-striped">
+    <table  id="staffId" class="table table-bordered table-responsive table-striped">
         <thead>
         <tr>
             <th>@lang('staff.name')</th>
@@ -109,6 +109,10 @@ use Illuminate\Support\Facades\URL;
 @section('script')
 
     <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#staffId').DataTable();
+        } );
 
         // Jquery function which listens for click events on elements which have a data-delete attribute
         $('[data-delete]').click(function(e){

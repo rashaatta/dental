@@ -18,6 +18,8 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+
     @if (App::getLocale() =='ar')
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/bootstrapRTL.css') }}" rel="stylesheet">
@@ -129,6 +131,8 @@
 
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 
 @yield('script')
 

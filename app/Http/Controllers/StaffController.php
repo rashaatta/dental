@@ -24,14 +24,14 @@ class StaffController extends Controller
     public function index()
     {
         $staff = DB::table('staff')
-            ->join('staff_work_days', 'staff.id', '=', 'staff_work_days.staff_id')
-            ->join('work_days', 'work_days.id', '=', 'staff_work_days.work_days_id')
+            ->leftJoin('staff_work_days', 'staff.id', '=', 'staff_work_days.staff_id')
+            ->leftJoin('work_days', 'work_days.id', '=', 'staff_work_days.work_days_id')
             ->join('specialties', 'staff.specialty_id', '=', 'specialties.id')
             ->select(DB::raw('group_concat(work_days.en_value separator ", ") as en_days,
                 group_concat(work_days.ar_value separator ", ") as ar_days,
                 specialties.en_value as en_specialty, specialties.ar_value as ar_specialty  ,staff.*'))
             ->groupBy('staff.id')
-            ->orderBy('name', 'asc')->offset(0)->limit(10)->get();
+            ->orderBy('name', 'asc')->get();
         return view('staff.index', compact('staff'));
     }
 
@@ -69,11 +69,12 @@ class StaffController extends Controller
         $staff->exit_time = request('exit_time');
 
         $staff->work_days()->detach();
-
-        $s = new WorkDays();
-        $s->id = 7;
-        $staff->work_days()->attach($s);
-
+        for ($i = 1; $i <= 7; $i++) {
+            if( request($i) ){
+                $s = WorkDays::find($i);
+                $staff->work_days()->attach($s);
+            }
+        }
         $staff->save();
 
         return redirect('/staff');
@@ -129,9 +130,9 @@ class StaffController extends Controller
 
     public function fillData()
     {
-        factory(Specialty::class, 10)->create();
+        //factory(Specialty::class, 10)->create();
         factory(Staff::class, 100)->create();
-//        factory(WorkDays::class, 7)->create();
+        // factory(WorkDays::class, 7)->create();
         factory(StaffWorkDays::class, 100)->create();
     }
 }

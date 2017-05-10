@@ -19,7 +19,7 @@ class StaffWorkDays extends Migration
             $table->unsignedInteger('work_days_id');
             $table->foreign('work_days_id')->references('id')->on('work_days')->onDelete('cascade');
             $table->timestamps();
-            $table->primary('staff_id', 'work_day_id');
+            $table->primary(['staff_id', 'work_days_id']);
         });
     }
 

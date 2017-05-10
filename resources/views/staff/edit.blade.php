@@ -109,14 +109,14 @@
 
                     @if (App::getLocale() =='ar')
                         @foreach ($days as $d)
-                            <input type="checkbox" value="{{$d->id}}"
-                                   @if ($swd->contains($d->id)))    checked @endif >
+                            <input type="checkbox" value="{{$d->id}}"  name="{{$d->id}}"  @if ($swd->contains($d->id)))
+                                   checked @endif >
                             <span> {{$d->ar_value}}</span>
                         @endforeach
                     @elseif (App::getLocale() =='en')
                         @foreach ($days as $d)
-{{--                            {{ dd($swd->contains('7')) }}--}}
-                            <input type="checkbox" value="{{$d->id}}"   @if ($swd->contains($d->id)))  checked @endif >
+                            <input type="checkbox" value="{{$d->id}}" name="{{$d->id}}" @if ($swd->contains($d->id)))
+                                   checked @endif >
                             <span> {{$d->en_value}}</span>
                         @endforeach
                     @endif
