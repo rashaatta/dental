@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -24,7 +25,7 @@ class StaffController extends Controller
     {
         $staff = DB::table('staff')
             ->join('staff_work_days', 'staff.id', '=', 'staff_work_days.staff_id')
-            ->join('work_days', 'work_days.id', '=', 'staff_work_days.work_day_id')
+            ->join('work_days', 'work_days.id', '=', 'staff_work_days.work_days_id')
             ->join('specialties', 'staff.specialty_id', '=', 'specialties.id')
             ->select(DB::raw('group_concat(work_days.en_value separator ", ") as en_days,
                 group_concat(work_days.ar_value separator ", ") as ar_days,
@@ -67,14 +68,14 @@ class StaffController extends Controller
         $staff->entry_time = request('entry_time');
         $staff->exit_time = request('exit_time');
 
+        $staff->work_days()->detach();
 
-        //$staff->work_days()->detach();
-
-//        $s = new WorkDays();
-//        $s->id = 7;
-//        $staff->work_days()->attach($s);
+        $s = new WorkDays();
+        $s->id = 7;
+        $staff->work_days()->attach($s);
 
         $staff->save();
+
         return redirect('/staff');
     }
 
@@ -82,7 +83,7 @@ class StaffController extends Controller
     {
         $staff = DB::table('staff')->where('id', $id)->first();
         $specialty = DB::table('specialties')->get();
-        $swd = DB::table('staff_work_days')->where('staff_id', $id)->pluck('work_day_id');
+        $swd = DB::table('staff_work_days')->where('staff_id', $id)->pluck('work_days_id');
 
         $days = DB::table('work_days')->get();
 
@@ -91,13 +92,11 @@ class StaffController extends Controller
         return view('staff.edit', $arr);
     }
 
-
     public function destroy($id)
     {
         DB::table('staff')->where('id', $id)->delete();
         return redirect('/staff');
     }
-
 
     public function create(Request $request)
     {
@@ -130,6 +129,7 @@ class StaffController extends Controller
 
     public function fillData()
     {
+        factory(Specialty::class, 10)->create();
         factory(Staff::class, 100)->create();
 //        factory(WorkDays::class, 7)->create();
         factory(StaffWorkDays::class, 100)->create();

@@ -14,7 +14,7 @@ class Staff extends Model
     }
 
     public function work_days(){
-        return $this->hasMany(WorkDays::class);
+        return $this->belongsToMany(WorkDays::class);
     }
 
     public function speciality(){
