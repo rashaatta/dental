@@ -5,7 +5,7 @@
 
 use Illuminate\Support\Facades\URL;
 
- function buttonDelete($id)
+function buttonDelete($id)
 {
     $format = '<a href="%s" data-toggle="tooltip" data-delete="%s" title="%s" class=""><i
             class="fa fa-trash-o"></i></a>';
@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\URL;
         <i class="fa fa-user-md" aria-hidden="true">
         </i>Doctors</h1>
 
-    <table  id="staffId" class="table table-bordered table-responsive table-striped">
+    <table id="staffId" class="table table-bordered table-responsive table-striped">
         <thead>
         <tr>
             <th>@lang('staff.name')</th>
@@ -45,7 +45,6 @@ use Illuminate\Support\Facades\URL;
                 </a>
             </th>
             </td>
-
 
 
         </tr>
@@ -71,9 +70,9 @@ use Illuminate\Support\Facades\URL;
                     <a href="/staff/edit/{{$st->id}}">
                         <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
                     </a>
-                    {{--<a href="/staff/delete/{{$st->id}}" >--}}
-                        {{--<i class="fa fa-remove red" aria-hidden="true" title="Delete record"></i>--}}
-                    {{--</a>--}}
+                {{--<a href="/staff/delete/{{$st->id}}" >--}}
+                {{--<i class="fa fa-remove red" aria-hidden="true" title="Delete record"></i>--}}
+                {{--</a>--}}
 
                 {{--<a href="/staff/delete/{{$st->id}}">--}}
                 {{--<i class="fa fa-remove" aria-hidden="true" title="delete"></i>--}}
@@ -106,16 +105,27 @@ use Illuminate\Support\Facades\URL;
 @endsection
 
 
+
 @section('script')
 
-    <script type="text/javascript">
+    @if (App::getLocale() =='ar')
+       <?php $r = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"  ?>
+    @elseif (App::getLocale() =='en')
+        <?php $r = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json" ?>
+    @endif
 
-        $(document).ready(function() {
-            $('#staffId').DataTable();
-        } );
+    <script type="text/javascript">
+        var url= "{{ $r }}" ;
+        $(document).ready(function () {
+            $('#staffId').DataTable({
+                "language": {
+                    "url": url
+                }
+            });
+        });
 
         // Jquery function which listens for click events on elements which have a data-delete attribute
-        $('[data-delete]').click(function(e){
+        $('[data-delete]').click(function (e) {
             e.preventDefault();
             // If the user confirm the delete
             if (confirm('Do you really want to delete the element ?')) {
