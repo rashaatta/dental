@@ -154,6 +154,7 @@
                 <a href="/staff" class=" btn btn-primary">@lang('staff.btnCancel')</a>
 
             </div>
+        </div>
     </form>
 
     <br/>
