@@ -25,7 +25,10 @@ class StaffController extends Controller
         $staff = DB::table('staff')
             ->join('staff_work_days', 'staff.id', '=', 'staff_work_days.staff_id')
             ->join('work_days', 'work_days.id', '=', 'staff_work_days.work_day_id')
-            ->select(DB::raw('group_concat(work_days.en_value separator ", ") as en_days,group_concat(work_days.ar_value separator ", ") as ar_days,staff.*'))
+            ->join('specialties', 'staff.specialty_id', '=', 'specialties.id')
+            ->select(DB::raw('group_concat(work_days.en_value separator ", ") as en_days,
+                group_concat(work_days.ar_value separator ", ") as ar_days,
+                specialties.en_value as en_specialty, specialties.ar_value as ar_specialty  ,staff.*'))
             ->groupBy('staff.id')
             ->orderBy('name', 'asc')->offset(0)->limit(10)->get();
         return view('staff.index', compact('staff'));
@@ -51,7 +54,7 @@ class StaffController extends Controller
 
         ]);
 
-        $staff = Staff::with('work_days')->find($id);
+        $staff = Staff::find($id);
 
         $staff->name = request('name');
         $staff->mobile = request('mobile');
@@ -63,12 +66,15 @@ class StaffController extends Controller
         $staff->address = request('address');
         $staff->entry_time = request('entry_time');
         $staff->exit_time = request('exit_time');
-        $staff->work_days()->detach();
 
-        $s = new WorkDays();
-        $s->id = 7;
-        $staff->work_days()->attach($s);
 
+        //$staff->work_days()->detach();
+
+//        $s = new WorkDays();
+//        $s->id = 7;
+//        $staff->work_days()->attach($s);
+
+        $staff->save();
         return redirect('/staff');
     }
 

@@ -62,14 +62,11 @@
                 <ul class="nav navbar-nav">
                     &nbsp;<li class="dropdown">
                         <a href="/staff">@lang('welcome.staff')</a>
-                        {{--<a href="/staff" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.staff')</a>--}}
-                        {{--<ul role="menu" class="dropdown-menu">--}}
-                            {{--<li><a href="">اضافه طبيب</a></li>--}}
-                            {{--<li><a href="">اضافه طبيب</a></li>--}}
-                            {{--<li><a href="">اضافه طبيب</a></li>--}}
-                        {{--</ul>--}}
                     </li>
-                    <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.patients')</a></li>
+                    <li class="dropdown">
+                        <a href="/patient">@lang('welcome.patients')
+                        </a>
+                    </li>
                     <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.sessions')</a></li>
                     <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.accounting')</a></li>
                 </ul>
