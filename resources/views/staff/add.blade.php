@@ -109,7 +109,8 @@
 
                 </div>
             </div>
-            <div class="row">
+<div class="clearfix"></div>
+            <div >
                 <div class="form-group col-md-4">
                     <label for="entry_time" class="control-label col-md-2">@lang('staff.entry_time'): </label>
                     <div class="col-md-10">
