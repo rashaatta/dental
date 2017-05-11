@@ -128,4 +128,11 @@ th a{
 }
 #staffId Tr th{
         min-width: 127px !important;
+}/*
+.page-heading {
+    margin-top: 70px;
+}*/
+
+#app{
+    padding-bottom: 70px;
 }
