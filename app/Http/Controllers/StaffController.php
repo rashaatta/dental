@@ -93,9 +93,9 @@ class StaffController extends Controller
         return view('staff.edit', $arr);
     }
 
-    public function destroy($id)
+    public function destroy()
     {
-        DB::table('staff')->where('id', $id)->delete();
+        DB::table('staff')->where('id', request('doctor-delete-id'))->delete();
         return redirect('/staff');
     }
 
