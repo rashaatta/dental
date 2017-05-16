@@ -109,7 +109,15 @@ margin-right:29% !important;
 .patient label{
     text-align: right !important;
 }
-
+/*
 .patient,.editDoctor {
     margin-top: 30px;
+}
+
+.page-heading {
+    margin-top: 70px;
+}
+*/
+#app{
+    padding-bottom: 70px;
 }
