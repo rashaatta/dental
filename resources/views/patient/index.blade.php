@@ -28,10 +28,16 @@ function buttonDelete($id)
         <i class="fa fa-user-md" aria-hidden="true">
         </i>Patients</h1>
 
-    <table class="table table-bordered table-responsive table-striped">
+    <table id="patientId" class="table table-bordered table-responsive table-striped">
         <thead>
         <tr>
             <th>@lang('patient.name')</th>
+            <th>@lang('patient.mobile')</th>
+            <th>@lang('patient.telephone')</th>
+            <th>@lang('patient.address')</th>
+            <th>@lang('patient.corporation')</th>
+            <th>@lang('patient.birthday')</th>
+            <th>@lang('patient.job')</th>
 
             <th>
                 <a href="/patient/add">
@@ -40,9 +46,6 @@ function buttonDelete($id)
 
                 </a>
             </th>
-            </td>
-
-
         </tr>
         </thead>
         <tbody>
@@ -54,7 +57,7 @@ function buttonDelete($id)
                     <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
                 </a>
 
-            <?= buttonDelete(1) ?>
+                <?= buttonDelete(1) ?>
             </td>
         </tr>
 
@@ -79,5 +82,35 @@ function buttonDelete($id)
 
 @section('script')
 
+    @if (App::getLocale() =='ar')
+        <?php $r = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"  ?>
+    @elseif (App::getLocale() =='en')
+        <?php $r = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json" ?>
+    @endif
+
+    <script type="text/javascript">
+        var url = "{{ $r }}";
+        $(document).ready(function () {
+            $('#patientId').DataTable({
+                "language": {
+                    "url": url
+                }
+            });
+
+            $('.glyphicon.glyphicon-trash.red').click(function () {
+                var id = $(this).attr('id');
+                $('#doctor-delete-id').attr('value', id);
+//                $('#confirmDelete').toggle('show');
+//                alert(id);
+            });
+
+            $('#submitDelete').click(function () {
+                $('#deletionForm').submit();
+                $('confirmDelete').modal('hide');
+            });
+        });
+
+
+    </script>
 @endsection
 
