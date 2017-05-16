@@ -1,23 +1,33 @@
 @extends('layouts.app')
 @include('layouts.error')
 
-<?php
 
-use Illuminate\Support\Facades\URL;
-
-function buttonDelete($id)
-{
-    $format = '<a href="%s" data-toggle="tooltip" data-delete="%s" title="%s" class=""><i
-            class="fa fa-trash-o"></i></a>';
-    $link = "/staff/delete/$id";
-    $token = csrf_token();
-    $title = "Delete the doctor";
-    return sprintf($format, $link, $token, $title);
-};
-
-
-?>
 @section('content')
+    
+
+            <div class="modal" id="confirmDelete" data-keyboard="false" data-backdrop="static" tabindex="-1">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Confirm Delete</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="deletionForm" method="POST" action="/staff/delete">
+                                {{ csrf_field() }}
+                                <input id="doctor-delete-id" name="doctor-delete-id" type="hidden" value="0"/>
+                                <p>Are you sure you want to delete doctor number ? </p>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="submitDelete" type="button" class="btn btn-primary">Delete</button>
+                            <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
     <!--<ul>
         @foreach($staff as $st)
         <li><a href="/staff/edit/{{$st->id}}" >{{ $st->name }}</a></li>
@@ -70,17 +80,16 @@ function buttonDelete($id)
                     <a href="/staff/edit/{{$st->id}}">
                         <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
                     </a>
-                {{--<a href="/staff/delete/{{$st->id}}" >--}}
-                {{--<i class="fa fa-remove red" aria-hidden="true" title="Delete record"></i>--}}
-                {{--</a>--}}
+                    <a href="#">
+                        <i class="glyphicon glyphicon-trash red" id="{{ $st->id }}" aria-hidden="true"
+                           title="Delete record"
+                           data-target="#confirmDelete" data-toggle="modal"></i>
+                    </a>
 
-                {{--<a href="/staff/delete/{{$st->id}}">--}}
-                {{--<i class="fa fa-remove" aria-hidden="true" title="delete"></i>--}}
-                {{--<span class="glyphicon glyphicon-trash"></span>--}}
-                {{--</a>--}}
-                <!--                    -->
-
-                    <?= buttonDelete($st->id) ?>
+                    {{--<a href="/staff/delete/{{$st->id}}">--}}
+                    {{--<i class="fa fa-remove" aria-hidden="true" title="delete"></i>--}}
+                    {{--<span class="glyphicon glyphicon-trash"></span>--}}
+                    {{--</a>--}}
 
                 </td>
 
@@ -88,7 +97,7 @@ function buttonDelete($id)
         @endforeach
 
         </tbody>
-        
+
     </table>
 
 @endsection
@@ -98,21 +107,32 @@ function buttonDelete($id)
 @section('script')
 
     @if (App::getLocale() =='ar')
-       <?php $r = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"  ?>
+        <?php $r = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"  ?>
     @elseif (App::getLocale() =='en')
         <?php $r = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json" ?>
     @endif
 
     <script type="text/javascript">
-        var url= "{{ $r }}" ;
+        var url = "{{ $r }}";
         $(document).ready(function () {
             $('#staffId').DataTable({
                 "language": {
                     "url": url
                 }
             });
-        });
 
+            $('.glyphicon.glyphicon-trash.red').click(function () {
+                var id = $(this).attr('id');
+                $('#doctor-delete-id').attr('value', id);
+//                $('#confirmDelete').toggle('show');
+//                alert(id);
+            });
+
+            $('#submitDelete').click(function () {
+                $('#deletionForm').submit();
+                $('confirmDelete').modal('hide');
+            });
+        });
 
 
     </script>

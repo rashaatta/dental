@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -15,13 +14,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
-    {{--<link type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />--}}
-    {{--<link type="text/css" href="{{ asset('css/bootstrap-timepicker.css') }}" />--}}
-    {{--<link rel="stylesheet/less" type="text/css" href="{{ asset('css/timepicker.less')}}" />--}}
-    <!-- Styles -->
+{{--<link type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />--}}
+{{--<link type="text/css" href="{{ asset('css/bootstrap-timepicker.css') }}" />--}}
+{{--<link rel="stylesheet/less" type="text/css" href="{{ asset('css/timepicker.less')}}" />--}}
+<!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
 
 
     @if (App::getLocale() =='ar')
@@ -31,7 +29,13 @@
     @endif
 
 
-<!-- Scripts -->
+    <style type="text/css">
+        .modal {
+            top: 200px;
+        }
+    </style>
+
+    <!-- Scripts -->
 
     <script>
         window.Laravel = {!! json_encode([
@@ -66,20 +70,22 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 @if (!Auth::guest())
-                <ul class="nav navbar-nav">
-                    &nbsp;<li class="dropdown">
-                        <a href="/staff">@lang('welcome.staff')</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="/patient">@lang('welcome.patients')
-                        </a>
-                    </li>
-                    <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.sessions')</a></li>
-                    <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">@lang('welcome.accounting')</a></li>
-                </ul>
-                @endif
+                    <ul class="nav navbar-nav">
+                        &nbsp;<li class="dropdown">
+                            <a href="/staff">@lang('welcome.staff')</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/patient">@lang('welcome.patients')
+                            </a>
+                        </li>
+                        <li class="dropdown"><a href="" class="dropdown-toggle"
+                                                data-toggle="dropdown">@lang('welcome.sessions')</a></li>
+                        <li class="dropdown"><a href="" class="dropdown-toggle"
+                                                data-toggle="dropdown">@lang('welcome.accounting')</a></li>
+                    </ul>
+            @endif
 
-                <!-- Right Side Of Navbar -->
+            <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
@@ -111,7 +117,7 @@
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                           @lang('welcome.logout')
+                                        @lang('welcome.logout')
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -129,6 +135,8 @@
 </div>
 <div class="container">
 
+
+
     @yield('content')
 </div>
 
@@ -145,6 +153,11 @@
 
 @yield('script')
 
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>
 
 </body>
 </html>

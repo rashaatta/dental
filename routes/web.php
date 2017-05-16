@@ -25,8 +25,7 @@ Route::get('/staff/add', 'StaffController@add');
 Route::post('/staff/add', 'StaffController@create');
 Route::get('/staff/edit/{id}', 'StaffController@update');
 Route::post('/staff/edit/{id}', 'StaffController@edit');
-Route::get('/staff/delete/{id}', 'StaffController@destroy');
-
+Route::post('/staff/delete', 'StaffController@destroy');
 
 
 Route::get('/patient', 'PatientController@index');
