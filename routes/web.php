@@ -11,24 +11,26 @@
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
-// staff
-Route::get('/staff', 'StaffController@index');
-Route::get('/staff/add', 'StaffController@add');
-Route::post('/staff/add', 'StaffController@create');
-Route::get('/staff/edit/{id}', 'StaffController@update');
-Route::post('/staff/edit/{id}', 'StaffController@edit');
-Route::post('/staff/delete', 'StaffController@destroy');
 
-
-Route::get('/patient', 'PatientController@index');
-Route::get('/patient/add', 'PatientController@add');
-Route::get('/patient/edit/{id}', 'PatientController@update');
-Route::get('/patient/delete/{id}', 'PatientController@destroy');
+//// staff
+//Route::get('/staff', 'StaffController@index');
+//Route::get('/staff/add', 'StaffController@add');
+//Route::post('/staff/add', 'StaffController@create');
+//Route::get('/staff/edit/{id}', 'StaffController@update');
+//Route::post('/staff/edit/{id}', 'StaffController@edit');
+//Route::post('/staff/delete', 'StaffController@destroy');
+//
+//
+//Route::get('/patient', 'PatientController@index');
+//Route::get('/patient/add', 'PatientController@add');
+//Route::get('/patient/edit/{id}', 'PatientController@update');
+//Route::get('/patient/delete/{id}', 'PatientController@destroy');

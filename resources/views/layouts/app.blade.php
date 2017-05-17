@@ -37,15 +37,17 @@
 
     <!-- Scripts -->
 
-    <script>
+    <script type="text/javascript">
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
 
 
+
+
 </head>
-<body>
+<body ng-app="dentalApp">
 <div id="app">
     <nav class="navbar navbar-fixed-top navbar-default navbar-static-top">
         <div class="container-fluid">
@@ -61,7 +63,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="#">
                 @lang('welcome.name')
                 <!--  {{ config('app.name', 'Laravel') }}-->
                 </a>
@@ -89,8 +91,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ route('login') }}">@lang('welcome.login')</a></li>
-                        <li><a href="{{ route('register') }}">@lang('welcome.register')</a></li>
+                        <li><a href="login">@lang('welcome.login')</a></li>
+                        <li><a href="register">@lang('welcome.register')</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 {{ Config::get('languages')[App::getLocale()] }}
@@ -114,13 +116,13 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{{ route('logout') }}"
+                                    <a href="logout"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         @lang('welcome.logout')
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    <form id="logout-form" action="logout" method="POST"
                                           style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
@@ -136,13 +138,13 @@
 <div class="container">
 
 
-
     @yield('content')
+
+
 </div>
 
 <!-- Scripts -->
 <!-- Scripts -->
-
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 
@@ -150,6 +152,19 @@
 <script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/datatable/dataTables.bootstrap.min.js') }}"></script>
 
+<!-- Angular libs -->
+<script src="{{ asset('js/angular.min.js') }}"></script>
+<script src="{{ asset('js/angular-animate.min.js') }}"></script>
+<script src="{{ asset('js/angular-route.min.js') }}"></script>
+
+<!-- Angular files -->
+<script src="{{ asset('angular/app.js') }}"></script>
+<script src="{{ asset('angular/controllers/mainCtrl.js') }}"></script>
+
+<script type="text/javascript">
+    // to remove # from routing URLs
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+</script>
 
 @yield('script')
 
