@@ -1,28 +1,33 @@
 @extends('layouts.app')
 @include('layouts.error')
 
-<?php
-/**
- * Created by PhpStorm.
- * User: Rasha
- * Date: 5/10/2017
- * Time: 2:03 PM
- */
-use Illuminate\Support\Facades\URL;
-
-function buttonDelete($id)
-{
-    $format = '<a href="%s" data-toggle="tooltip" data-delete="%s" title="%s" class=""><i
-            class="fa fa-trash-o"></i></a>';
-    $link = "/patient/delete/$id";
-    $token = csrf_token();
-    $title = "Delete the doctor";
-    return sprintf($format, $link, $token, $title);
-};
-
-
-?>
 @section('content')
+
+    <div class="modal" id="confirmDelete" data-keyboard="false" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="deletionForm" method="POST" action="/patient/delete">
+                        {{ csrf_field() }}
+                        <input id="patient-delete-id" name="patient-delete-id" type="hidden" value="0"/>
+                        <p>Are you sure you want to delete this patient ? </p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="submitDelete" type="button" class="btn btn-primary">Delete</button>
+                    <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--@foreach($patients as $pat)--}}
+        {{--<li><a href="/patient/edit/{{$pat->id}}" >{{ $pat->name }}</a></li>--}}
+    {{--@endforeach--}}
 
     <h1 class="page-heading">
         <i class="fa fa-user-md" aria-hidden="true">
@@ -49,32 +54,32 @@ function buttonDelete($id)
         </tr>
         </thead>
         <tbody>
+        @foreach($patients as $pat)
+            <tr>
+                <td>{{$pat->name}}</td>
+                <td>{{$pat->mobile}}</td>
+                <td>{{$pat->telephone}}</td>
+                <td>{{$pat->address}}</td>
+                <td>{{$pat->corporation_name}}</td>
+                <td>{{$pat->birthday}}</td>
+                <td>{{$pat->job}}</td>
+                <td>
 
-        <tr>
-            <td></td>
-            <td>
-                <a href="/patient/edit/1">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
-                </a>
+                    <a href="/patient/edit/{{$pat->id}}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
+                    </a>
 
-                <?= buttonDelete(1) ?>
-            </td>
-        </tr>
-
+                    <a href="#">
+                        <i class="glyphicon glyphicon-trash red" id={{ $pat->id }} aria-hidden="true"
+                           title="Delete record"
+                           data-target="#confirmDelete" data-toggle="modal"></i>
+                    </a>
+                </td>
+            </tr>
+        @endforeach
 
         </tbody>
-        <tfoot class="tablehead">
-        <tr>
-            <td colspan="7">
-                <div class="col-sm-8">
-                    <span><small>Total: 0 </small></span>
-                </div>
-                <div class="col-sm-3 col-sm-offset-1">
-                    <span><small>Page: 0 </small></span>
-                </div>
-            </td>
-        </tr>
-        </tfoot>
+
     </table>
 
 @endsection
@@ -99,7 +104,7 @@ function buttonDelete($id)
 
             $('.glyphicon.glyphicon-trash.red').click(function () {
                 var id = $(this).attr('id');
-                $('#doctor-delete-id').attr('value', id);
+                $('#patient-delete-id').attr('value', id);
 //                $('#confirmDelete').toggle('show');
 //                alert(id);
             });

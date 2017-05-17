@@ -79,14 +79,14 @@
             <div class="form-group  col-md-4">
                 <label for="session_duration" class="control-label col-md-2">@lang('staff.session_duration'): </label>
                 <div class="col-md-10">
-                    <input type="time" class="form-control" id="session_duration" name="session_duration"
-                           value="{{ $staff->session_duration }}"/>
+                    {{--<input type="time" class="form-control" id="session_duration" name="session_duration"--}}
+                           {{--value="{{ $staff->session_duration }}"/>--}}
 
                     <select class="form-control" id="session_duration" name="session_duration">
                         @for($i = 5;$i <= 60 ;$i += 5)
                             <option @if (old('session_duration') == $i) selected @endif value="{{$i}}">{{$i}}</option>
                         @endfor
-                    </select>Minutes
+                    </select>
                 </div>
             </div>
         </div>

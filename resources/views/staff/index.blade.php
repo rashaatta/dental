@@ -16,7 +16,7 @@
                             <form id="deletionForm" method="POST" action="/staff/delete">
                                 {{ csrf_field() }}
                                 <input id="doctor-delete-id" name="doctor-delete-id" type="hidden" value="0"/>
-                                <p>Are you sure you want to delete doctor number ? </p>
+                                <p>Are you sure you want to delete this doctor? </p>
                             </form>
                         </div>
                         <div class="modal-footer">

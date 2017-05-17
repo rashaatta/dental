@@ -15,7 +15,7 @@ return [
     'specialty' => 'Specialty ',
     'salary' => 'Salary',
     'percent' => 'Percent ',
-    'session_duration' => 'Session Duration',
+    'session_duration' => 'Session Duration(Min)',
     'entry_time' => 'Entry Time',
     'exit_time' => 'Exit Time',
     'btnSave' => 'Save',

@@ -79,3 +79,29 @@ $factory->define(App\StaffWorkDays::class, function (Faker\Generator $faker) {
         'work_days_id' => $work_days_id
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Corporation::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->name,
+        'mobile' => $faker->phoneNumber,
+        'telephone' => $faker->phoneNumber,
+        'address' => $faker->address
+    ];
+});
+
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Patient::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->unique()->name,
+        'mobile' => $faker->phoneNumber,
+        'telephone' => $faker->phoneNumber,
+        'address' => $faker->address,
+        'corporation_id' => $faker->numberBetween(1, 20),
+        'birthday' => $faker->dateTime,
+        'job' => $faker->jobTitle
+    ];
+});
