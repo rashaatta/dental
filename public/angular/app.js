@@ -11,7 +11,7 @@
         'authModule',
         'coreModule',
         'staffModule',
-        'ui.bootstrap'
+        'datatables'
     ];
 
 

@@ -21,7 +21,13 @@
         var controller = function ($scope, coreService, staffService, $state) {
 
             $scope.currentLang = coreService.getLang();
-            $scope.staff = [];
+            $scope.staff = {};
+
+            // DataTables configurable options
+            // $scope.dtOptions = DTOptionsBuilder.newOptions()
+            //     .withDisplayLength(10)
+            //     .withOption('bLengthChange', false);
+
 
             $scope.listStaff = function () {
                 staffService.getStaff().then(

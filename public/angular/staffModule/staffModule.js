@@ -3,7 +3,7 @@
  */
 
 (function () {
-    var module = angular.module('staffModule',['ui.bootstrap']);
+    var module = angular.module('staffModule', ['datatables']);
     module.config(['$stateProvider','$urlRouterProvider',  function ($stateProvider,$urlRouterProvider) {
         //$urlRouterProvider.otherwise("/");
         $stateProvider

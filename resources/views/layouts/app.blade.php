@@ -13,7 +13,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/angular-datatables.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">--}}
 {{--<link type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />--}}
 {{--<link type="text/css" href="{{ asset('css/bootstrap-timepicker.css') }}" />--}}
 {{--<link rel="stylesheet/less" type="text/css" href="{{ asset('css/timepicker.less')}}" />--}}
@@ -129,7 +130,10 @@
 <!-- Scripts -->
 <!-- Scripts -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
+<script src="{{ asset('js/jquery-1.11.3.min.js') }}"></script>
+
+
 {{--<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>--}}
 <script src="{{ asset('js/app.js') }}"></script>
 
@@ -137,8 +141,14 @@
 
 <script src="{{ asset('js/site.js') }}"></script>
 
-<!-- Angular libs -->
+
+<script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/angular.min.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.js') }}"></script>
+
+
+<!-- Angular libs -->
+
 <script src="{{ asset('js/angular-animate.min.js') }}"></script>
 <script src="{{ asset('js/angular-route.min.js') }}"></script>
 <script src="{{ asset('js/angular-ui-router.min.js') }}"></script>
@@ -165,8 +175,13 @@
 <script src="{{ asset('angular/staffModule/js/controllers/staffController.js') }}"></script>
 <script src="{{ asset('angular/staffModule/js/services/staffService.js') }}"></script>
 
-<script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/datatable/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.directive.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.instances.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.util.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.renderer.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.factory.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.options.js') }}"></script>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>

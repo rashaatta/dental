@@ -25,7 +25,7 @@
     <i class="fa fa-user-md" aria-hidden="true">
     </i>Doctors</h1>
 
-<table id="staffId" class="table table-bordered table-responsive table-striped">
+<table id="staffId"   datatable="ng"   class="table table-bordered table-responsive table-striped">
     <thead>
     <tr>
         <th>@lang('staff.name')</th>
@@ -79,27 +79,3 @@
 
 </table>
 
-
-<script type="text/javascript">
-    //    var url = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json";
-    //    if (currentLang == 'ar') {
-    //        url = "https:/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json";
-    //    }
-        $(document).ready(function () {
-            $('#staffId').DataTable();
-
-            $('.glyphicon.glyphicon-trash.red').click(function () {
-                var id = $(this).attr('id');
-                $('#doctor-delete-id').attr('value', id);
-    //                $('#confirmDelete').toggle('show');
-    //                alert(id);
-            });
-
-            $('#submitDelete').click(function () {
-                $('#deletionForm').submit();
-                $('confirmDelete').modal('hide');
-            });
-        });
-
-
-</script>
