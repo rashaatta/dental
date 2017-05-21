@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ config('app.locale') }}" >
+<html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,8 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     @if (App::getLocale() =='ar')
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="{{ asset('css/appRtl.css') }}" rel="stylesheet">
 @endif
 
@@ -84,23 +85,25 @@
             @else
                 <a href='#/login'>@lang('welcome.login')</a>
                 <a href="{{ url('/register') }}">@lang('welcome.register')</a>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            {{ Config::get('languages')[App::getLocale()] }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            @foreach (Config::get('languages') as $lang => $language)
-                                @if ($lang != App::getLocale())
-                                    <li>
-                                        <a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </li>
-                </ul>
+                <li><a ng-if="'{{ App::getLocale() }}' !== 'en'" href="{{ route('lang.switch', 'en') }}">English</a>
+                </li>
+                <li><a ng-if="'{{ App::getLocale() }}' !== 'ar'" href="{{ route('lang.switch', 'ar') }}">عربي</a></li>
+                {{--<ul class="nav navbar-nav navbar-right">--}}
+                {{--<li class="dropdown">--}}
+                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                {{--{{ Config::get('languages')[App::getLocale()] }}--}}
+                {{--</a>--}}
+                {{--<ul class="dropdown-menu">--}}
+                {{--@foreach (Config::get('languages') as $lang => $language)--}}
+                {{--@if ($lang != App::getLocale())--}}
+                {{--<li>--}}
+                {{--<a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>--}}
+                {{--</li>--}}
+                {{--@endif--}}
+                {{--@endforeach--}}
+                {{--</ul>--}}
+                {{--</li>--}}
+                {{--</ul>--}}
             @endif
         </div>
     @endif
@@ -119,8 +122,8 @@
           !-- <a href="https://laravel-news.com">News</a>
                <a href="https://forge.laravel.com">Forge</a>
                <a href="https://github.com/laravel/laravel">GitHub</a>-->
-        </div>
     </div>
+</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -131,7 +134,7 @@
 
 <script>
 
-    function goBack(){
+    function goBack() {
         window.history.back();
     }
 

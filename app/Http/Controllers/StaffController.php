@@ -16,10 +16,10 @@ use Illuminate\Validation\Rule;
 
 class StaffController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     public function index()
     {
@@ -33,7 +33,7 @@ class StaffController extends Controller
             ->groupBy('staff.id')
             ->orderBy('name', 'asc')->get();
 
-        return view('staff.index', compact('staff'));
+        return response()->json($staff, 201);
     }
 
     public function add()

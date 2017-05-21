@@ -45,8 +45,7 @@
 
 
 </head>
-<body ng-app="dentalApp">
-
+<body ng-app="dentalApp" ng-controller="CoreController">
 
 
 <div id="app">
@@ -75,7 +74,7 @@
                 @if (!Auth::guest())
                     <ul class="nav navbar-nav">
                         &nbsp;<li class="dropdown">
-                            <a href="/staff">@lang('welcome.staff')</a>
+                            <a href=""   data-ui-sref="staff">@lang('welcome.staff')</a>
                         </li>
                         <li class="dropdown">
                             <a href="/patient">@lang('welcome.patients')
@@ -84,7 +83,8 @@
                         <li class="dropdown"><a href="" class="dropdown-toggle"
                                                 data-toggle="dropdown">@lang('welcome.sessions')</a></li>
                         <li class="dropdown"><a href="" class="dropdown-toggle"
-                                                data-toggle="dropdown">@lang('welcome.accounting')</a></li>
+                                                data-toggle="dropdown">@lang('welcome.accounting')</a>
+                        </li>
                     </ul>
             @endif
 
@@ -92,41 +92,23 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href=""  data-ui-sref="login">@lang('welcome.login')</a></li>
-                        <li><a href=""  data-ui-sref="register">@lang('welcome.register')</a></li>
+                        <li><a href="" data-ui-sref="login">@lang('welcome.login')</a></li>
+                        <li><a href="" data-ui-sref="register">@lang('welcome.register')</a></li>
+                        <li><a ng-if="'{{ App::getLocale() }}' !== 'en'"
+                               href="{{ route('lang.switch', 'en') }}">English</a></li>
+                        <li><a ng-if="'{{ App::getLocale() }}' !== 'ar'"
+                               href="{{ route('lang.switch', 'ar') }}">عربي</a></li>
+                    @else
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                {{ Config::get('languages')[App::getLocale()] }}
-                            </a>
-                            <ul class="dropdown-menu">
-                                @foreach (Config::get('languages') as $lang => $language)
-                                    @if ($lang != App::getLocale())
-                                        <li>
-                                            <a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu">
                                 <li>
-                                    <a href="logout"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a href="javascript:void(0)" ng-click="doLogout()">
                                         @lang('welcome.logout')
                                     </a>
-
-                                    <form id="logout-form" action="logout" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
                                 </li>
                             </ul>
                         </li>
@@ -151,9 +133,9 @@
 {{--<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>--}}
 <script src="{{ asset('js/app.js') }}"></script>
 
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 <script src="{{ asset('js/site.js') }}"></script>
-<script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/datatable/dataTables.bootstrap.min.js') }}"></script>
 
 <!-- Angular libs -->
 <script src="{{ asset('js/angular.min.js') }}"></script>
@@ -178,17 +160,29 @@
 
 <!-- auth module -->
 
+<!-- staff module -->
+<script src="{{ asset('angular/staffModule/staffModule.js') }}"></script>
+<script src="{{ asset('angular/staffModule/js/controllers/staffController.js') }}"></script>
+<script src="{{ asset('angular/staffModule/js/services/staffService.js') }}"></script>
+
+<script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/datatable/dataTables.bootstrap.min.js') }}"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script type="text/javascript">var baseUrl ="{{ url('/') }}/";</script>
+<script type="text/javascript">var baseUrl = "{{ url('/') }}/";</script>
 
 @yield('script')
 
 
+<script type="text/javascript">
 
+    var currentLang = "{{App::getLocale()}}";
+
+</script>
 
 </body>
 </html>

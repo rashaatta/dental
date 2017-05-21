@@ -1,0 +1,20 @@
+/**
+ * Created by Rasha on 5/21/2017.
+ */
+
+(function () {
+    var module = angular.module('staffModule',['ui.bootstrap']);
+    module.config(['$stateProvider','$urlRouterProvider',  function ($stateProvider,$urlRouterProvider) {
+        //$urlRouterProvider.otherwise("/");
+        $stateProvider
+            .state("staff", {
+                url: "^/staff",
+                templateUrl: "angular/staffModule/views/staff.html",
+                controller: "staffController",
+                ncyBreadcrumb: {
+                    label: 'staff'
+                }
+            })
+
+    }])
+}());

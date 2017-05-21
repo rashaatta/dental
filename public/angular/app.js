@@ -9,7 +9,9 @@
         'ui.router',
          "ct.ui.router.extras",
         'authModule',
-        'coreModule'
+        'coreModule',
+        'staffModule',
+        'ui.bootstrap'
     ];
 
 
@@ -21,26 +23,29 @@
         $interpolateProvider.endSymbol('}]}');
         $locationProvider.hashPrefix('');
     }]);
-/**
+
     dentalApp.run(["coreService","$state", "$rootScope", "$location", function (coreService, $state, $rootScope, $location) {
         // "ngInject";
         coreService.clearAll();
         coreService.setApi('http://dental.dev:88/api/');
         coreService.setBaseUrl('http://dental.dev:88/');
         coreService.setVersion('1.0.0');
+        coreService.setLang(currentLang);
+        console.log(coreService.getLang());
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
             coreService.setCurrentState(toState.name);
             coreService.setPreviousState(fromState.name);
             coreService.setCurrentParams(toParams);
-            if (toState.name !== "login") {
+            // console.log(toState);
+            if (coreService.getStates() === null && toState.name !== "login") {
                 event.preventDefault();
                 $state.go("login");
             }
         })
 
     }])
- */
+
 }());
 
 

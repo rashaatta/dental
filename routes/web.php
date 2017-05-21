@@ -37,7 +37,9 @@ Route::get('/lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@swi
 
 Route::group(['prefix' => 'api'], function(){
 
-    Route::post('/staff/add', 'StaffController@create');
+    Route::post('auth', 'HomeController@auth');
+    Route::get('auth/logout', 'HomeController@logout');
+    Route::get('staff', 'StaffController@index');
 
 });
 

@@ -14,11 +14,40 @@
 
 
 (function () {
-    var controller = function ($scope, coreService,  authService, $state) {
+    var controller = function ($scope, coreService, authService, $state) {
+
+        $scope.required = true;
+
+        $scope.login = {
+            username: 'rasha atta',
+            password: 'password'
+        };
+
+        $scope.doLogin = function () {
+            var loginData = {
+                username: $scope.login.username,
+                password: $scope.login.password
+            };
+            authService.doUserLogin(loginData)
+                .then(function (response) {
+                    if (!response.data.hasOwnProperty('file')) {
+
+                       // console.log(response.data);
+                        window.location = coreService.getBaseUrl();
+
+                    } else {
+                        //alert(response.data);
+                    }
+                }, function (response) {
+                    console.log(response.data);
+                });
+        }
+
+
 
     };
 
-controller.$inject = ['$scope', 'coreService',   'authService' , '$state'];
-angular.module('authModule')
-    .controller('authController', controller);
+    controller.$inject = ['$scope', 'coreService', 'authService', '$state'];
+    angular.module('authModule')
+        .controller('authController', controller);
 }());
