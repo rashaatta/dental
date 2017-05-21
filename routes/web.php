@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return redirect('home');
+    return view('home');
 });
 //
 //Auth::routes();
@@ -34,3 +34,10 @@ Route::get('/lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@swi
 //Route::get('/patient/add', 'PatientController@add');
 //Route::get('/patient/edit/{id}', 'PatientController@update');
 //Route::get('/patient/delete/{id}', 'PatientController@destroy');
+
+Route::group(['prefix' => 'api'], function(){
+
+    Route::post('/staff/add', 'StaffController@create');
+
+});
+

@@ -2,47 +2,45 @@
  * Created by mohamed on 5/16/2017.
  */
 
-'use strict';
+(function () {
+    'use strict';
 
-const API_URL = 'http://dental.dev:88/api/v1/';
+    var modules = [
+        'ui.router',
+         "ct.ui.router.extras",
+        'authModule',
+        'coreModule'
+    ];
 
-var dentalApp = angular.module('dentalApp', ['ngRoute', 'ngAnimate']);
+
+    var dentalApp = angular.module('dentalApp', modules);
 
 // enable Blade by changing angular brackets to {[{ }]} so blade will use {{ }}
-dentalApp.config(['$interpolateProvider', function ($interpolateProvider) {
-    $interpolateProvider.startSymbol('{[{');
-    $interpolateProvider.endSymbol('}]}');
-}]);
+    dentalApp.config(['$interpolateProvider', '$locationProvider', function ($interpolateProvider, $locationProvider) {
+        $interpolateProvider.startSymbol('{[{');
+        $interpolateProvider.endSymbol('}]}');
+        $locationProvider.hashPrefix('');
+    }]);
+/**
+    dentalApp.run(["coreService","$state", "$rootScope", "$location", function (coreService, $state, $rootScope, $location) {
+        // "ngInject";
+        coreService.clearAll();
+        coreService.setApi('http://dental.dev:88/api/');
+        coreService.setBaseUrl('http://dental.dev:88/');
+        coreService.setVersion('1.0.0');
 
-// routing
-dentalApp.config(function ($routeProvider, $locationProvider) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+            coreService.setCurrentState(toState.name);
+            coreService.setPreviousState(fromState.name);
+            coreService.setCurrentParams(toParams);
+            if (toState.name !== "login") {
+                event.preventDefault();
+                $state.go("login");
+            }
+        })
 
-        $routeProvider
-            .when('/welcome2', {
-                template : '<p>Hiiiiiiiiiiiiiiiiii</p>'
-                // templateUrl: 'home.blade.php'
-            })
-            .when('/welcome', {
-                template : 'welcome buddy'
-                // templateUrl: '/views/staff/index.blade.php'
-            })
-            .when('/login', {
-                template: 'temp',
-                templateUrl: '/views/auth/login.blade.php'
-            })
-            .when('/staff', {
-                templateUrl: '/views/staff/index.blade.php'
-            })
-            .when('/test', {
-                template: 'testrouting',
-                templateUrl: 'all.html'
-            })
-            .otherwise({redirectTo: '/'});
-
-        // remove # from url
-        $locationProvider.html5Mode(true);
-    }
-);
+    }])
+ */
+}());
 
 
-console.log('app loaded');

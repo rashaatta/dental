@@ -82,7 +82,7 @@
             @if (Auth::check())
                 <a href="{{ url('/home') }}">@lang('welcome.home')</a>
             @else
-                <a href="{{ url('/home') }}">@lang('welcome.login')</a>
+                <a href='#/login'>@lang('welcome.login')</a>
                 <a href="{{ url('/register') }}">@lang('welcome.register')</a>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -128,6 +128,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+
+    function goBack(){
+        window.history.back();
+    }
+
+
+</script>
 
 </body>
 </html>

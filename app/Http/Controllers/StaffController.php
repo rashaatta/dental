@@ -32,6 +32,7 @@ class StaffController extends Controller
                 specialties.en_value as en_specialty, specialties.ar_value as ar_specialty  ,staff.*'))
             ->groupBy('staff.id')
             ->orderBy('name', 'asc')->get();
+
         return view('staff.index', compact('staff'));
     }
 

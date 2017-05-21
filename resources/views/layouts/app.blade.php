@@ -44,10 +44,11 @@
     </script>
 
 
-
-
 </head>
 <body ng-app="dentalApp">
+
+
+
 <div id="app">
     <nav class="navbar navbar-fixed-top navbar-default navbar-static-top">
         <div class="container-fluid">
@@ -91,8 +92,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="login">@lang('welcome.login')</a></li>
-                        <li><a href="register">@lang('welcome.register')</a></li>
+                        <li><a href=""  data-ui-sref="login">@lang('welcome.login')</a></li>
+                        <li><a href=""  data-ui-sref="register">@lang('welcome.register')</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 {{ Config::get('languages')[App::getLocale()] }}
@@ -145,7 +146,9 @@
 
 <!-- Scripts -->
 <!-- Scripts -->
-<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{--<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>--}}
 <script src="{{ asset('js/app.js') }}"></script>
 
 <script src="{{ asset('js/site.js') }}"></script>
@@ -156,23 +159,36 @@
 <script src="{{ asset('js/angular.min.js') }}"></script>
 <script src="{{ asset('js/angular-animate.min.js') }}"></script>
 <script src="{{ asset('js/angular-route.min.js') }}"></script>
+<script src="{{ asset('js/angular-ui-router.min.js') }}"></script>
+<script src="{{ asset('js/ct-ui-router-extras.min.js') }}"></script>
 
 <!-- Angular files -->
 <script src="{{ asset('angular/app.js') }}"></script>
-<script src="{{ asset('angular/controllers/mainCtrl.js') }}"></script>
 
-<script type="text/javascript">
-    // to remove # from routing URLs
-    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
-</script>
+
+<!-- Core -->
+<script src="{{ asset('angular/coreModule/coreModule.js') }}"></script>
+<script src="{{ asset('angular/coreModule/js/controllers/CoreController.js') }}"></script>
+<script src="{{ asset('angular/coreModule/js/services/coreService.js') }}"></script>
+
+<!-- auth module -->
+<script src="{{ asset('angular/authModule/authModule.js') }}"></script>
+<script src="{{ asset('angular/authModule/js/controllers/authController.js') }}"></script>
+<script src="{{ asset('angular/authModule/js/services/authService.js') }}"></script>
+
+<!-- auth module -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">var baseUrl ="{{ url('/') }}/";</script>
 
 @yield('script')
 
-<script type="text/javascript">
-    $(document).ready(function () {
 
-    });
-</script>
+
 
 </body>
 </html>

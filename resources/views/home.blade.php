@@ -5,8 +5,6 @@
     <br/>
     <br/>
     <br/>
-    <a href="test">Wl2</a>
-    <div ng-view="welcome2">
-        <p>Hiiiiiiiiiiiiiiiiii</p>
-    </div>
+
+    <div data-ui-view>     </div>
 @endsection
