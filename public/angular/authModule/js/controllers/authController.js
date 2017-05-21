@@ -2,19 +2,16 @@
  * Created by mohamed on 5/16/2017.
  */
 
-// dentalApp.controller('mainCtrl', [
-//     '$scope', '$route', '$location', function mainCtrl($scope, $route, $location) {
-//         this.$location = $location;
-//         this.$route = $route;
-//         var subView = $location.search().action;
-//         console.log(subView);
-//         $scope.name = 'Mahdy Basha';
-//     }
-// ]);
-
-
 (function () {
-    var controller = function ($scope, coreService, authService, $state) {
+    var controller = function ($scope, coreService, authService,constantService, $state) {
+        var init = function () {
+            $scope.loginLabels = {};
+            $scope.frmlabels = constantService.getLoginLabels();
+            angular.forEach($scope.frmlabels, function (value, key) {
+                $scope.loginLabels[key] = value;
+            });
+        };
+        init();
 
         $scope.required = true;
 
@@ -47,7 +44,7 @@
 
     };
 
-    controller.$inject = ['$scope', 'coreService', 'authService', '$state'];
+    controller.$inject = ['$scope', 'coreService','authService','constantService',  '$state'];
     angular.module('authModule')
         .controller('authController', controller);
 }());

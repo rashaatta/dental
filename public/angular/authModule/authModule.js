@@ -9,7 +9,7 @@
         $stateProvider
             .state("login", {
                 url: "^/login",
-                templateUrl: "angular/authModule/views/login2.html",
+                templateUrl: "angular/authModule/views/login.html",
                 controller: "authController",
                 ncyBreadcrumb: {
                     label: 'login'

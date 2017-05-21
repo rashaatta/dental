@@ -6,12 +6,14 @@
     'use strict';
 
     var modules = [
-        'ui.router',
-         "ct.ui.router.extras",
-        'authModule',
-        'coreModule',
-        'staffModule',
-        'datatables'
+        'ui.router'
+        , "ct.ui.router.extras"
+        , 'authModule'
+        , 'coreModule'
+        , 'staffModule'
+        , 'datatables'
+        , 'constantModule'
+        // , 'angular-confirm'
     ];
 
 
@@ -24,7 +26,7 @@
         $locationProvider.hashPrefix('');
     }]);
 
-    dentalApp.run(["coreService","$state", "$rootScope", "$location", function (coreService, $state, $rootScope, $location) {
+    dentalApp.run(["coreService", "$state", "$rootScope", "$location", function (coreService, $state, $rootScope, $location) {
         // "ngInject";
         coreService.clearAll();
         coreService.setApi('http://dental.dev:88/api/');

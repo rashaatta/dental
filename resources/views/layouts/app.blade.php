@@ -156,7 +156,7 @@
 
 <!-- Angular files -->
 <script src="{{ asset('angular/app.js') }}"></script>
-
+<script src="{{ asset('/js/angular-confirm/angular-confirm.min.js') }}"></script>
 
 <!-- Core -->
 <script src="{{ asset('angular/coreModule/coreModule.js') }}"></script>
@@ -174,6 +174,14 @@
 <script src="{{ asset('angular/staffModule/staffModule.js') }}"></script>
 <script src="{{ asset('angular/staffModule/js/controllers/staffController.js') }}"></script>
 <script src="{{ asset('angular/staffModule/js/services/staffService.js') }}"></script>
+
+<!--  constant Module  -->
+<script src="{{ asset('angular/constantModule/constantModule.js') }}"></script>
+<script src="{{ asset('angular/constantModule/services/constantService.js') }}"></script>
+<!--  constant Module  -->
+
+
+
 
 <script src="{{ asset('js/datatable/angular-datatables.directive.js') }}"></script>
 <script src="{{ asset('js/datatable/angular-datatables.instances.js') }}"></script>

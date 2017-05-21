@@ -28,12 +28,12 @@
 <table id="staffId"   datatable="ng"   class="table table-bordered table-responsive table-striped">
     <thead>
     <tr>
-        <th>@lang('staff.name')</th>
-        <th>@lang('staff.specialty')</th>
-        <th>@lang('staff.mobile')</th>
-        <th>@lang('staff.session_duration')</th>
-        <th>@lang('staff.salary')</th>
-        <th>@lang('staff.workdays')</th>
+        <th>{[{staffLabels.name}]}</th>
+        <th>{[{staffLabels.specialty}]}</th>
+        <th>{[{staffLabels.mobile}]}</th>
+        <th>{[{staffLabels.session_duration}]}</th>
+        <th>{[{staffLabels.salary}]}</th>
+        <th>{[{staffLabels.workdays}]}</th>
 
         <th>
             <a href="/staff/add/">
@@ -54,7 +54,6 @@
 
         <td ng-if="currentLang == 'ar'">{[{ st.ar_specialty }]}</td>
         <td ng-if="currentLang == 'en'">{[{ st.en_specialty }]}</td>
-
         <td>{[{ st.mobile }]}</td>
         <td>{[{ st.session_duration }]}</td>
         <td>{[{ st.salary }]}</td>
@@ -69,6 +68,10 @@
                    title="Delete record"
                    data-target="#confirmDelete" data-toggle="modal"></i>
             </a>
+
+            <!--<a href=""  confirm="Are you sure you want to delete this item?" >-->
+                <!--<i class="fa fa-remove red"></i>-->
+            <!--</a>-->
 
         </td>
 

@@ -2,23 +2,17 @@
  * Created by Rasha on 5/21/2017.
  */
 
-/**
- * Created by mohamed on 5/16/2017.
- */
-
-// dentalApp.controller('mainCtrl', [
-//     '$scope', '$route', '$location', function mainCtrl($scope, $route, $location) {
-//         this.$location = $location;
-//         this.$route = $route;
-//         var subView = $location.search().action;
-//         console.log(subView);
-//         $scope.name = 'Mahdy Basha';
-//     }
-// ]);
-
-
 (function () {
-        var controller = function ($scope, coreService, staffService, $state) {
+        var controller = function ($scope, coreService,constantService, staffService, $state) {
+
+            var init = function () {
+                $scope.staffLabels = {};
+                $scope.frmlabels = constantService.getStaffLabels();
+                angular.forEach($scope.frmlabels, function (value, key) {
+                    $scope.staffLabels[key] = value;
+                });
+            };
+            init();
 
             $scope.currentLang = coreService.getLang();
             $scope.staff = {};
@@ -48,10 +42,9 @@
             $scope.listStaff();
 
 
-
         };
 
-        controller.$inject = ['$scope', 'coreService', 'staffService', '$state'];
+        controller.$inject = ['$scope', 'coreService','constantService', 'staffService', '$state'];
         angular.module('staffModule')
             .controller('staffController', controller);
     }()
