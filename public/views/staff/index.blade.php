@@ -3,7 +3,7 @@
 
 
 @section('content')
-    
+
 
             <div class="modal" id="confirmDelete" data-keyboard="false" data-backdrop="static" tabindex="-1">
                 <div class="modal-dialog ">

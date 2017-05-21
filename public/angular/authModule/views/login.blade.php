@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 <div class="container">
     <div class="row log ">
         <div class="col-md-8 col-md-offset-2 login">
@@ -63,3 +65,4 @@
         </div>
     </div>
 </div>
+@endsection

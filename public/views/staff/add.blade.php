@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('resources.views.layouts.app')
 
 @section('content')
     <h1 class="page-heading"><i class="fa fa-user-md" aria-hidden="true">

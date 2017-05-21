@@ -9,6 +9,6 @@ class Specialty extends Model
     //
 
     public function staff(){
-        return $this->belongsTo(Staff::class);
+        return $this->hasMany(Staff::class);
     }
 }
