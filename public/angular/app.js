@@ -2,49 +2,53 @@
  * Created by mohamed on 5/16/2017.
  */
 
-'use strict';
+(function () {
+    'use strict';
 
-const API_URL = 'http://dental.dev:88/api/v1/';
+    var modules = [
+        'ui.router'
+        , "ct.ui.router.extras"
+        , 'authModule'
+        , 'coreModule'
+        , 'staffModule'
+        , 'datatables'
+        , 'constantModule'
+        // , 'angular-confirm'
+    ];
 
-var dentalApp = angular.module('dentalApp', ['ngRoute', 'ngAnimate']);
+
+    var dentalApp = angular.module('dentalApp', modules);
 
 // enable Blade by changing angular brackets to {[{ }]} so blade will use {{ }}
-dentalApp.config(['$interpolateProvider', function ($interpolateProvider) {
-    $interpolateProvider.startSymbol('{[{');
-    $interpolateProvider.endSymbol('}]}');
-}]);
+    dentalApp.config(['$interpolateProvider', '$locationProvider', function ($interpolateProvider, $locationProvider) {
+        // $interpolateProvider.startSymbol('{[{');
+        // $interpolateProvider.endSymbol('}]}');
+         $locationProvider.hashPrefix('');
+       // $locationProvider.html5Mode(true);
+    }]);
 
-// routing
-dentalApp.config(function ($routeProvider, $locationProvider) {
+    dentalApp.run(["coreService", "$state", "$rootScope", "$location", function (coreService, $state, $rootScope, $location) {
+        // "ngInject";
+        coreService.clearAll();
+        coreService.setApi('http://dental.dev:88/api/');
+        coreService.setBaseUrl('http://dental.dev:88/');
+        coreService.setVersion('1.0.0');
+        coreService.setLang(currentLang);
+        console.log(coreService.getLang());
 
-        $routeProvider
-            .when('/', {
-                templateUrl : 'views/auth/login.php'
-            })
-            .when('/welcome', {
-                template : 'welcome buddy'
-                // templateUrl: '/views/staff/index.blade.php'
-            })
-            .when('/login', {
-                // template: '<br/><br/><br/><br/><br/><br/>temp',
-                templateUrl: 'views/auth/login.php'
-            })
-            .when('/ddddd', {
-                templateUrl: '/views/staff/index.blade.php'
-            })
-            .when('/test', {
-                template: 'testrouting',
-                templateUrl: 'all.html'
-            })
-            .otherwise({redirectTo: '/'});
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+            coreService.setCurrentState(toState.name);
+            coreService.setPreviousState(fromState.name);
+            coreService.setCurrentParams(toParams);
+            // console.log(toState);
+            if (coreService.getStates() === null && toState.name !== "login") {
+                event.preventDefault();
+                $state.go("login");
+            }
+        })
 
-        // remove # from url
-        //$locationProvider.html5Mode(true);
+    }])
 
-    // remove ! from # and url
-        $locationProvider.hashPrefix('');
-    }
-);
+}());
 
 
-console.log('app loaded');

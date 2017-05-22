@@ -33,9 +33,7 @@ class StaffController extends Controller
             ->groupBy('staff.id')
             ->orderBy('name', 'asc')->get();
 
-        return response()->json($staff);
-
-//        return view('staff.index', compact('staff'));
+        return response()->json($staff, 201);
     }
 
     public function add()
@@ -44,6 +42,7 @@ class StaffController extends Controller
         $days = DB::table('work_days')->get();
         $arr = array('specialty' => $specialty, 'days' => $days);
 
+        return response()->json();
         return view('staff.add', $arr);
     }
 

@@ -1,11 +1,8 @@
 @extends('layouts.app')
-
 @section('content')
-
-    <br/>
-    <br/>
-    <a href="#/test">Wl2</a>
-    <div ng-view>
-        {{--<p>Hiiiiiiiiiiiiiiiiii</p>--}}
+    <div data-ui-view style="width: 100%; height: 100%;">
+        <div style="width: 100%; height: 100%;  background-size:cover;">
+            <img src="../../../images/dental.jpg">
+        </div>
     </div>
 @endsection

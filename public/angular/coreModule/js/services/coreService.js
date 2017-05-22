@@ -69,6 +69,12 @@
                     }
                 })
             },
+            setLang: function (val) {
+                service.Lang = val
+            },
+            getLang: function () {
+                return service.Lang;
+            },
             setCurrentState: function (val) {
                 service.currentState = val
             },

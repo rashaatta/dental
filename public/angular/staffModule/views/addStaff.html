@@ -1,0 +1,126 @@
+<h1 class="page-heading"><i class="fa fa-user-md" aria-hidden="true">
+</i>{{staffLabels.header}}</h1>
+
+<form class="form-horizontal editDoctor" method="post" action="">
+
+    <div class="row">
+        <div class="form-group col-md-8">
+            <label for="name" class="control-label col-md-2">{{staffLabels.name}}: </label>
+            <div class="col-md-10">
+
+                <input type="text" class="form-control" id="name" name="name"/>
+
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="mobile" class="control-label col-md-2">{{staffLabels.mobile}}: </label>
+            <div class="col-md-10">
+
+                <input type="text" class="form-control" id="mobile" name="mobile"/>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="form-group col-md-8">
+            <label class="control-label col-md-2">{{staffLabels.specialty}}: </label>
+            <div class="col-md-10">
+                <select class="form-control" id="specialty_id" name="specialty_id">
+                    <option></option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="telephone" class="control-label col-md-2">{{staffLabels.telephone}}: </label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="telephone" name="telephone"
+                />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="address" class="control-label col-md-2">{{staffLabels.address}}: </label>
+            <div class="col-md-10">
+
+                <input type="text" class="form-control" id="address" name="address"/>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+
+        <div class="form-group col-md-4">
+            <div class="form-group col-md-12">
+                <label for="salary" class="control-label col-md-2">{{staffLabels.salary}}: </label>
+                <div class="col-md-10">
+
+                    <input type="text" class="form-control" id="salary" name="salary"/>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group col-md-4">
+            <label for="percent" class="control-label col-md-2">{{staffLabels.percent}}: </label>
+            <div class="col-md-10">
+
+                <input type="text" class="form-control" id="percent" name="percent"/>
+
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="session_duration" class="control-label col-md-2">{{staffLabels.session_duration}}: </label>
+            <div class="col-md-4">
+                <select class="form-control" id="session_duration">
+                </select>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div>
+            <div class="form-group col-md-4">
+                <label for="entry_time" class="control-label col-md-2">{{staffLabels.entry_time}}: </label>
+                <div class="col-md-10">
+                    <input type="time" class="form-control" id="entry_time" name="entry_time"/>
+
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="exit_time" class="control-label col-md-2">{{staffLabels.exit_time}}: </label>
+                <div class="col-md-10">
+                    <input type="datetime" class="form-control" id="exit_time" name="exit_time"/>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12  sectionStyle">
+            <label for="entry_time" class="control-label col-md-2">{{staffLabels.workdays}}: </label>
+            <div class="col-md-10">
+
+            </div>
+        </div>
+
+
+        <div class="form-group formButtons">
+
+
+            <a href="" class=" btn btn-primary"  ng-click="saveStaff();"><i class="fa fa-backward"></i>
+                <span>{{staffLabels.btnSave}}</span></a>
+
+            <a href="" class=" btn btn-primary"  data-ui-sref="staff">{{staffLabels.btnCancel}}</a>
+
+        </div>
+    </div>
+</form>

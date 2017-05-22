@@ -12,14 +12,14 @@
 */
 
 
-//Route::get('/', function () {
-//    return view('home');
-//});
+Route::get('/', function () {
+    return view('home');
+});
 //
 //Auth::routes();
 //
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
+Route::get('/lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 //// staff
 //Route::get('/staff', 'StaffController@index');
@@ -35,22 +35,12 @@ Route::get('/lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController
 //Route::get('/patient/edit/{id}', 'PatientController@update');
 //Route::get('/patient/delete/{id}', 'PatientController@destroy');
 
+Route::group(['prefix' => 'api'], function(){
 
-// API Routes
-Route::group(array('prefix' => 'api/v1'), function () {
-    /**
-     * since we will be using this just for CRUD, we don't need create and edit
-     * Angular will handle both of those forms
-     * this ensures a user can't access api/create or api/edit when there's nothing
-     */
-    Route::resource('staff', 'StaffController', array('only' => array('index', 'store', 'destroy')));
-}
-);
+    Route::post('auth', 'HomeController@auth');
+    Route::get('auth/logout', 'HomeController@logout');
+    Route::get('staff', 'StaffController@index');
+    //Route::get('staff/add', 'StaffController@store');
 
-// API Routes
-Route::group(array('middleware' => 'web'), function () {
-    Route::get('/', function () {
-        return view('home');
-    });
-}
-);
+});
+

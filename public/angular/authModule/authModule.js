@@ -4,11 +4,12 @@
 
 (function () {
     var module = angular.module('authModule',[]);
-    module.config(['$stateProvider',  function ($stateProvider) {
+    module.config(['$stateProvider','$urlRouterProvider',  function ($stateProvider,$urlRouterProvider) {
+        //$urlRouterProvider.otherwise("/");
         $stateProvider
             .state("login", {
                 url: "^/login",
-                templateUrl: "angular/authModule/views/login.blade.php",
+                templateUrl: "angular/authModule/views/login.html",
                 controller: "authController",
                 ncyBreadcrumb: {
                     label: 'login'
@@ -22,5 +23,5 @@
                     label: 'register'
                 }
             })
-    }])
+              }])
 }());

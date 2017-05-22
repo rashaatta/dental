@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -14,8 +13,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="{{ asset('css/angular-datatables.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
-{{--<link type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />--}}
+<link type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
 {{--<link type="text/css" href="{{ asset('css/bootstrap-timepicker.css') }}" />--}}
 {{--<link rel="stylesheet/less" type="text/css" href="{{ asset('css/timepicker.less')}}" />--}}
 <!-- Styles -->
@@ -43,10 +43,12 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
-
+    {{--<base href="/">--}}
 
 </head>
-<body ng-app="dentalApp">
+<body ng-app="dentalApp" ng-controller="CoreController">
+
+
 <div id="app">
     <nav class="navbar navbar-fixed-top navbar-default navbar-static-top">
         <div class="container-fluid">
@@ -73,7 +75,7 @@
                 @if (!Auth::guest())
                     <ul class="nav navbar-nav">
                         &nbsp;<li class="dropdown">
-                            <a href="/staff">@lang('welcome.staff')</a>
+                            <a href=""   data-ui-sref="staff">@lang('welcome.staff')</a>
                         </li>
                         <li class="dropdown">
                             <a href="/patient">@lang('welcome.patients')
@@ -82,7 +84,8 @@
                         <li class="dropdown"><a href="" class="dropdown-toggle"
                                                 data-toggle="dropdown">@lang('welcome.sessions')</a></li>
                         <li class="dropdown"><a href="" class="dropdown-toggle"
-                                                data-toggle="dropdown">@lang('welcome.accounting')</a></li>
+                                                data-toggle="dropdown">@lang('welcome.accounting')</a>
+                        </li>
                     </ul>
             @endif
 
@@ -90,41 +93,23 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="login">@lang('welcome.login')</a></li>
-                        <li><a href="register">@lang('welcome.register')</a></li>
+                        <li><a href="" data-ui-sref="login">@lang('welcome.login')</a></li>
+                        <li><a href="" data-ui-sref="register">@lang('welcome.register')</a></li>
+                        <li><a ng-if="'{{ App::getLocale() }}' !== 'en'"
+                               href="{{ route('lang.switch', 'en') }}">English</a></li>
+                        <li><a ng-if="'{{ App::getLocale() }}' !== 'ar'"
+                               href="{{ route('lang.switch', 'ar') }}">عربي</a></li>
+                    @else
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                {{ Config::get('languages')[App::getLocale()] }}
-                            </a>
-                            <ul class="dropdown-menu">
-                                @foreach (Config::get('languages') as $lang => $language)
-                                    @if ($lang != App::getLocale())
-                                        <li>
-                                            <a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu">
                                 <li>
-                                    <a href="logout"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a href="javascript:void(0)" ng-click="doLogout()">
                                         @lang('welcome.logout')
                                     </a>
-
-                                    <form id="logout-form" action="logout" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
                                 </li>
                             </ul>
                         </li>
@@ -134,41 +119,90 @@
         </div>
     </nav>
 </div>
-
-@yield('content')
-
+<div class="container">
 
 
+    @yield('content')
+
+
+</div>
 
 <!-- Scripts -->
 <!-- Scripts -->
-<script src="{{ asset('js/jquery.min.js') }}"></script>
+
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
+<script src="{{ asset('js/jquery-1.11.3.min.js') }}"></script>
+
+
+{{--<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>--}}
 <script src="{{ asset('js/app.js') }}"></script>
 
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 <script src="{{ asset('js/site.js') }}"></script>
-<script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/datatable/dataTables.bootstrap.min.js') }}"></script>
+
+
+
+
 
 <!-- Angular libs -->
 <script src="{{ asset('js/angular.min.js') }}"></script>
 <script src="{{ asset('js/angular-animate.min.js') }}"></script>
 <script src="{{ asset('js/angular-route.min.js') }}"></script>
+<script src="{{ asset('js/angular-ui-router.min.js') }}"></script>
+<script src="{{ asset('js/ct-ui-router-extras.min.js') }}"></script>
 
 <!-- Angular files -->
 <script src="{{ asset('angular/app.js') }}"></script>
-<script src="{{ asset('angular/controllers/mainCtrl.js') }}"></script>
+<script src="{{ asset('/js/angular-confirm/angular-confirm.min.js') }}"></script>
 
-{{--<script type="text/javascript">--}}
-    {{--// to remove # from routing URLs--}}
-    {{--angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));--}}
-{{--</script>--}}
+<!-- Core -->
+<script src="{{ asset('angular/coreModule/coreModule.js') }}"></script>
+<script src="{{ asset('angular/coreModule/js/controllers/CoreController.js') }}"></script>
+<script src="{{ asset('angular/coreModule/js/services/coreService.js') }}"></script>
+
+<!-- auth module -->
+<script src="{{ asset('angular/authModule/authModule.js') }}"></script>
+<script src="{{ asset('angular/authModule/js/controllers/authController.js') }}"></script>
+<script src="{{ asset('angular/authModule/js/services/authService.js') }}"></script>
+
+<!-- auth module -->
+
+<!-- staff module -->
+<script src="{{ asset('angular/staffModule/staffModule.js') }}"></script>
+<script src="{{ asset('angular/staffModule/js/controllers/staffController.js') }}"></script>
+<script src="{{ asset('angular/staffModule/js/services/staffService.js') }}"></script>
+
+<!--  constant Module  -->
+<script src="{{ asset('angular/constantModule/constantModule.js') }}"></script>
+<script src="{{ asset('angular/constantModule/services/constantService.js') }}"></script>
+<!--  constant Module  -->
+
+<!--  datatables  -->
+<script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.directive.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.instances.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.util.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.renderer.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.factory.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.options.js') }}"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">var baseUrl = "{{ url('/') }}/";</script>
 
 @yield('script')
 
-<script type="text/javascript">
-    $(document).ready(function () {
 
-    });
+<script type="text/javascript">
+
+    var currentLang = "{{App::getLocale()}}";
+
 </script>
 
 </body>
