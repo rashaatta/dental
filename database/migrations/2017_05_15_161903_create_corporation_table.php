@@ -19,6 +19,8 @@ class CreateCorporationTable extends Migration
             $table->string('address');
             $table->string('mobile');
             $table->string('telephone');
+            $table->integer('max_amount')->default(1000);
+            $table->integer('percent')->default(80);
             $table->timestamps();
         });
     }

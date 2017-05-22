@@ -11,7 +11,7 @@ class PatientSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('patient')->delete();
+       // DB::table('patient')->delete();
         factory(\App\Patient::class, 200)->create();
     }
 }

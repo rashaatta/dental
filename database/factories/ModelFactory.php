@@ -87,7 +87,9 @@ $factory->define(App\Corporation::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'mobile' => $faker->phoneNumber,
         'telephone' => $faker->phoneNumber,
-        'address' => $faker->address
+        'address' => $faker->address,
+        'max_amount' => $faker->numberBetween(0,2000),
+        'percent'=> $faker->numberBetween(0,100)
     ];
 });
 
