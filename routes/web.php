@@ -40,6 +40,7 @@ Route::group(['prefix' => 'api'], function(){
     Route::post('auth', 'HomeController@auth');
     Route::get('auth/logout', 'HomeController@logout');
     Route::get('staff', 'StaffController@index');
+    //Route::get('staff/add', 'StaffController@store');
 
 });
 

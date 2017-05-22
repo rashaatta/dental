@@ -28,15 +28,15 @@
 <table id="staffId"   datatable="ng"   class="table table-bordered table-responsive table-striped">
     <thead>
     <tr>
-        <th>{[{staffLabels.name}]}</th>
-        <th>{[{staffLabels.specialty}]}</th>
-        <th>{[{staffLabels.mobile}]}</th>
-        <th>{[{staffLabels.session_duration}]}</th>
-        <th>{[{staffLabels.salary}]}</th>
-        <th>{[{staffLabels.workdays}]}</th>
+        <th>{{staffLabels.name}}</th>
+        <th>{{staffLabels.specialty}}</th>
+        <th>{{staffLabels.mobile}}</th>
+        <th>{{staffLabels.session_duration}}</th>
+        <th>{{staffLabels.salary}}</th>
+        <th>{{staffLabels.workdays}}</th>
 
         <th>
-            <a href="/staff/add/">
+            <a href=""  data-ui-sref="addStaff">
                 <i class="fa fa-user-plus green"></i>
             </a>
 
@@ -50,21 +50,20 @@
     <tbody>
 
     <tr ng-repeat="st in staff">
-        <td>{[{ st.name }]}</td>
-
-        <td ng-if="currentLang == 'ar'">{[{ st.ar_specialty }]}</td>
-        <td ng-if="currentLang == 'en'">{[{ st.en_specialty }]}</td>
-        <td>{[{ st.mobile }]}</td>
-        <td>{[{ st.session_duration }]}</td>
-        <td>{[{ st.salary }]}</td>
-        <td ng-if="currentLang == 'ar'">{[{ st.ar_days }]}</td>
-        <td ng-if="currentLang== 'en'">{[{ st.en_days }]}</td>
+        <td>{{ st.name }}</td>
+        <td ng-if="currentLang == 'ar'">{{ st.ar_specialty }}</td>
+        <td ng-if="currentLang == 'en'">{{ st.en_specialty }}</td>
+        <td>{{ st.mobile }}</td>
+        <td>{{ st.session_duration }}</td>
+        <td>{{ st.salary }}</td>
+        <td ng-if="currentLang == 'ar'">{{ st.ar_days }}</td>
+        <td ng-if="currentLang== 'en'">{{ st.en_days }}</td>
         <td>
-            <a href="/staff/edit/{[{st.id}]}">
+            <a href="/staff/edit/{{st.id}}">
                 <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
             </a>
             <a href="#">
-                <i class="glyphicon glyphicon-trash red" id="{[{ st.id }]}" aria-hidden="true"
+                <i class="glyphicon glyphicon-trash red" id="{{ st.id }}" aria-hidden="true"
                    title="Delete record"
                    data-target="#confirmDelete" data-toggle="modal"></i>
             </a>

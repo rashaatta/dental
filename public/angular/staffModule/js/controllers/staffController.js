@@ -3,48 +3,36 @@
  */
 
 (function () {
-        var controller = function ($scope, coreService,constantService, staffService, $state) {
+        var controller = function ($scope, coreService, constantService, staffService, $state) {
 
             var init = function () {
                 $scope.staffLabels = {};
-                $scope.frmlabels = constantService.getStaffLabels();
-                angular.forEach($scope.frmlabels, function (value, key) {
-                    $scope.staffLabels[key] = value;
-                });
+                $scope.staffLabels = constantService.getStaffLabels();
             };
+
             init();
 
             $scope.currentLang = coreService.getLang();
             $scope.staff = {};
 
-            // DataTables configurable options
-            // $scope.dtOptions = DTOptionsBuilder.newOptions()
-            //     .withDisplayLength(10)
-            //     .withOption('bLengthChange', false);
-
-
-            $scope.listStaff = function () {
-                staffService.getStaff().then(
-                    function (response) {
-                        // console.log(response.data);
-                        $scope.staff = response.data;
-
-                    }, function (response) {
-                        console.log(response);
-                    }
-                );
-            };
-
-            $scope.getLang = function () {
-                return coreService.getLang();
+            if (coreService.getCurrentState() === "staff") {
+                $scope.listStaff = function () {
+                    staffService.getStaff().then(
+                        function (response) {
+                            $scope.staff = response.data;
+                        }, function (error) {
+                            console.log(error.data);
+                        });
+                };
+                $scope.listStaff();
             }
 
-            $scope.listStaff();
+            if (coreService.getCurrentState() === "addStaff") {
 
-
+            }
         };
 
-        controller.$inject = ['$scope', 'coreService','constantService', 'staffService', '$state'];
+        controller.$inject = ['$scope', 'coreService', 'constantService', 'staffService', '$state'];
         angular.module('staffModule')
             .controller('staffController', controller);
     }()

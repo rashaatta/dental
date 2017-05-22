@@ -42,6 +42,7 @@ class StaffController extends Controller
         $days = DB::table('work_days')->get();
         $arr = array('specialty' => $specialty, 'days' => $days);
 
+        return response()->json();
         return view('staff.add', $arr);
     }
 

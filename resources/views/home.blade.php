@@ -1,10 +1,8 @@
 @extends('layouts.app')
-
 @section('content')
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
-    <div data-ui-view>     </div>
+    <div data-ui-view style="width: 100%; height: 100%;">
+        <div style="width: 100%; height: 100%;  background-size:cover;">
+            <img src="../../../images/dental.jpg">
+        </div>
+    </div>
 @endsection

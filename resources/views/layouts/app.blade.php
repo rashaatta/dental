@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{{ asset('css/angular-datatables.css') }}">
-    {{--<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">--}}
-{{--<link type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />--}}
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
+<link type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
 {{--<link type="text/css" href="{{ asset('css/bootstrap-timepicker.css') }}" />--}}
 {{--<link rel="stylesheet/less" type="text/css" href="{{ asset('css/timepicker.less')}}" />--}}
 <!-- Styles -->
@@ -43,7 +43,7 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
-
+    {{--<base href="/">--}}
 
 </head>
 <body ng-app="dentalApp" ng-controller="CoreController">
@@ -142,13 +142,11 @@
 <script src="{{ asset('js/site.js') }}"></script>
 
 
-<script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/angular.min.js') }}"></script>
-<script src="{{ asset('js/datatable/angular-datatables.js') }}"></script>
+
 
 
 <!-- Angular libs -->
-
+<script src="{{ asset('js/angular.min.js') }}"></script>
 <script src="{{ asset('js/angular-animate.min.js') }}"></script>
 <script src="{{ asset('js/angular-route.min.js') }}"></script>
 <script src="{{ asset('js/angular-ui-router.min.js') }}"></script>
@@ -180,9 +178,9 @@
 <script src="{{ asset('angular/constantModule/services/constantService.js') }}"></script>
 <!--  constant Module  -->
 
-
-
-
+<!--  datatables  -->
+<script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/datatable/angular-datatables.js') }}"></script>
 <script src="{{ asset('js/datatable/angular-datatables.directive.js') }}"></script>
 <script src="{{ asset('js/datatable/angular-datatables.instances.js') }}"></script>
 <script src="{{ asset('js/datatable/angular-datatables.util.js') }}"></script>

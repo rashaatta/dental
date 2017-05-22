@@ -21,9 +21,10 @@
 
 // enable Blade by changing angular brackets to {[{ }]} so blade will use {{ }}
     dentalApp.config(['$interpolateProvider', '$locationProvider', function ($interpolateProvider, $locationProvider) {
-        $interpolateProvider.startSymbol('{[{');
-        $interpolateProvider.endSymbol('}]}');
-        $locationProvider.hashPrefix('');
+        // $interpolateProvider.startSymbol('{[{');
+        // $interpolateProvider.endSymbol('}]}');
+         $locationProvider.hashPrefix('');
+       // $locationProvider.html5Mode(true);
     }]);
 
     dentalApp.run(["coreService", "$state", "$rootScope", "$location", function (coreService, $state, $rootScope, $location) {
