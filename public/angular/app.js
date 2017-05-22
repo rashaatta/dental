@@ -18,19 +18,18 @@ dentalApp.config(['$interpolateProvider', function ($interpolateProvider) {
 dentalApp.config(function ($routeProvider, $locationProvider) {
 
         $routeProvider
-            .when('/welcome2', {
-                template : '<p>Hiiiiiiiiiiiiiiiiii</p>'
-                // templateUrl: 'home.blade.php'
+            .when('/', {
+                templateUrl : 'views/auth/login.php'
             })
             .when('/welcome', {
                 template : 'welcome buddy'
                 // templateUrl: '/views/staff/index.blade.php'
             })
             .when('/login', {
-                template: 'temp',
-                templateUrl: '/views/auth/login.blade.php'
+                // template: '<br/><br/><br/><br/><br/><br/>temp',
+                templateUrl: 'views/auth/login.php'
             })
-            .when('/staff', {
+            .when('/ddddd', {
                 templateUrl: '/views/staff/index.blade.php'
             })
             .when('/test', {
@@ -40,7 +39,10 @@ dentalApp.config(function ($routeProvider, $locationProvider) {
             .otherwise({redirectTo: '/'});
 
         // remove # from url
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
+
+    // remove ! from # and url
+        $locationProvider.hashPrefix('');
     }
 );
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -42,8 +43,6 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
-
-
 
 
 </head>
@@ -135,17 +134,15 @@
         </div>
     </nav>
 </div>
-<div class="container">
+
+@yield('content')
 
 
-    @yield('content')
 
-
-</div>
 
 <!-- Scripts -->
 <!-- Scripts -->
-<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 
 <script src="{{ asset('js/site.js') }}"></script>
@@ -161,10 +158,10 @@
 <script src="{{ asset('angular/app.js') }}"></script>
 <script src="{{ asset('angular/controllers/mainCtrl.js') }}"></script>
 
-<script type="text/javascript">
-    // to remove # from routing URLs
-    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
-</script>
+{{--<script type="text/javascript">--}}
+    {{--// to remove # from routing URLs--}}
+    {{--angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));--}}
+{{--</script>--}}
 
 @yield('script')
 
