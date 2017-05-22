@@ -1,3 +1,3 @@
 (function () {
-    angular.module("coreModule",[])
-}())
+    angular.module("coreModule",['ngCookies'])
+}());

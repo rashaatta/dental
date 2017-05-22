@@ -151,6 +151,7 @@
 <script src="{{ asset('js/angular-route.min.js') }}"></script>
 <script src="{{ asset('js/angular-ui-router.min.js') }}"></script>
 <script src="{{ asset('js/ct-ui-router-extras.min.js') }}"></script>
+<script src="{{ asset('js/angular-cookies.min.js') }}"></script>
 
 <!-- Angular files -->
 <script src="{{ asset('angular/app.js') }}"></script>

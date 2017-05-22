@@ -1,5 +1,5 @@
 (function () {
-    var factory = function ($http) {
+    var factory = function ($http, $cookies) {
         var service = {
             currentState: null,
             previousState: null,
@@ -21,10 +21,11 @@
             sysadmin_logs: null,
             warnings: null,
             profileData: null
-        }
+        };
+
         var alertSet = function (alert) {
-            var m
-            var type
+            var m;
+            var type;
             switch (alert.type) {
             case "exception":
                 m = 'Exception: ';
@@ -56,21 +57,26 @@
                 type: type,
                 message: m,
                 timeout: type === 'info' || type === 'success' ? 5000 : 1000000
-            }
-        }
+            };
+        };
+
         return {
+            isLoggedIn: function(){
+                var localUser = angular.fromJson($cookies.get('auth'));
+                return (localUser !== undefined && localUser.id > 0);
+            },
             clearAll: function () {
                 angular.forEach(service, function (val, key) {
                     if (Array.isArray(val)) {
-                        service[key] = []
+                        service[key] = [];
                     } else {
                         if (key !== 'api' && key !== 'baseUrl' && key !== 'version')
-                            service[key] = null
+                            service[key] = null;
                     }
                 })
             },
             setLang: function (val) {
-                service.Lang = val
+                service.Lang = val;
             },
             getLang: function () {
                 return service.Lang;
@@ -79,183 +85,183 @@
                 service.currentState = val
             },
             getCurrentState: function () {
-                return service.currentState
+                return service.currentState;
             },
             setPreviousState: function (val) {
-                service.previousState = val
+                service.previousState = val;
             },
             getPreviousState: function () {
-                return service.previousState
+                return service.previousState;
             },
             setCurrentParams: function (val) {
-                service.currentParams = val
+                service.currentParams = val;
             },
             getCurrentParams: function () {
-                return service.currentParams
+                return service.currentParams;
             },
             setDB: function (val) {
-                service[service.currentState.replace(".", '_')] = val
+                service[service.currentState.replace(".", '_')] = val;
             },
             getDB: function () {
-                return service[service.currentState.replace(".", '_')]
+                return service[service.currentState.replace(".", '_')];
             },
             getParentDB: function (parent) {
-                return service[parent]
+                return service[parent];
             },
             setPrivileges: function (val) {
-                service.privileges = val
+                service.privileges = val;
             },
             getPrivileges: function () {
-                return service.privileges
+                return service.privileges;
             },
             setUser: function (val) {
-                service.user = val
+                service.user = val;
             },
             getUser: function () {
-                return service.user
+                return service.user;
             },
             setStates: function (val) {
-                service.states = val
+                service.states = val;
             },
             getStates: function () {
-                return service.states
+                return service.states;
             },
             setApi: function (val) {
-                service.api = val
+                service.api = val;
             },
             getApi: function () {
-                return service.api
+                return service.api;
             },
             setBaseUrl: function (val) {
-                service.baseUrl = val
+                service.baseUrl = val;
             },
             getBaseUrl: function () {
-                return service.baseUrl
+                return service.baseUrl;
             },
             setVersion: function (val) {
-                service.version = val
+                service.version = val;
             },
             getVersion: function () {
-                return service.version
+                return service.version;
             },
             setAlert: function (val) {
-                service.alerts.push(alertSet(val))
+                service.alerts.push(alertSet(val));
             },
             getAlert: function () {
-                return service.alerts
+                return service.alerts;
             },
             resetAlert: function () {
-                service.alerts = []
+                service.alerts = [];
             },
             filterRecords: function (post) {
-                return $http.post(service.api + 'filter', post)
+                return $http.post(service.api + 'filter', post);
             },
             getUuid: function () {
-                return $http.get(service.api + 'uuid')
+                return $http.get(service.api + 'uuid');
             },
             setWarnings: function (val) {
-                service.warnings.push(val)
+                service.warnings.push(val);
             },
             getWarnings: function () {
-                return service.warnings
+                return service.warnings;
             },
             resetWarnings: function () {
-                service.warnings = null
+                service.warnings = null;
             },
             removeWarning: function (val) {
-                service.warnings.splice(service.warnings.indexOf(val), 1)
+                service.warnings.splice(service.warnings.indexOf(val), 1);
             },
             zipCollection: function (collection, module) {
                 var post = {
                     db: module,
                     collection: collection
-                }
-                return $http.post(service.api + 'zipcollection', post)
+                };
+                return $http.post(service.api + 'zipcollection', post);
             },
             getCanDel: function (module) {
                 switch (module) {
                 case "workorder":
                     if (service.privileges.woadmin === true || service.privileges.wodel === true)
-                        return true
+                        return true;
                     else
-                        return false
+                        return false;
                     break;
                 case "photolib":
                     if (service.privileges.photoadmin === true)
-                        return true
+                        return true;
                     else
-                        return false
+                        return false;
                     break;
                 case "manual":
                     if (service.privileges.manadmin === true || service.privileges.mandel === true)
-                        return true
+                        return true;
                     else
-                        return false
+                        return false;
                     break;
                 case "hr":
                     if (service.privileges.hradmin === true || service.privileges.hrdel === true)
-                        return true
+                        return true;
                     else
-                        return false
+                        return false;
                     break;
                 case "proc":
                     if (service.privileges.procadmin === true || service.privileges.procdel === true)
-                        return true
+                        return true;
                     else
-                        return false
+                        return false;
                     break;
                 case "repo":
                     if (service.privileges.repoadmin === true || service.privileges.repodel === true)
-                        return true
+                        return true;
                     else
-                        return false
+                        return false;
                     break;
                 case "ops":
                     if (service.privileges.opsadmin === true || service.privileges.opsdel === true)
-                        return true
+                        return true;
                     else
-                        return false
+                        return false;
                     break;
                 }
             },
             getTableProfiles: function (module) {
-                return $http.get(service.api + 'tableprofiles/' + module + '/' + service.user.user_id)
+                return $http.get(service.api + 'tableprofiles/' + module + '/' + service.user.user_id);
             },
             writeTableProfile: function (profile) {
-                return $http.post(service.api + 'tableprofile', profile)
+                return $http.post(service.api + 'tableprofile', profile);
             },
             updateTableProfile: function (profile) {
-                return $http.put(service.api + 'tableprofile', profile)
+                return $http.put(service.api + 'tableprofile', profile);
             },
             deleteTableProfile: function(profileid){
                 return $http.delete(service.api+'tableprofile/'+profileid);
             },
             exportData: function(post){
-                return $http.post(service.api+'export',post)
+                return $http.post(service.api+'export',post);
             },
             getTerritoryId: function (territory) {
-                return $http.get(service.api + 'territoryid/' + territory)
+                return $http.get(service.api + 'territoryid/' + territory);
             },
             getPhoneTypes: function () {
-                return $http.get(service.api + 'phonetypes')
+                return $http.get(service.api + 'phonetypes');
             },
             getAddressTypes: function () {
-                return $http.get(service.api + 'addresstypes')
+                return $http.get(service.api + 'addresstypes');
             },
             getEmailTypes: function () {
-                return $http.get(service.api + 'emailtypes')
+                return $http.get(service.api + 'emailtypes');
             },
             getCountries: function () {
-                return $http.get(service.api + 'salesrepcountries')
+                return $http.get(service.api + 'salesrepcountries');
             },
             getCountryStates: function (countryid) {
-                return $http.get(service.api + 'salesrepstates/' + countryid)
+                return $http.get(service.api + 'salesrepstates/' + countryid);
             },
             getCities: function (stateid) {
-                return $http.get(service.api + 'salesrepcities/' + stateid)
+                return $http.get(service.api + 'salesrepcities/' + stateid);
             },
             addCity: function (city) {
-                return $http.post(service.api + 'addcity', city)
+                return $http.post(service.api + 'addcity', city);
             },
             getAllTechs: function(){
                 return $http.get(service.api + 'getalltechs');
@@ -270,8 +276,9 @@
                 return service.profileData;
             }
         }
-    }
-    factory.$inject = ['$http']
+    };
+
+    factory.$inject = ['$http', '$cookies'];
     angular.module('coreModule')
-        .factory('coreService', factory)
-}())
+        .factory('coreService', factory);
+}());

@@ -11,7 +11,8 @@
                 return $http.get( coreService.getApi() + 'auth/logout');
             }
         }
-    }
+    };
+
     factory.$inject = ['$http', 'coreService'];
     angular.module('authModule')
         .factory('authService', factory);

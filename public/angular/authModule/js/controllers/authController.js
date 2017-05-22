@@ -3,41 +3,45 @@
  */
 
 (function () {
-    var controller = function ($scope, coreService, authService, constantService, $state) {
+    var controller = function ($scope, coreService, authService, constantService, $state, $cookies) {
+
+        $scope.required = true;
+        $scope.login = {
+            username: 'mahdy',
+            password: 'secret',
+            remember: true
+        };
+
         var init = function () {
             $scope.loginLabels = {};
             $scope.loginLabels = constantService.getLoginLabels();
-
         };
+
         init();
-        if (coreService.getCurrentState() === "login") {
-            $scope.required = true;
 
-            $scope.login = {
-                username: 'rasha atta',
-                password: 'password'
+
+        $scope.doLogin = function () {
+            var loginData = {
+                username: $scope.login.username,
+                password: $scope.login.password,
+                remember: $scope.login.remember
             };
-
-            $scope.doLogin = function () {
-                var loginData = {
-                    username: $scope.login.username,
-                    password: $scope.login.password
-                };
-                authService.doUserLogin(loginData)
-                    .then(function (response) {
-                        if (!response.data.hasOwnProperty('file')) {
-                            window.location = coreService.getBaseUrl();
-                        }
-                    }, function (error) {
-                        console.log(error.data);
-                    });
-            }
-        }
-
+            authService.doUserLogin(loginData)
+                .then(function callbackSuccess(response) {
+                    if (!response.data.hasOwnProperty('file')) {
+                        $cookies.put('auth', JSON.stringify(response.data));
+                        // console.log(coreService.isLoggedIn());
+                        window.location = coreService.getBaseUrl();
+                    }
+                }, function callbackError(error) {
+                    coreService.setCurrentUser(undefined);
+                    console.log(error.data);
+                });
+        };
 
     };
 
-    controller.$inject = ['$scope', 'coreService', 'authService', 'constantService', '$state'];
+    controller.$inject = ['$scope', 'coreService', 'authService', 'constantService', '$state', '$cookies'];
     angular.module('authModule')
         .controller('authController', controller);
 }());

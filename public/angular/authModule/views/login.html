@@ -10,7 +10,7 @@
                             <label for="name" class="col-md-4 control-label">{{loginLabels.name}}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" required autofocus>
+                                <input id="name" type="text" class="form-control" value="mahdy" name="name" ng-required="required" ng-model="login.username" autofocus>
 
                             </div>
                         </div>
@@ -18,7 +18,7 @@
                         <div>
                             <label for="password" class="col-md-4 control-label">{{loginLabels.password}}</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" ng-model="login.password" ng-required="required">
 
 
                             </div>
@@ -28,7 +28,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> {{loginLabels.remember}}
+                                        <input type="checkbox" name="remember" ng-model="login.remember"> {{loginLabels.remember}}
                                     </label>
                                 </div>
                             </div>

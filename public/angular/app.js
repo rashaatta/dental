@@ -13,6 +13,7 @@
         , 'staffModule'
         , 'datatables'
         , 'constantModule'
+        , 'ngCookies'
         // , 'angular-confirm'
     ];
 
@@ -40,10 +41,15 @@
             coreService.setCurrentState(toState.name);
             coreService.setPreviousState(fromState.name);
             coreService.setCurrentParams(toParams);
-            // console.log(toState);
-            if (coreService.getStates() === null && toState.name !== "login") {
+            console.log(coreService.isLoggedIn());
+            if (!coreService.isLoggedIn() && toState.name !== "login") {
                 event.preventDefault();
                 $state.go("login");
+            }
+
+            if (coreService.isLoggedIn() && toState.name === "login") {
+                event.preventDefault();
+                $state.go("/");
             }
         })
 

@@ -1,28 +1,26 @@
 (function () {
-    var controller = function ($scope, coreService, authService, $location) {
+    var controller = function ($scope, coreService, authService, $location, $cookies) {
 
 
         $scope.$watch(function () {
-            return coreService.getAlert()
+            return coreService.getAlert();
         }, function (newValue) {
-            $scope.alerts = newValue
-        })
+            $scope.alerts = newValue;
+        });
+
+
         $scope.closeAlert = function (index) {
-            $scope.alerts.splice(index, 1)
-        }
+            $scope.alerts.splice(index, 1);
+        };
 
 
         $scope.doLogout = function () {
 
             authService.doUserLogout()
                 .then(function (response) {
-                    if (!response.data.hasOwnProperty('file')) {
-
-                        console.log(response.data);
-                        window.location = coreService.getBaseUrl();
-                    } else {
-                        //alert(response.data);
-                    }
+                    // console.log(response.data);
+                    $cookies.remove('auth');
+                    window.location = coreService.getBaseUrl();
                 }, function (response) {
                     console.log(response.data);
                 });
@@ -30,7 +28,9 @@
 
 
     };
-    controller.$inject = ['$scope', 'coreService', 'authService', '$location']
+
+
+    controller.$inject = ['$scope', 'coreService', 'authService', '$location', '$cookies'];
     angular.module('coreModule')
         .controller('CoreController', controller)
-}())
+}());

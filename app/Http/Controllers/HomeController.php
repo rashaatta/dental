@@ -36,7 +36,9 @@ class HomeController extends Controller
             'password' => $request->input('password')
         ];
 
-        if (!Auth::attempt($credentials)) {
+        $remember = $request->input('remember');
+
+        if (!Auth::attempt($credentials, $remember)) {
             return response()->json("Username and password doesn't match", 403);
         }
 
@@ -51,23 +53,8 @@ class HomeController extends Controller
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
-
-        $request->session()->flush();
-
-        $request->session()->regenerate();
-
+        Auth::logout();
         return response()->json(['success' => true], 201);
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return Auth::guard();
     }
 
 }
