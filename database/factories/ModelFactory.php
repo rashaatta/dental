@@ -36,8 +36,6 @@ $factory->define(App\Staff::class, function (Faker\Generator $faker) {
         'percent' => $faker->randomFloat(2, 1, 100),
         'session_duration' => $faker->numberBetween(1, 12),
         'address' => $faker->address,
-        'entry_time' => $faker->dateTime,
-        'exit_time' => $faker->dateTime,
         'user_id' => 1];
 });
 
@@ -70,13 +68,15 @@ $factory->define(App\Specialty::class, function (Faker\Generator $faker) {
 $factory->define(App\StaffWorkDays::class, function (Faker\Generator $faker) {
 
     do {
-        $staff_id = $faker->numberBetween(1, 50);
+        $staff_id = $faker->numberBetween(1, 200);
         $work_days_id = $faker->numberBetween(1, 7);
     } while (App\StaffWorkDays::where("staff_id", "=", $staff_id)->where("work_days_id", "=", $work_days_id)->first() instanceof App\StaffWorkDays);
 
     return [
         'staff_id' => $staff_id,
-        'work_days_id' => $work_days_id
+        'work_days_id' => $work_days_id,
+        'entry_time' => $faker->dateTime,
+        'exit_time' => $faker->dateTime
     ];
 });
 

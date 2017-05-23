@@ -136,3 +136,14 @@ th a{
 #app{
     padding-bottom: 70px;
 }
+.bootstrap-timepicker-widget.dropdown-menu {
+    z-index: 99999!important;
+}
+
+
+.uib-decrement .btn,.uib-increment .btn{
+    padding:0 12px !important;
+}
+.uib-time .btn-default{
+    padding:2px 12px;
+}

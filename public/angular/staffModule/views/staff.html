@@ -25,7 +25,7 @@
     <i class="fa fa-user-md" aria-hidden="true">
     </i>Doctors</h1>
 
-<table id="staffId"   datatable="ng"   class="table table-bordered table-responsive table-striped">
+<table id="staffId" datatable="ng" class="table table-bordered table-responsive table-striped">
     <thead>
     <tr>
         <th>{{staffLabels.name}}</th>
@@ -36,15 +36,10 @@
         <th>{{staffLabels.workdays}}</th>
 
         <th>
-            <a href=""  data-ui-sref="addStaff">
+            <a href="" data-ui-sref="addStaff" ng-click="emptySelectedStaff()">
                 <i class="fa fa-user-plus green"></i>
             </a>
-
-            </a>
         </th>
-        </td>
-
-
     </tr>
     </thead>
     <tbody>
@@ -59,7 +54,7 @@
         <td ng-if="currentLang == 'ar'">{{ st.ar_days }}</td>
         <td ng-if="currentLang== 'en'">{{ st.en_days }}</td>
         <td>
-            <a href="/staff/edit/{{st.id}}">
+            <a href="" data-ui-sref="addStaff" ng-click="editStaff(st)">
                 <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
             </a>
             <a href="#">
@@ -69,15 +64,11 @@
             </a>
 
             <!--<a href=""  confirm="Are you sure you want to delete this item?" >-->
-                <!--<i class="fa fa-remove red"></i>-->
+            <!--<i class="fa fa-remove red"></i>-->
             <!--</a>-->
 
         </td>
-
     </tr>
-
-
     </tbody>
-
 </table>
 

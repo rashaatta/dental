@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class StaffSeeder extends Seeder
+class StaffWorkDaysSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,6 @@ class StaffSeeder extends Seeder
     {
         //
         //DB::table('staff')->delete();
-        factory(\App\Staff::class, 200)->create();
+        factory(\App\StaffWorkDays::class, 100)->create();
     }
 }

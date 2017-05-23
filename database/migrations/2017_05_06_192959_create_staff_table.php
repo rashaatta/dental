@@ -23,8 +23,6 @@ class CreateStaffTable extends Migration
             $table->float('percent')->nullable();
             $table->integer('session_duration')->default(10);
             $table->text('address')->nullable();
-            $table->time('entry_time')->nullable();
-            $table->time('exit_time')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('NO ACTION');

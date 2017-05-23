@@ -31,7 +31,7 @@ class StaffController extends Controller
                 group_concat(work_days.ar_value separator ", ") as ar_days,
                 specialties.en_value as en_specialty, specialties.ar_value as ar_specialty  ,staff.*'))
             ->groupBy('staff.id')
-            ->orderBy('name', 'asc')->get();
+            ->orderBy('name', 'asc')->limit(20)->get();
 
         return response()->json($staff, 201);
     }
@@ -42,8 +42,7 @@ class StaffController extends Controller
         $days = DB::table('work_days')->get();
         $arr = array('specialty' => $specialty, 'days' => $days);
 
-        return response()->json();
-        return view('staff.add', $arr);
+        return response()->json($arr, 201);
     }
 
     public function edit(Request $request, $id)
@@ -85,14 +84,11 @@ class StaffController extends Controller
     public function update($id)
     {
         $staff = DB::table('staff')->where('id', $id)->first();
-        $specialty = DB::table('specialties')->get();
-        $swd = DB::table('staff_work_days')->where('staff_id', $id)->pluck('work_days_id');
+        $swd = DB::table('staff_work_days')->where('staff_id', $id)->get();
 
-        $days = DB::table('work_days')->get();
+        $arr = array('staff' => $staff, 'swd' => $swd);
 
-        $arr = array('staff' => $staff, 'swd' => $swd, 'specialty' => $specialty, 'days' => $days);
-
-        return view('staff.edit', $arr);
+        return response()->json($arr, 201);
     }
 
     public function destroy()
@@ -130,13 +126,4 @@ class StaffController extends Controller
         return redirect('/staff');
     }
 
-    public function fillData()
-    {
-        factory(Specialty::class, 10)->create();
-//        factory(Staff::class, 100)->create();
-//        for ($i = 0; $i < 7; $i++)
-//            factory(WorkDays::class)->create();
-
-        factory(StaffWorkDays::class, 100)->create();
-    }
 }

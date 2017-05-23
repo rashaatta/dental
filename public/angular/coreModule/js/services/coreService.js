@@ -153,9 +153,6 @@
             resetAlert: function () {
                 service.alerts = [];
             },
-            filterRecords: function (post) {
-                return $http.post(service.api + 'filter', post);
-            },
             getUuid: function () {
                 return $http.get(service.api + 'uuid');
             },
@@ -170,104 +167,6 @@
             },
             removeWarning: function (val) {
                 service.warnings.splice(service.warnings.indexOf(val), 1);
-            },
-            zipCollection: function (collection, module) {
-                var post = {
-                    db: module,
-                    collection: collection
-                };
-                return $http.post(service.api + 'zipcollection', post);
-            },
-            getCanDel: function (module) {
-                switch (module) {
-                case "workorder":
-                    if (service.privileges.woadmin === true || service.privileges.wodel === true)
-                        return true;
-                    else
-                        return false;
-                    break;
-                case "photolib":
-                    if (service.privileges.photoadmin === true)
-                        return true;
-                    else
-                        return false;
-                    break;
-                case "manual":
-                    if (service.privileges.manadmin === true || service.privileges.mandel === true)
-                        return true;
-                    else
-                        return false;
-                    break;
-                case "hr":
-                    if (service.privileges.hradmin === true || service.privileges.hrdel === true)
-                        return true;
-                    else
-                        return false;
-                    break;
-                case "proc":
-                    if (service.privileges.procadmin === true || service.privileges.procdel === true)
-                        return true;
-                    else
-                        return false;
-                    break;
-                case "repo":
-                    if (service.privileges.repoadmin === true || service.privileges.repodel === true)
-                        return true;
-                    else
-                        return false;
-                    break;
-                case "ops":
-                    if (service.privileges.opsadmin === true || service.privileges.opsdel === true)
-                        return true;
-                    else
-                        return false;
-                    break;
-                }
-            },
-            getTableProfiles: function (module) {
-                return $http.get(service.api + 'tableprofiles/' + module + '/' + service.user.user_id);
-            },
-            writeTableProfile: function (profile) {
-                return $http.post(service.api + 'tableprofile', profile);
-            },
-            updateTableProfile: function (profile) {
-                return $http.put(service.api + 'tableprofile', profile);
-            },
-            deleteTableProfile: function(profileid){
-                return $http.delete(service.api+'tableprofile/'+profileid);
-            },
-            exportData: function(post){
-                return $http.post(service.api+'export',post);
-            },
-            getTerritoryId: function (territory) {
-                return $http.get(service.api + 'territoryid/' + territory);
-            },
-            getPhoneTypes: function () {
-                return $http.get(service.api + 'phonetypes');
-            },
-            getAddressTypes: function () {
-                return $http.get(service.api + 'addresstypes');
-            },
-            getEmailTypes: function () {
-                return $http.get(service.api + 'emailtypes');
-            },
-            getCountries: function () {
-                return $http.get(service.api + 'salesrepcountries');
-            },
-            getCountryStates: function (countryid) {
-                return $http.get(service.api + 'salesrepstates/' + countryid);
-            },
-            getCities: function (stateid) {
-                return $http.get(service.api + 'salesrepcities/' + stateid);
-            },
-            addCity: function (city) {
-                return $http.post(service.api + 'addcity', city);
-            },
-            getAllTechs: function(){
-                return $http.get(service.api + 'getalltechs');
-            },
-            getSalesEmails: function(type,salesoffice){
-                return $http.get(service.api + 'getsalesemails/'+type+'/'+salesoffice);
             },
             setProfileData: function(profileData){
                 service.profileData = profileData;

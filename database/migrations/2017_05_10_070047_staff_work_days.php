@@ -18,6 +18,8 @@ class StaffWorkDays extends Migration
             $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->unsignedInteger('work_days_id');
             $table->foreign('work_days_id')->references('id')->on('work_days')->onDelete('cascade');
+            $table->time('entry_time')->nullable();
+            $table->time('exit_time')->nullable();
             $table->timestamps();
             $table->primary(['staff_id', 'work_days_id']);
         });
