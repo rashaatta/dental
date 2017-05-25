@@ -32,8 +32,8 @@
     dentalApp.run(["coreService", "$state", "$rootScope", "$location", function (coreService, $state, $rootScope, $location) {
         // "ngInject";
         coreService.clearAll();
-        coreService.setApi('http://dental.dev:88/api/');
-        coreService.setBaseUrl('http://dental.dev:88/');
+        coreService.setApi('http://dental.dev:8080/api/');
+        coreService.setBaseUrl('http://dental.dev:8080/index.php');
         coreService.setVersion('1.0.0');
         coreService.setLang(currentLang);
         console.log(coreService.getLang());

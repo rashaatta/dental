@@ -153,6 +153,12 @@
 <script src="{{ asset('js/ct-ui-router-extras.min.js') }}"></script>
 <script src="{{ asset('js/angular-cookies.min.js') }}"></script>
 
+
+<!--Date Picker-->
+<script src="{{ asset('js/moment.min.js') }}"></script>
+
+<!--Date Picker-->
+
 <!-- Angular files -->
 <script src="{{ asset('angular/app.js') }}"></script>
 <script src="{{ asset('/js/angular-confirm/angular-confirm.min.js') }}"></script>
@@ -161,6 +167,10 @@
 <script src="{{ asset('angular/coreModule/coreModule.js') }}"></script>
 <script src="{{ asset('angular/coreModule/js/controllers/CoreController.js') }}"></script>
 <script src="{{ asset('angular/coreModule/js/services/coreService.js') }}"></script>
+<script src="{{ asset('angular/coreModule/js/services/coreService.js') }}"></script>
+
+
+<script src="{{asset('angular/coreModule/js/filters/utcToLocalFilter.js')}}" type="text/javascript"></script>
 
 <!-- auth module -->
 <script src="{{ asset('angular/authModule/authModule.js') }}"></script>

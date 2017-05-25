@@ -103,7 +103,7 @@
 
             </div>
 
-            <div class="form-group col-md-10" ng-if="currentLang == 'en'">
+            <div class="form-group col-md-12" ng-if="currentLang == 'en'">
 
                 <table class="table table-bordered table-condensed table-responsive table-hover table-striped"
                        style="margin-top: 20px">
@@ -122,19 +122,16 @@
                             {{d.en_value}}
                         </td>
                         <td>
-                            <!--<input type="datetime" class="form-control"/>-->
-                            <!--<div class="input-group bootstrap-timepicker timepicker">-->
-                            <!--<input id="timepicker1" type="text" class="form-control input-small">-->
-                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>-->
-                            <!--</div>-->
-                            <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep"
-                                 minute-step="mstep" show-meridian="ismeridian"></div>
-
-
+                            <div uib-timepicker ng-model="selectedStaff.entry_time"
+                                 hour-step="hstep"
+                                 minute-step="mstep" show-meridian="ismeridian">
+                            </div>
                         </td>
                         <td>
-                            <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep"
-                                 minute-step="mstep" show-meridian="ismeridian"></div>
+                            <div uib-timepicker ng-model="selectedStaff.exit_time"
+                                 hour-step="hstep"
+                                 minute-step="mstep" show-meridian="ismeridian">
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -143,7 +140,6 @@
 
 
         </div>
-
 
         <div class="form-group formButtons">
 
