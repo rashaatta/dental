@@ -145,6 +145,8 @@ class StaffController extends Controller
 
     public function saveStaff(Request $request)
     {
+        //$request = $request->staff;
+
         $id = request('id');
         if($id >0){//update
             $this->edit($request);

@@ -8,7 +8,7 @@
             $scope.staff = {};
             $scope.selectedStaff = {};
             $scope.weekdays = [];
-            $scope.session = [5,10,15,20,25,30,35,40,45,50,55,60];
+            $scope.session = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
             $scope.selectedStaff.id = $stateParams.id;
             $scope.currentLang = coreService.getLang();
 
@@ -37,7 +37,7 @@
 
             if (coreService.getCurrentState() === "addStaff") {
 
-                $scope.session = [5,10,15,20,25,30,35,40,45,50,55,60];
+                $scope.session = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
 
                 // edit
                 if ($scope.selectedStaff.id !== "") {
@@ -118,8 +118,11 @@
             };
 
             $scope.saveStaff = function () {
-                console.log($scope.selectedStaff);
-                staffService.saveStaff($scope.selectedStaff)
+                console.log($scope.weekdays);
+
+                 var postedData = {staff: $scope.selectedStaff, weekdays: $scope.weekdays};
+
+                staffService.saveStaff( $scope.selectedStaff)
                     .then(function callbackSuccess(response) {
                         console.log(response.data);
                         if (!response.data.hasOwnProperty('file')) {
