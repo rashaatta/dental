@@ -99,7 +99,7 @@
 
             <div ng-if="currentLang == 'ar'" ng-repeat="d in weekdays">
                 <input type="checkbox" name="{{d.id}}" value="{{d.id}}"
-                       ng-checked="selectedStaff.selectWD.indexOf(d.id) > -1"><span> {{d.ar_value}}</span>
+                       data-ng-checked="d.work_days_id == d.id"><span> {{d.ar_value}}</span>
 
             </div>
 
@@ -110,29 +110,34 @@
                     <thead>
                     <tr class="tablehead">
                         <th>{{staffLabels.workdays}}</th>
-                        <th>{{staffLabels.entry_time}}</th>
+                        <th style="text-align: center;">{{staffLabels.entry_time}}</th>
                         <th>{{staffLabels.exit_time}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="d in weekdays">
                         <td>
-                            <input type="checkbox"
-                                   value="{{d.id}}">
-                            {{d.en_value}}
+                            <input type="checkbox" name="{{d.id}}" value="{{d.id}}"
+                                   data-ng-checked="d.work_days_id == d.id"><span> {{d.en_value}}</span>
+                        </td>
+                        <td style="text-align: center;">
+                            <input type="text" id="from{{d.id}}" ng-model="d.entry_time"/>
                         </td>
                         <td>
-                            <div uib-timepicker ng-model="selectedStaff.entry_time"
-                                 hour-step="hstep"
-                                 minute-step="mstep" show-meridian="ismeridian">
-                            </div>
+                            <input type="text" id="to{{d.id}}" ng-model="d.exit_time"/>
                         </td>
-                        <td>
-                            <div uib-timepicker ng-model="selectedStaff.exit_time"
-                                 hour-step="hstep"
-                                 minute-step="mstep" show-meridian="ismeridian">
-                            </div>
-                        </td>
+                        <!--<td>-->
+                        <!--<div uib-timepicker ng-model="d.entry_time"-->
+                        <!--hour-step="hstep"-->
+                        <!--minute-step="mstep" show-meridian="1">-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div uib-timepicker ng-model="d.exit_time"&ndash;&gt;-->
+                        <!--&lt;!&ndash;hour-step="hstep"&ndash;&gt;-->
+                        <!--&lt;!&ndash;minute-step="mstep" show-meridian="ismeridian">&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
                     </tr>
                     </tbody>
                 </table>
@@ -152,3 +157,5 @@
         </div>
     </div>
 </form>
+
+</script>

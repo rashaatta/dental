@@ -75,8 +75,8 @@ $factory->define(App\StaffWorkDays::class, function (Faker\Generator $faker) {
     return [
         'staff_id' => $staff_id,
         'work_days_id' => $work_days_id,
-        'entry_time' => $faker->dateTime,
-        'exit_time' => $faker->dateTime
+        'entry_time' => $faker->time(),
+        'exit_time' => $faker->time()
     ];
 });
 

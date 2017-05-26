@@ -50,7 +50,8 @@
 
             if (coreService.isLoggedIn() && toState.name === "login") {
                 event.preventDefault();
-                $state.go(coreService.getPreviousState());
+                // $state.go('/');
+                window.location.href = window.location.href;
             }
         })
 

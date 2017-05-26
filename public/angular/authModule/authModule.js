@@ -3,9 +3,9 @@
  */
 
 (function () {
-    var module = angular.module('authModule',[]);
-    module.config(['$stateProvider','$urlRouterProvider',  function ($stateProvider,$urlRouterProvider) {
-        //$urlRouterProvider.otherwise("/");
+    var module = angular.module('authModule', []);
+    module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise("/");
         $stateProvider
             .state("login", {
                 url: "^/login",
@@ -23,5 +23,12 @@
                     label: 'register'
                 }
             })
-              }])
+            .state('/', {
+                templateUrl: 'http://dental.dev:8080/index.php',
+                controller: function () {
+                    window.location.href = window.location.href;
+                }
+
+            });
+    }])
 }());

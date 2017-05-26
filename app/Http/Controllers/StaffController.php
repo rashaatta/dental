@@ -39,8 +39,13 @@ class StaffController extends Controller
     public function add()
     {
         $specialty = DB::table('specialties')->get();
-        $days = DB::table('work_days')->get();
-        $arr = array('specialty' => $specialty, 'days' => $days);
+        $swd = DB::table('work_days')
+            ->leftJoin('staff_work_days as sd', function($join){
+                $join->on('sd.work_days_id', '=', 'work_days.id')
+                    ->where('sd.staff_id', '=', -1);
+            })
+            ->get();
+        $arr = array('specialty' => $specialty, 'days' => $swd);
 
         return response()->json($arr, 201);
     }
@@ -81,12 +86,19 @@ class StaffController extends Controller
         return redirect('/staff');
     }
 
+    static $staffid = 0;
     public function update($id)
     {
+        static::$staffid = $id;
         $staff = DB::table('staff')->where('id', $id)->first();
-        $swd = DB::table('staff_work_days')->where('staff_id', $id)->get();
+        $swd = DB::table('work_days')
+            ->leftJoin('staff_work_days as sd', function($join){
+                $join->on('sd.work_days_id', '=', 'work_days.id')
+                    ->where('sd.staff_id', '=', static::$staffid);
+            })
+            ->get();
 
-        $arr = array('staff' => $staff, 'swd' => $swd);
+        $arr = array('staff' => $staff, 'days' => $swd);
 
         return response()->json($arr, 201);
     }

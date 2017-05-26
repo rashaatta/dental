@@ -5,7 +5,7 @@
 (function () {
     var module = angular.module('staffModule', ['datatables']);
     module.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-        //$urlRouterProvider.otherwise("/");
+        // $urlRouterProvider.otherwise("/");
         $stateProvider
             .state("staff", {
                 url: "^/staff",
@@ -17,7 +17,7 @@
             })
 
             .state("addStaff", {
-                url: "^/addStaff",
+                url: "^/addStaff/:id",
                 templateUrl: "angular/staffModule/views/addStaff.html",
                 controller: "staffController",
                 ncyBreadcrumb: {
