@@ -122,15 +122,15 @@
                             {{d.en_value}}
                         </td>
                         <td>
-                            <div uib-timepicker ng-model="selectedStaff.entry_time"
+                            <div uib-timepicker ng-model="{{d.key_name}}"
                                  hour-step="hstep"
-                                 minute-step="mstep" show-meridian="ismeridian">
+                                 minute-step="mstep" show-meridian="ismeridian" ng-change="changed()">
                             </div>
                         </td>
                         <td>
                             <div uib-timepicker ng-model="selectedStaff.exit_time"
                                  hour-step="hstep"
-                                 minute-step="mstep" show-meridian="ismeridian">
+                                 minute-step="mstep" show-meridian="ismeridian"  ng-change="changed()">
                             </div>
                         </td>
                     </tr>
