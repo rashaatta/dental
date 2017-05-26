@@ -7,7 +7,6 @@
             </div>
             <div class="modal-body">
                 <form id="deletionForm" method="POST" action="/staff/delete">
-                    {{ csrf_field() }}
                     <input id="doctor-delete-id" name="doctor-delete-id" type="hidden" value="0"/>
                     <p>Are you sure you want to delete this doctor? </p>
                 </form>
@@ -23,7 +22,7 @@
 
 <h1 class="page-heading">
     <i class="fa fa-user-md" aria-hidden="true">
-    </i>Doctors</h1>
+    </i>Staff</h1>
 
 <table id="staffId" datatable="ng" class="table table-bordered table-responsive table-striped">
     <thead>
@@ -36,7 +35,7 @@
         <th>{{staffLabels.workdays}}</th>
 
         <th>
-            <a href="" data-ui-sref="addStaff" ng-click="emptySelectedStaff()">
+            <a href="" data-ui-sref="addStaff" >
                 <i class="fa fa-user-plus green"></i>
             </a>
         </th>
@@ -54,7 +53,7 @@
         <td ng-if="currentLang == 'ar'">{{ st.ar_days }}</td>
         <td ng-if="currentLang== 'en'">{{ st.en_days }}</td>
         <td>
-            <a href="" data-ui-sref="addStaff" ng-click="editStaff(st)">
+            <a href="" data-ui-sref="addStaff({ id: st.id })" >
                 <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
             </a>
             <a href="#">

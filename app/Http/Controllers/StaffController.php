@@ -31,7 +31,7 @@ class StaffController extends Controller
                 group_concat(work_days.ar_value separator ", ") as ar_days,
                 specialties.en_value as en_specialty, specialties.ar_value as ar_specialty  ,staff.*'))
             ->groupBy('staff.id')
-            ->orderBy('name', 'asc')->limit(20)->get();
+            ->orderBy('name', 'asc')->get();
 
         return response()->json($staff, 201);
     }
@@ -39,14 +39,21 @@ class StaffController extends Controller
     public function add()
     {
         $specialty = DB::table('specialties')->get();
-        $days = DB::table('work_days')->get();
-        $arr = array('specialty' => $specialty, 'days' => $days);
+        $swd = DB::table('work_days')
+            ->leftJoin('staff_work_days as sd', function ($join) {
+                $join->on('sd.work_days_id', '=', 'work_days.id')
+                    ->where('sd.staff_id', '=', -1);
+            })
+            ->get();
+        $arr = array('specialty' => $specialty, 'days' => $swd);
 
         return response()->json($arr, 201);
     }
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request)
     {
+        $id = request('id');
+
         $this->validate($request, [
             'name' => ['required', 'max:255', Rule::unique('staff')->ignore($id)],
             'address' => ['required', 'max:300',],
@@ -66,27 +73,37 @@ class StaffController extends Controller
         $staff->percent = request('percent');
         $staff->session_duration = request('session_duration');
         $staff->address = request('address');
-        $staff->entry_time = request('entry_time');
-        $staff->exit_time = request('exit_time');
+//        $staff->entry_time = request('entry_time');
+//        $staff->exit_time = request('exit_time');
 
-        $staff->work_days()->detach();
-        for ($i = 1; $i <= 7; $i++) {
-            if (request($i)) {
-                $s = WorkDays::find($i);
-                $staff->work_days()->attach($s);
-            }
-        }
+//        $staff->work_days()->detach();
+//        for ($i = 1; $i <= 7; $i++) {
+//            if (request($i)) {
+//                $s = WorkDays::find($i);
+//                $staff->work_days()->attach($s);
+//            }
+//        }
         $staff->save();
 
-        return redirect('/staff');
+        //return redirect('/staff');
+        return response()->json($staff->id, 201);
     }
+
+    static $staffid = 0;
 
     public function update($id)
     {
+        static::$staffid = $id;
         $staff = DB::table('staff')->where('id', $id)->first();
-        $swd = DB::table('staff_work_days')->where('staff_id', $id)->get();
+        $specialty = DB::table('specialties')->get();
 
-        $arr = array('staff' => $staff, 'swd' => $swd);
+        $swd = DB::table('work_days')
+            ->leftJoin('staff_work_days as sd', function ($join) {
+                $join->on('sd.work_days_id', '=', 'work_days.id')
+                    ->where('sd.staff_id', '=', static::$staffid);
+            })->get();
+
+        $arr = array('staff' => $staff, 'days' => $swd, 'specialty' => $specialty);
 
         return response()->json($arr, 201);
     }
@@ -105,7 +122,6 @@ class StaffController extends Controller
             'mobile' => ['required', 'max:150', 'unique:staff'],
             'specialty_id' => ['required', 'max:150'],
             'salary' => ['required'],
-
         ]);
 
         $staff = new Staff();
@@ -117,13 +133,26 @@ class StaffController extends Controller
         $staff->percent = request('percent');
         $staff->session_duration = request('session_duration');
         $staff->address = request('address');
-        $staff->entry_time = request('entry_time');
-        $staff->exit_time = request('exit_time');
+//        $staff->entry_time = request('entry_time');
+//        $staff->exit_time = request('exit_time');
 
         $staff->save();
 
+        // return redirect('/staff');
+        return response()->json($staff->id, 201);
+    }
 
-        return redirect('/staff');
+
+    public function saveStaff(Request $request)
+    {
+        $id = request('id');
+        if($id >0){//update
+            $this->edit($request);
+
+        }else{//add
+            $this->create($request);
+        }
+
     }
 
 }

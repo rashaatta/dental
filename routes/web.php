@@ -43,5 +43,7 @@ Route::group(['prefix' => 'api'], function(){
     Route::get('staff/add', 'StaffController@add');
     Route::get('staff/getStaffDataById/{staffId}', 'StaffController@update');
 
+
+    Route::post('staff/saveStaff', 'StaffController@saveStaff');
 });
 

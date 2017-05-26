@@ -4,15 +4,25 @@
 
 (function () {
     var factory = function ($http, coreService) {
+
+        var getStaffDataById = function (staffId) {
+            return $http.get(coreService.getApi() + 'staff/getStaffDataById/' + staffId)
+                .then(function (response) {
+                    return response.data;
+                });
+        };
+
         return {
-            getStaff: function(){
+            getStaff: function () {
                 return $http.get(coreService.getApi() + 'staff');
             },
-            fillStaffForm: function(){
+            fillStaffForm: function () {
                 return $http.get(coreService.getApi() + 'staff/add');
             },
-            getStaffDataById: function(staffId){
-                return $http.get(coreService.getApi() + 'staff/getStaffDataById/'+ staffId);
+            getStaffDataById: getStaffDataById,
+
+            saveStaff: function (staff) {
+                return $http.post(coreService.getApi() + 'staff/saveStaff', staff);
             }
 
         }

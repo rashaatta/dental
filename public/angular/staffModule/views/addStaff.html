@@ -84,8 +84,9 @@
         <div class="form-group col-md-4">
             <label for="session_duration" class="control-label col-md-2">{{staffLabels.session_duration}}: </label>
             <div class="col-md-4">
-                <select class="form-control" id="session_duration" ng-model="selectedStaff.session_duration">
-                    <option ng-repeat="n in [5,10,15,20,25,30,35,40,45,50,55,60]">{{n}}</option>
+                <select class="form-control" id="session_duration" ng-model="selectedStaff.session_duration"
+                        ng-options="s for s in session">
+
                 </select>
 
 
@@ -99,7 +100,7 @@
 
             <div ng-if="currentLang == 'ar'" ng-repeat="d in weekdays">
                 <input type="checkbox" name="{{d.id}}" value="{{d.id}}"
-                       ng-checked="selectedStaff.selectWD.indexOf(d.id) > -1"><span> {{d.ar_value}}</span>
+                       data-ng-checked="d.work_days_id == d.id"><span> {{d.ar_value}}</span>
 
             </div>
 
@@ -110,29 +111,39 @@
                     <thead>
                     <tr class="tablehead">
                         <th>{{staffLabels.workdays}}</th>
-                        <th>{{staffLabels.entry_time}}</th>
+                        <th style="text-align: center;">{{staffLabels.entry_time}}</th>
                         <th>{{staffLabels.exit_time}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="d in weekdays">
                         <td>
-                            <input type="checkbox"
-                                   value="{{d.id}}">
-                            {{d.en_value}}
+                            <input type="checkbox" name="{{d.id}}" value="{{d.id}}"
+                                   data-ng-checked="d.work_days_id == d.id"><span> {{d.en_value}}</span>
+                        </td>
+
+                        <td style="text-align: center;">
+                            <input type="text" id="from{{d.id}}"
+                                   placeholder="HH:mm:ss" min="16:00:00"
+                                   ng-model="d.entry_time"  class="form-control input-sm"/>
                         </td>
                         <td>
-                            <div uib-timepicker ng-model="{{d.key_name}}"
-                                 hour-step="hstep"
-                                 minute-step="mstep" show-meridian="ismeridian" ng-change="changed()">
-                            </div>
+                            <input type="text" id="to{{d.id}}" ng-model="d.exit_time"
+                                   placeholder="HH:mm:ss"  max="23:00:00"
+                                   class="form-control input-sm"/>
                         </td>
-                        <td>
-                            <div uib-timepicker ng-model="selectedStaff.exit_time"
-                                 hour-step="hstep"
-                                 minute-step="mstep" show-meridian="ismeridian"  ng-change="changed()">
-                            </div>
-                        </td>
+                        <!--<td>-->
+                        <!--<div uib-timepicker ng-model="d.entry_time"-->
+                        <!--hour-step="hstep"-->
+                        <!--minute-step="mstep" show-meridian="1">-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div uib-timepicker ng-model="d.exit_time"&ndash;&gt;-->
+                        <!--&lt;!&ndash;hour-step="hstep"&ndash;&gt;-->
+                        <!--&lt;!&ndash;minute-step="mstep" show-meridian="ismeridian">&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
                     </tr>
                     </tbody>
                 </table>
@@ -152,3 +163,5 @@
         </div>
     </div>
 </form>
+
+</script>
