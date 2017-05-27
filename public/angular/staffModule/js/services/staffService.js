@@ -12,17 +12,30 @@
                 });
         };
 
+        var fillFormData = function () {
+            return $http.get(coreService.getApi() + 'staff/add')
+                .then(function(response){
+                    return response.data;
+                });
+        };
+
+        var getStaff = function () {
+            return $http.get(coreService.getApi() + 'staff')
+                .then(function(response){
+                    return response.data;
+                });
+        };
+
         return {
-            getStaff: function () {
-                return $http.get(coreService.getApi() + 'staff');
-            },
-            fillStaffForm: function () {
-                return $http.get(coreService.getApi() + 'staff/add');
-            },
+            getStaff: getStaff,
+
+            fillStaffForm: fillFormData,
+
             getStaffDataById: getStaffDataById
 
         }
-    }
+    };
+
     factory.$inject = ['$http', 'coreService'];
     angular.module('staffModule')
         .factory('staffService', factory);

@@ -95,12 +95,13 @@ class StaffController extends Controller
             ->leftJoin('staff_work_days as sd', function($join){
                 $join->on('sd.work_days_id', '=', 'work_days.id')
                     ->where('sd.staff_id', '=', static::$staffid);
-            })
+            })->select(DB::raw('work_days.id, work_days_id, TIME_FORMAT(entry_time, "%h:%m %p") as entry_time, TIME_FORMAT(exit_time, "%h:%m %p") as exit_time'))
+            ->orderBy('id' , 'asc')
             ->get();
 
         $arr = array('staff' => $staff, 'days' => $swd);
 
-        return response()->json($arr, 201);
+        return $arr;
     }
 
     public function destroy()

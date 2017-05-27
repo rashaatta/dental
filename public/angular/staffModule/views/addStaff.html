@@ -117,14 +117,16 @@
                     <tbody>
                     <tr ng-repeat="d in weekdays">
                         <td>
-                            <input type="checkbox" name="{{d.id}}" value="{{d.id}}"
-                                   data-ng-checked="d.work_days_id == d.id"><span> {{d.en_value}}</span>
+                            <input type="checkbox" name="{{d.id}}" id="chkbox_{{d.id}}" ng-model="boxes[d.id]"
+                                   ng-change="checkboxChecked(boxes[d.id])"><span> {{d.en_value}}</span>
                         </td>
                         <td style="text-align: center;">
-                            <input type="text" id="from{{d.id}}" ng-model="d.entry_time"/>
+                            <input type="text" id="from{{d.id}}" class="timepicker" data-ng-show="boxes[d.id] > 0"
+                                   ng-model="d.entry_time" />
                         </td>
                         <td>
-                            <input type="text" id="to{{d.id}}" ng-model="d.exit_time"/>
+                            <input type="text" id="to{{d.id}}" class="timepicker" data-ng-show="boxes[d.id] > 0"
+                                   ng-model="d.exit_time" />
                         </td>
                         <!--<td>-->
                         <!--<div uib-timepicker ng-model="d.entry_time"-->
