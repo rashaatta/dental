@@ -80,7 +80,7 @@
                             <a href=""   data-ui-sref="staff">@lang('welcome.staff')</a>
                         </li>
                         <li class="dropdown">
-                            <a href="/patient">@lang('welcome.patients')
+                            <a href=""  data-ui-sref="patient">@lang('welcome.patients')
                             </a>
                         </li>
                         <li class="dropdown"><a href="" class="dropdown-toggle"
@@ -187,6 +187,14 @@
 <script src="{{ asset('angular/staffModule/staffModule.js') }}"></script>
 <script src="{{ asset('angular/staffModule/js/controllers/staffController.js') }}"></script>
 <script src="{{ asset('angular/staffModule/js/services/staffService.js') }}"></script>
+
+
+
+<!-- patient module -->
+<script src="{{ asset('angular/patientModule/patientModule.js') }}"></script>
+<script src="{{ asset('angular/patientModule/js/controllers/patientController.js') }}"></script>
+<script src="{{ asset('angular/patientModule/js/services/patientService.js') }}"></script>
+
 
 <!--  constant Module  -->
 <script src="{{ asset('angular/constantModule/constantModule.js') }}"></script>

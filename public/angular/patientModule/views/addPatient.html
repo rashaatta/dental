@@ -1,0 +1,77 @@
+<h1 class="page-heading"><i class="fa fa-address-card" aria-hidden="true"></i> {{patientLabels.header}} </h1>
+<form class="form-horizontal patient" method="post" action="">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="" class="control-label col-md-3">{{patientLabels.name}} </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="name" name="name" ng-model="selectedPatient.name"/>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="" class="control-label col-md-3">{{patientLabels.corporation}} </label>
+            <div class="col-md-9">
+                <select ng-if="currentLang == 'ar'" class="form-control"
+                        name="corporation_id" ng-model="selectedPatient.corporation_id"
+                        ng-options="s.id as s.name for s in corporations">
+                </select>
+
+                <select   class="form-control"
+                        name="corporation_id" ng-model="selectedPatient.corporation_id"
+                        ng-options="s.id as s.name for s in corporations">
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="" class="control-label col-md-3">{{patientLabels.telephone}} : </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="telephone" name="telephone"
+                       ng-model="selectedPatient.telephone"/>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="" class="control-label col-md-3">{{patientLabels.mobile}} : </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="mobile" name="mobile" ng-model="selectedPatient.mobile"/>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        <div class="form-group col-md-6">
+            <label for="" class="control-label col-md-3"> {{patientLabels.job}}</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="job" name="job" value="" ng-model="selectedPatient.job"/>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="" class="control-label col-md-3">{{patientLabels.birthday}} </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="birthday" ng-model="selectedPatient.birthday">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="address" class="control-label col-md-2">{{patientLabels.address}}: </label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="address" name="address" ng-model="selectedPatient.address"/>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="content row">
+    </div>
+    <div class="clearfix"></div>
+    <div class="form-group formButtons">
+        <a href="" class=" btn btn-primary" ng-click="savePatient();"><i class="fa fa-backward"></i>
+            <span>{{patientLabels.btnSave}}</span></a>
+        <a href="" class=" btn btn-primary" data-ui-sref="patient">{{patientLabels.btnCancel}}</a>
+    </div>
+    </div>
+</form>

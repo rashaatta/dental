@@ -84,8 +84,9 @@
         <div class="form-group col-md-4">
             <label for="session_duration" class="control-label col-md-2">{{staffLabels.session_duration}}: </label>
             <div class="col-md-4">
-                <select class="form-control" id="session_duration" ng-model="selectedStaff.session_duration">
-                    <option ng-repeat="n in [5,10,15,20,25,30,35,40,45,50,55,60]">{{n}}</option>
+                <select class="form-control" id="session_duration" ng-model="selectedStaff.session_duration"
+                ng-options=" s for s in [5,10,15,20,25,30,35,40,45,50,55,60]">
+                    <!--<option value="{{n}}" ng-repeat="n in [5,10,15,20,25,30,35,40,45,50,55,60]">{{n}}</option>-->
                 </select>
 
 
@@ -121,11 +122,11 @@
                                    ng-change="checkboxChecked(boxes[d.id])"><span> {{d.en_value}}</span>
                         </td>
                         <td style="text-align: center;">
-                            <input type="text" id="from{{d.id}}" class="timepicker" data-ng-show="boxes[d.id] > 0"
+                            <input type="text" id="from{{d.id}}" class="timepicker form-control" data-ng-show="boxes[d.id] > 0"
                                    ng-model="d.entry_time" />
                         </td>
                         <td>
-                            <input type="text" id="to{{d.id}}" class="timepicker" data-ng-show="boxes[d.id] > 0"
+                            <input type="text" id="to{{d.id}}" class="timepicker form-control" data-ng-show="boxes[d.id] > 0"
                                    ng-model="d.exit_time" />
                         </td>
                         <!--<td>-->

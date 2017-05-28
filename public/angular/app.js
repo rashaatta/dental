@@ -8,13 +8,14 @@
     var modules = [
         'ui.router'
         , "ct.ui.router.extras"
+        , 'ngCookies'
+        , 'ui.bootstrap'
         , 'authModule'
         , 'coreModule'
         , 'staffModule'
         , 'datatables'
         , 'constantModule'
-        , 'ngCookies'
-        ,'ui.bootstrap'
+        , 'patientModule'
         // , 'angular-confirm'
     ];
 

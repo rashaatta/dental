@@ -58,6 +58,31 @@
             'remember': 'نذكرنى'
         };
 
+        var en_patient = {
+            'header': 'Manage Patients',
+            'name': 'Patient Name',
+            'address': 'Address ',
+            'mobile': 'Mobile ',
+            'telephone': 'Telephone ',
+            'corporation': 'Corporation',
+            'birthday': 'Birthday',
+            'btnSave': 'Save',
+            'btnCancel': 'Cancel',
+            'job': 'Job'
+        };
+
+        var ar_patient = {
+            'header': 'المرضى',
+            'name': 'اسم المريض',
+            'address': 'العنوان',
+            'mobile': 'الموبايل',
+            'telephone': 'الهاتف',
+            'corporation': 'الجهة التابع لها',
+            'birthday': 'تاريخ الميلاد',
+            'job': 'الوظيفه',
+            'btnSave': 'حفظ',
+            'btnCancel': 'الغاء'
+        }
 
         return {
             getMessage: function (code) {
@@ -77,6 +102,16 @@
                 }
                 else if (currentLang == 'ar') {
                     return ar_login;
+                }
+
+            }
+            ,
+            getPatientLabels: function () {
+                if (currentLang == 'en') {
+                    return en_patient;
+                }
+                else if (currentLang == 'ar') {
+                    return ar_patient;
                 }
 
             }

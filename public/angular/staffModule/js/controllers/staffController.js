@@ -3,7 +3,7 @@
  */
 
 (function () {
-        var controller = function ($rootScope, $stateParams, $scope, coreService, constantService, staffService, $timeout) {
+        var controller = function ($rootScope, $stateParams, $scope, coreService, $state, constantService, staffService, $timeout) {
 
             $scope.staff = {};
             $scope.selectedStaff = {};
@@ -142,23 +142,22 @@
 
             $scope.saveStaff = function () {
 
+                 var postedData = {staff: $scope.selectedStaff, workdays: $scope.weekdays};
+                console.log(JSON.stringify($scope.selectedStaff));
+                staffService.saveStaff($scope.selectedStaff)
+                    .then(function callbackSuccess(response) {
 
-
-                // console.log($scope.selectedStaff.selectWD);
-                //  console.log($scope.mytime);
-
-                // if ($scope.mytime != '') {
-                //     $scope.mytime2 = $filter('localToUtc')($scope.mytime, 'datetime');
-                //     console.log($scope.mytime2);
-                //
-                //     $scope.mytime3 = $filter('utcToLocal')($scope.mytime2, 'datetime');
-                //     console.log($scope.mytime3);
-                // }
+                        if (!response.data.hasOwnProperty('file')) {
+                            //$state.go('staff');
+                        }
+                    }, function callbackError(error) {
+                        console.log(error.data);
+                    });
 
             };
         };
 
-        controller.$inject = ['$rootScope', '$stateParams', '$scope', 'coreService', 'constantService', 'staffService', '$timeout', '$state', '$filter'];
+        controller.$inject = ['$rootScope', '$stateParams', '$scope', 'coreService', '$state', 'constantService', 'staffService', '$timeout', '$state', '$filter'];
         angular.module('staffModule')
             .controller('staffController', controller);
     }()

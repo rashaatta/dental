@@ -1,0 +1,53 @@
+
+<h1 class="page-heading">
+    <i class="fa fa-user-md" aria-hidden="true">
+    </i>Patient</h1>
+
+<table id="patientId" datatable="ng" class="table table-bordered table-responsive table-striped">
+    <thead>
+    <tr>
+        <th>{{patientLabels.name}}</th>
+        <th>{{patientLabels.address}}</th>
+        <th>{{patientLabels.mobile}}</th>
+        <th>{{patientLabels.telephone}}</th>
+        <th>{{patientLabels.corporation}}</th>
+        <th>{{patientLabels.birthday}}</th>
+        <th>{{patientLabels.job}}</th>
+
+        <th>
+            <a href="" data-ui-sref="addPatient({ id: '' })" >
+                <i class="fa fa-user-plus green"></i>
+            </a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr ng-repeat="pa in patient">
+        <td>{{ pa.name }}</td>
+        <td>{{ pa.address }}</td>
+        <td>{{ pa.mobile }}</td>
+        <td>{{ pa.telephone }}</td>
+        <td>{{ pa.corporation_name }}</td>
+        <td>{{ pa.birthday }}</td>
+        <td>{{ pa.job }}</td>
+       
+        <td>
+            <a href="" data-ui-sref="addPatient({ id: pa.id })" >
+                <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit record"></i>
+            </a>
+            <a href="#">
+                <i class="glyphicon glyphicon-trash red" id="{{ pa.id }}" aria-hidden="true"
+                   title="Delete record"
+                   data-target="#confirmDelete" data-toggle="modal"></i>
+            </a>
+
+            <!--<a href=""  confirm="Are you sure you want to delete this item?" >-->
+            <!--<i class="fa fa-remove red"></i>-->
+            <!--</a>-->
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
