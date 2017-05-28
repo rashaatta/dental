@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="{{ asset('css/jquery.timepicker.css') }}" />
+
     <link rel="stylesheet" href="{{ asset('css/angular-datatables.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
 <link type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
@@ -156,6 +158,8 @@
 
 <!--Date Picker-->
 <script src="{{ asset('js/moment.min.js') }}"></script>
+<script src="{{ asset('js/jquery.timepicker.js') }}"></script>
+
 
 <!--Date Picker-->
 

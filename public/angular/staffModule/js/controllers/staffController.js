@@ -3,21 +3,21 @@
  */
 
 (function () {
-        var controller = function ($rootScope, $stateParams, $scope, $state, coreService, constantService, staffService) {
+        var controller = function ($rootScope, $stateParams, $scope, coreService, constantService, staffService, $timeout) {
 
             $scope.staff = {};
             $scope.selectedStaff = {};
             $scope.weekdays = [];
-            $scope.session = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
+            $scope.boxes = [0];
             $scope.selectedStaff.id = $stateParams.id;
             $scope.currentLang = coreService.getLang();
 
             $scope.listStaff = function () {
                 staffService.getStaff().then(
-                    function (response) {
-                        $scope.staff = response.data;
+                    function (data) {
+                        $scope.staff = data;
                     }, function (error) {
-                        console.log(error.data);
+                        console.log(error);
                     });
             };
 
@@ -30,17 +30,44 @@
 
             init();
 
+
+            $scope.checkboxChecked = function (event) {
+                console.log(event);
+                // console.log($scope.boxes);
+            };
+
+            var formData = staffService.fillStaffForm();
+            formData.then(
+                function (data) {
+                    $scope.weekdays = data.days;
+                    $scope.specialty = data.specialty;
+                }, function (error) {
+                    console.log(error);
+                });
+
+
+            var loadTimepicker = function () {
+                $timeout(function () {
+                    $('input.timepicker').timepicker();
+                }, 1000);
+            };
+
+            loadTimepicker();
+
             if (coreService.getCurrentState() === "staff") {
                 $scope.listStaff();
             }
 
-
             if (coreService.getCurrentState() === "addStaff") {
-
-                $scope.session = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
-
                 // edit
                 if ($scope.selectedStaff.id !== "") {
+                    // $scope.update = function () {
+                    //     var d = new Date();
+                    //     d.setHours(14);
+                    //     d.setMinutes(0);
+                    //     $scope.entry_time = d;
+                    // };
+
                     console.log($stateParams);
 
                     var myData = staffService.getStaffDataById($scope.selectedStaff.id);
@@ -49,8 +76,13 @@
                         function callbackSuccess(data) {
                             $scope.selectedStaff = data.staff;
                             $scope.weekdays = data.days;
-                            $scope.specialty = data.specialty;
+                            var i = 1;
+                            $.each(data.days, function (key, item) {
+                                $scope.boxes[i++] = (item.work_days_id > 0);
+                                // console.log(item);
+                            });
 
+                            console.log($scope.boxes);
                         }, function callbackError(data) {
                             console.log(data);
                         }
@@ -96,15 +128,6 @@
                 else {
                     // add new staff
                     console.log($stateParams);
-
-                    staffService.fillStaffForm().then(
-                        function callbackSuccess(response) {
-                            $scope.weekdays = response.data.days;
-                            $scope.specialty = response.data.specialty;
-                            console.log($scope.weekdays);
-                        }, function callbackError(error) {
-                            console.log(error.data);
-                        });
                 }
             }
 
@@ -118,11 +141,7 @@
             };
 
             $scope.saveStaff = function () {
-                console.log($scope.weekdays);
-
-                 var postedData = {staff: $scope.selectedStaff, weekdays: $scope.weekdays};
-
-                staffService.saveStaff( $scope.selectedStaff)
+                staffService.saveStaff($scope.selectedStaff)
                     .then(function callbackSuccess(response) {
                         console.log(response.data);
                         if (!response.data.hasOwnProperty('file')) {
@@ -135,7 +154,7 @@
             };
         };
 
-        controller.$inject = ['$rootScope', '$stateParams', '$scope', '$state', 'coreService', 'constantService', 'staffService', '$state', '$filter'];
+        controller.$inject = ['$rootScope', '$stateParams', '$scope', 'coreService', 'constantService', 'staffService', '$timeout', '$state', '$filter'];
         angular.module('staffModule')
             .controller('staffController', controller);
     }()
