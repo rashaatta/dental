@@ -3,7 +3,7 @@
  */
 
 (function () {
-        var controller = function ($rootScope, $stateParams, $scope, coreService, constantService, staffService, $timeout) {
+        var controller = function ($rootScope, $stateParams, $scope, coreService, $state, constantService, staffService, $timeout) {
 
             $scope.staff = {};
             $scope.selectedStaff = {};
@@ -141,11 +141,14 @@
             };
 
             $scope.saveStaff = function () {
+
+                 var postedData = {staff: $scope.selectedStaff, workdays: $scope.weekdays};
+                console.log(JSON.stringify($scope.selectedStaff));
                 staffService.saveStaff($scope.selectedStaff)
                     .then(function callbackSuccess(response) {
-                        console.log(response.data);
+
                         if (!response.data.hasOwnProperty('file')) {
-                            $state.go('staff');
+                            //$state.go('staff');
                         }
                     }, function callbackError(error) {
                         console.log(error.data);
@@ -154,7 +157,7 @@
             };
         };
 
-        controller.$inject = ['$rootScope', '$stateParams', '$scope', 'coreService', 'constantService', 'staffService', '$timeout', '$state', '$filter'];
+        controller.$inject = ['$rootScope', '$stateParams', '$scope', 'coreService', '$state', 'constantService', 'staffService', '$timeout', '$state', '$filter'];
         angular.module('staffModule')
             .controller('staffController', controller);
     }()
