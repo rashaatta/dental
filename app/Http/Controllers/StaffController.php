@@ -40,7 +40,7 @@ class StaffController extends Controller
     {
         $specialty = DB::table('specialties')->get();
         $swd = DB::table('work_days')
-            ->leftJoin('staff_work_days as sd', function($join){
+            ->leftJoin('staff_work_days as sd', function ($join) {
                 $join->on('sd.work_days_id', '=', 'work_days.id')
                     ->where('sd.staff_id', '=', -1);
             })
@@ -50,8 +50,9 @@ class StaffController extends Controller
         return response()->json($arr, 201);
     }
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request)
     {
+        $id = request('id');
         $this->validate($request, [
             'name' => ['required', 'max:255', Rule::unique('staff')->ignore($id)],
             'address' => ['required', 'max:300',],
@@ -71,32 +72,33 @@ class StaffController extends Controller
         $staff->percent = request('percent');
         $staff->session_duration = request('session_duration');
         $staff->address = request('address');
-        $staff->entry_time = request('entry_time');
-        $staff->exit_time = request('exit_time');
+        // $staff->entry_time = request('entry_time');
+        // $staff->exit_time = request('exit_time');
 
-        $staff->work_days()->detach();
-        for ($i = 1; $i <= 7; $i++) {
-            if (request($i)) {
-                $s = WorkDays::find($i);
-                $staff->work_days()->attach($s);
-            }
-        }
+//        $staff->work_days()->detach();
+//        for ($i = 1; $i <= 7; $i++) {
+//            if (request($i)) {
+//                $s = WorkDays::find($i);
+//                $staff->work_days()->attach($s);
+//            }
+//        }
         $staff->save();
 
         return redirect('/staff');
     }
 
     static $staffid = 0;
+
     public function update($id)
     {
         static::$staffid = $id;
         $staff = DB::table('staff')->where('id', $id)->first();
         $swd = DB::table('work_days')
-            ->leftJoin('staff_work_days as sd', function($join){
+            ->leftJoin('staff_work_days as sd', function ($join) {
                 $join->on('sd.work_days_id', '=', 'work_days.id')
                     ->where('sd.staff_id', '=', static::$staffid);
-            })->select(DB::raw('work_days.id, work_days_id, TIME_FORMAT(entry_time, "%h:%m %p") as entry_time, TIME_FORMAT(exit_time, "%h:%m %p") as exit_time'))
-            ->orderBy('id' , 'asc')
+            })->select(DB::raw('work_days.id,work_days.en_value,work_days.ar_value, work_days_id, TIME_FORMAT(entry_time, "%h:%m %p") as entry_time, TIME_FORMAT(exit_time, "%h:%m %p") as exit_time'))
+            ->orderBy('id', 'asc')
             ->get();
 
         $arr = array('staff' => $staff, 'days' => $swd);
@@ -130,8 +132,8 @@ class StaffController extends Controller
         $staff->percent = request('percent');
         $staff->session_duration = request('session_duration');
         $staff->address = request('address');
-        $staff->entry_time = request('entry_time');
-        $staff->exit_time = request('exit_time');
+        //$staff->entry_time = request('entry_time');
+        // $staff->exit_time = request('exit_time');
 
         $staff->save();
 
@@ -139,4 +141,33 @@ class StaffController extends Controller
         return redirect('/staff');
     }
 
+    public function saveStaff(Request $request)
+    {
+
+        $staff = json_decode($request->input('staff'));
+
+        $arr = Array('id' => 1);
+
+        return $staff;
+
+//        $staff = $request->staff;
+
+        //$staff =json_decode(  $request->staff );
+       // $workdays = $request->workdays;
+
+
+        //$staff = $request->staff;
+
+       // $id = $request->input('id');
+
+//
+
+//        if($id >0){//update
+//            $this->edit($request);
+//
+//        }else{//add
+//            $this->create($request);
+//        }
+
+    }
 }

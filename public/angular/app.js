@@ -8,13 +8,14 @@
     var modules = [
         'ui.router'
         , "ct.ui.router.extras"
+        , 'ngCookies'
+        , 'ui.bootstrap'
         , 'authModule'
         , 'coreModule'
         , 'staffModule'
         , 'datatables'
         , 'constantModule'
-        , 'ngCookies'
-        ,'ui.bootstrap'
+        , 'patientModule'
         // , 'angular-confirm'
     ];
 
@@ -33,7 +34,7 @@
         // "ngInject";
         coreService.clearAll();
         coreService.setApi('http://dental.dev:88/api/');
-        coreService.setBaseUrl('http://dental.dev:88/index.php');
+        coreService.setBaseUrl('http://dental.dev:88');
         coreService.setVersion('1.0.0');
         coreService.setLang(currentLang);
         console.log(coreService.getLang());

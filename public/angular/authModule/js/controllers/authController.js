@@ -34,7 +34,6 @@
                         window.location = coreService.getBaseUrl();
                     }
                 }, function callbackError(error) {
-                    coreService.setCurrentUser(undefined);
                     console.log(error.data);
                 });
         };
