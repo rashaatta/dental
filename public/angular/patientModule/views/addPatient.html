@@ -12,12 +12,12 @@
             <div class="col-md-9">
                 <select ng-if="currentLang == 'ar'" class="form-control"
                         name="corporation_id" ng-model="selectedPatient.corporation_id"
-                        ng-options="s.id as s.name for s in corporations">
+                        ng-options="s.id as s.ar_name for s in corporations">
                 </select>
 
-                <select   class="form-control"
+                <select ng-if="currentLang == 'en'"  class="form-control"
                         name="corporation_id" ng-model="selectedPatient.corporation_id"
-                        ng-options="s.id as s.name for s in corporations">
+                        ng-options="s.id as s.en_name for s in corporations">
                 </select>
             </div>
         </div>

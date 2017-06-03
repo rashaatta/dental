@@ -15,7 +15,8 @@ class CreateCorporationTable extends Migration
     {
         Schema::create('corporation', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('en_name')->unique();
+            $table->string('ar_name')->unique();
             $table->string('address');
             $table->string('mobile');
             $table->string('telephone');

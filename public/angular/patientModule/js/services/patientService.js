@@ -1,10 +1,17 @@
 (function () {
     var factory = function ($http, coreService) {
 
+        var getPatient = function () {
+            return $http.get(coreService.getApi() + 'patient')
+                .then(
+                    function(response){
+                        return response.data;
+                    }
+                );
+        };
+
         return {
-            getPatient: function () {
-                return $http.get(coreService.getApi() + 'patient');
-            },
+            getPatient: getPatient,
             getCorporation: function () {
                 return $http.get(coreService.getApi() + 'patient/add');
             },

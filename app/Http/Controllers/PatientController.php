@@ -20,8 +20,8 @@ class PatientController extends Controller
     public function index()
     {
         $patients = DB::table('patient')
-            ->leftJoin('corporation', 'corporation.id', '=', 'patient.corporation_id')
-            ->select(DB::raw(' corporation.name as corporation_name  ,patient.*'))
+            ->join('corporation', 'corporation.id', '=', 'patient.corporation_id')
+            ->select(DB::raw(' corporation.en_name as corporation_enname,corporation.ar_name as corporation_arname  ,patient.*'))
             ->orderBy('name', 'asc')->get();
 
         return response()->json($patients, 201);
@@ -30,9 +30,9 @@ class PatientController extends Controller
 
     public function add()
     {
-        $corp = DB::table('corporation')->get();
+        $corps = DB::table('corporation')->get();
 
-        return response()->json($corp, 201);
+        return $corps;
         //return view('patient.add');
     }
 
@@ -53,10 +53,10 @@ class PatientController extends Controller
     public function savePatient(Request $request)
     {
         $id = request('id');
-        if($id >0){//update
+        if ($id > 0) {//update
             $this->edit($request);
 
-        }else{//add
+        } else {//add
             $this->create($request);
         }
 

@@ -8,8 +8,8 @@
         $scope.required = true;
         $scope.login = {
             username: 'Rasha Atta',
-            password: 'password',
-            remember: true
+            password: 'secret',
+            remember: false
         };
 
         var init = function () {

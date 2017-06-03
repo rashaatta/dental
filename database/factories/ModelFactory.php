@@ -84,7 +84,8 @@ $factory->define(App\StaffWorkDays::class, function (Faker\Generator $faker) {
 $factory->define(App\Corporation::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => $faker->name,
+        'en_name' => $faker->name,
+        'ar_name' => $faker->name,
         'mobile' => $faker->phoneNumber,
         'telephone' => $faker->phoneNumber,
         'address' => $faker->address,
