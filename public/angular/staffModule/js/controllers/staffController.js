@@ -142,16 +142,17 @@
 
             $scope.saveStaff = function () {
 
-                 var postedData = {staff: $scope.selectedStaff, workdays: $scope.weekdays};
-                console.log(JSON.stringify($scope.selectedStaff));
-                staffService.saveStaff($scope.selectedStaff)
-                    .then(function callbackSuccess(response) {
+                var postedData = {"staff": $scope.selectedStaff, "work-days": $scope.weekdays};
+                // console.log(JSON.stringify(postedData));
+                staffService.saveStaff(postedData)
+                    .then(function callbackSuccess(data) {
 
-                        if (!response.data.hasOwnProperty('file')) {
+                        if (!data.hasOwnProperty('file')) {
+                            console.log(data);
                             //$state.go('staff');
                         }
                     }, function callbackError(error) {
-                        console.log(error.data);
+                        console.log(error);
                     });
 
             };

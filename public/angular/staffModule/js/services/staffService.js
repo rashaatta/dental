@@ -27,7 +27,14 @@
         };
 
         var saveStaff = function (staff) {
-            return $http.post(coreService.getApi() + 'staff/saveStaff', staff);
+            return $http({
+                method : "POST",
+                url: coreService.getApi() + 'staff/saveStaff',
+                params: {"Content-Type": "application/json"},
+                data: staff
+            }).then(function(response){
+                return response.data;
+            });
         };
 
         return {

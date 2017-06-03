@@ -33,7 +33,7 @@ class StaffController extends Controller
             ->groupBy('staff.id')
             ->orderBy('name', 'asc')->limit(20)->get();
 
-        return response()->json($staff, 201);
+        return $staff;
     }
 
     public function add()
@@ -47,7 +47,7 @@ class StaffController extends Controller
             ->get();
         $arr = array('specialty' => $specialty, 'days' => $swd);
 
-        return response()->json($arr, 201);
+        return $arr;
     }
 
     public function edit(Request $request)
@@ -144,21 +144,62 @@ class StaffController extends Controller
     public function saveStaff(Request $request)
     {
 
-        $staff = json_decode($request->input('staff'));
+        /**
+         * $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
+         * $staff = $request->input('staff');
+         * $wrkdays = $request->input('work-days');
+         *
+         * //        $arr = Array('id' => 1);
+         * //var_dump($staff);
+         * //        return $staff['id'];
+         * return $wrkdays[1]['id'];
+         */
 
-        $arr = Array('id' => 1);
 
-        return $staff;
+        $mywdays = Array();
 
-//        $staff = $request->staff;
+        $wrkdays = $request->input('work-days');
+        for ($i = 0; $i < 7; $i++) {// 7 days
+            if ($wrkdays[$i]['entry_time'] != null && $wrkdays[$i]['exit_time'] != null) {
+                array_push($mywdays, $wrkdays[$i]);
+            }
+        }
 
-        //$staff =json_decode(  $request->staff );
-       // $workdays = $request->workdays;
+        $staff = $request->input('staff');
+        if ($staff['id'] != ''){ // update existing staff
+            $mystaff = Staff::find($staff['id']);
+            $mystaff->name = $staff['name'];
+            $mystaff->mobile = $staff['mobile'];
+            $mystaff->telephone = $staff['telephone'];
+            $mystaff->specialty_id = $staff['specialty_id'];
+            $mystaff->salary = $staff['salary'];
+            $mystaff->percent = $staff['percent'];
+            $mystaff->session_duration = $staff['session_duration'];
+            $mystaff->address = $staff['address'];
+            $mystaff->user_id = $staff['user_id'];
+
+            $mystaff->save();
+
+            DB::table('staff_work_days')->where('staff_id', '=', $staff['id'])->delete();
+
+            // $wd = new WorkDays(['work_days_id' => $wrkdays[0]['id'], 'entry_time' => $wrkdays[0]['entry_time'], 'exit_time' => $wrkdays[0]['exit_time']]);
+            $wd = new StaffWorkDays();
+            $wd->staff_id = $staff['id'];
+            $wd->work_days_id = $wrkdays[0]['id'];
+            $wd->entry_time = $wrkdays[0]['entry_time'];
+            $wd->exit_time = $wrkdays[0]['exit_time'];
+            $wd->save();
+        }
+
+        var_dump($mywdays);
+
+        //$staff =json_decode($request->staff );
+        // $workdays = $request->workdays;
 
 
         //$staff = $request->staff;
 
-       // $id = $request->input('id');
+        // $id = $request->input('id');
 
 //
 
