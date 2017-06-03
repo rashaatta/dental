@@ -7,8 +7,8 @@
 
         $scope.required = true;
         $scope.login = {
-            username: 'mahdy',
-            password: 'secret',
+            username: 'Rasha Atta',
+            password: 'password',
             remember: true
         };
 

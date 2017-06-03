@@ -52,6 +52,13 @@ class PatientController extends Controller
 
     public function savePatient(Request $request)
     {
+        $id = request('id');
+        if($id >0){//update
+            $this->edit($request);
+
+        }else{//add
+            $this->create($request);
+        }
 
     }
 
