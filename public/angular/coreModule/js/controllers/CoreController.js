@@ -26,11 +26,17 @@
                 });
         }
 
+        $scope.checkActiveLink = function(link){
+            // console.log(coreService.getCurrentState());
+            if(coreService.getCurrentState() == link){
+                return 'active-link';
+            }
+        }
 
     };
 
 
     controller.$inject = ['$scope', 'coreService', 'authService', '$location', '$cookies'];
     angular.module('coreModule')
-        .controller('CoreController', controller)
+        .controller('CoreController', controller);
 }());
