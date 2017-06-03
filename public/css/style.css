@@ -19,6 +19,12 @@ body{
     font-size:14px !important;
     display: inline-block;
 }
+
+.active-link{
+    font-weight: bold;
+    color: yellow;
+}
+
 .dropdown a{
     font-size:14px !important;
     font-weight: 600;

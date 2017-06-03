@@ -77,7 +77,7 @@
                 @if (!Auth::guest())
                     <ul class="nav navbar-nav">
                         &nbsp;<li class="dropdown">
-                            <a href=""   data-ui-sref="staff">@lang('welcome.staff')</a>
+                            <a href=""   data-ui-sref="staff" ng-class="checkActiveUrl('staff')">@lang('welcome.staff')</a>
                         </li>
                         <li class="dropdown">
                             <a href="/patient">@lang('welcome.patients')
