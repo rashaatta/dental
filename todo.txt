@@ -1,0 +1,1 @@
+jquery plugin entry_time and exit_time in addStaff doesn't set values in model (day.entry_time)

@@ -8,7 +8,7 @@
             $scope.staff = {};
             $scope.selectedStaff = {};
             $scope.weekdays = [];
-            $scope.boxes = [0];
+            $scope.boxes = [false];
             $scope.selectedStaff.id = $stateParams.id;
             $scope.currentLang = coreService.getLang();
 
@@ -32,7 +32,20 @@
 
 
             $scope.checkboxChecked = function (event) {
-                console.log(event);
+                // console.log(event);
+                console.log($scope.weekdays);
+                // console.log($scope.boxes);
+            };
+
+            $scope.entryTimeChanged = function (entry_time, id) {
+                console.log(entry_time + ' : ' + id);
+                // console.log($scope.weekdays);
+                // console.log($scope.boxes);
+            };
+
+            $scope.exitTimeChanged = function (exit_time, id) {
+                console.log(exit_time+ ' : ' + id);
+                // console.log($scope.weekdays);
                 // console.log($scope.boxes);
             };
 
@@ -141,8 +154,8 @@
             };
 
             $scope.saveStaff = function () {
+                var postedData = {"staff": $scope.selectedStaff, "work-days": $scope.weekdays, "boxes": $scope.boxes};
 
-                var postedData = {"staff": $scope.selectedStaff, "work-days": $scope.weekdays};
                 // console.log(JSON.stringify(postedData));
                 staffService.saveStaff(postedData)
                     .then(function callbackSuccess(data) {
