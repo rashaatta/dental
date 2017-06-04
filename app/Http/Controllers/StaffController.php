@@ -156,17 +156,8 @@ class StaffController extends Controller
          */
 
 
-        $mywdays = Array();
-
-        $wrkdays = $request->input('work-days');
-        for ($i = 0; $i < 7; $i++) {// 7 days
-            if ($wrkdays[$i]['entry_time'] != null && $wrkdays[$i]['exit_time'] != null) {
-                array_push($mywdays, $wrkdays[$i]);
-            }
-        }
-
         $staff = $request->input('staff');
-        if ($staff['id'] != ''){ // update existing staff
+        if ($staff['id'] != '') { // update existing staff
             $mystaff = Staff::find($staff['id']);
             $mystaff->name = $staff['name'];
             $mystaff->mobile = $staff['mobile'];
@@ -183,15 +174,22 @@ class StaffController extends Controller
             DB::table('staff_work_days')->where('staff_id', '=', $staff['id'])->delete();
 
             // $wd = new WorkDays(['work_days_id' => $wrkdays[0]['id'], 'entry_time' => $wrkdays[0]['entry_time'], 'exit_time' => $wrkdays[0]['exit_time']]);
-            $wd = new StaffWorkDays();
-            $wd->staff_id = $staff['id'];
-            $wd->work_days_id = $wrkdays[0]['id'];
-            $wd->entry_time = $wrkdays[0]['entry_time'];
-            $wd->exit_time = $wrkdays[0]['exit_time'];
-            $wd->save();
+
+            $wrkdays = $request->input('work-days');
+            for ($i = 0; $i < 7; $i++) {// 7 days
+                if ($wrkdays[$i]['entry_time'] != null && $wrkdays[$i]['exit_time'] != null) {
+                    $wd = new StaffWorkDays();
+                    $wd->staff_id = $staff['id'];
+                    $wd->work_days_id = $wrkdays[$i]['id'];
+                    $wd->entry_time = $this->getFormattedTime($wrkdays[$i]['entry_time']);
+                    $wd->exit_time = $this->getFormattedTime($wrkdays[$i]['exit_time']);
+                    $wd->save();
+                }
+            }
+
         }
 
-        var_dump($mywdays);
+        return (['success' => true]);
 
         //$staff =json_decode($request->staff );
         // $workdays = $request->workdays;
@@ -211,4 +209,12 @@ class StaffController extends Controller
 //        }
 
     }
+
+    private function getFormattedTime($time)
+    {
+        $h = substr($time, 0, 2);
+        $m = substr($time, 3, 2);
+        return strftime('%H:%M:%S', mktime($h, $m, 0));
+    }
+
 }
