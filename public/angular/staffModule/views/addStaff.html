@@ -85,7 +85,7 @@
             <label for="session_duration" class="control-label col-md-2">{{staffLabels.session_duration}}: </label>
             <div class="col-md-4">
                 <select class="form-control" id="session_duration" ng-model="selectedStaff.session_duration"
-                ng-options=" s for s in [5,10,15,20,25,30,35,40,45,50,55,60]">
+                        ng-options=" s for s in [5,10,15,20,25,30,35,40,45,50,55,60]">
                     <!--<option value="{{n}}" ng-repeat="n in [5,10,15,20,25,30,35,40,45,50,55,60]">{{n}}</option>-->
                 </select>
 
@@ -98,9 +98,9 @@
 
             <label class="control-label col-md-2">{{staffLabels.workdays}}: </label>
 
-            <div ng-if="currentLang == 'ar'" ng-repeat="d in weekdays">
-                <input type="checkbox" name="{{d.id}}" value="{{d.id}}"
-                       data-ng-checked="d.work_days_id == d.id"><span> {{d.ar_value}}</span>
+            <div ng-if="currentLang == 'ar'" ng-repeat="day in weekdays">
+                <input type="checkbox" name="{{day.id}}" value="{{day.id}}"
+                       data-ng-checked="day.work_days_id == day.id"><span> {{day.ar_value}}</span>
 
             </div>
 
@@ -116,27 +116,29 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="d in weekdays">
+                    <tr ng-repeat="day in weekdays">
                         <td>
-                            <input type="checkbox" name="{{d.id}}" id="chkbox_{{d.id}}" ng-model="boxes[d.id]"
-                                   ng-change="checkboxChecked(boxes[d.id])"><span> {{d.en_value}}</span>
+                            <input type="checkbox" name="{{day.id}}" id="chkbox_{{day.id}}" ng-model="boxes[day.id]"
+                                   ng-change="checkboxChecked(boxes[day.id], day.id-1)"><span> {{day.en_value}}</span>
                         </td>
                         <td style="text-align: center;">
-                            <input type="text" id="from{{d.id}}" class="timepicker form-control" data-ng-show="boxes[d.id] > 0"
-                                   ng-model="d.entry_time" />
+                            <input type="text" id="from{{day.id}}" class="timepicker form-control"
+                                   data-ng-show="boxes[day.id] > 0"
+                                   ng-model="day.entry_time" />
                         </td>
                         <td>
-                            <input type="text" id="to{{d.id}}" class="timepicker form-control" data-ng-show="boxes[d.id] > 0"
-                                   ng-model="d.exit_time" />
+                            <input type="text" id="to{{day.id}}" class="timepicker form-control"
+                                   data-ng-show="boxes[day.id] > 0"
+                                   ng-model="day.exit_time" />
                         </td>
                         <!--<td>-->
-                        <!--<div uib-timepicker ng-model="d.entry_time"-->
+                        <!--<div uib-timepicker ng-model="day.entry_time"-->
                         <!--hour-step="hstep"-->
                         <!--minute-step="mstep" show-meridian="1">-->
                         <!--</div>-->
                         <!--</td>-->
                         <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div uib-timepicker ng-model="d.exit_time"&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div uib-timepicker ng-model="day.exit_time"&ndash;&gt;-->
                         <!--&lt;!&ndash;hour-step="hstep"&ndash;&gt;-->
                         <!--&lt;!&ndash;minute-step="mstep" show-meridian="ismeridian">&ndash;&gt;-->
                         <!--&lt;!&ndash;</div>&ndash;&gt;-->

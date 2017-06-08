@@ -144,17 +144,7 @@ class StaffController extends Controller
     public function saveStaff(Request $request)
     {
 
-        /**
-         * $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
-         * $staff = $request->input('staff');
-         * $wrkdays = $request->input('work-days');
-         *
-         * //        $arr = Array('id' => 1);
-         * //var_dump($staff);
-         * //        return $staff['id'];
-         * return $wrkdays[1]['id'];
-         */
-
+        $checkedboxes = $request->input('boxes');
 
         $staff = $request->input('staff');
         if ($staff['id'] != '') { // update existing staff
@@ -174,12 +164,15 @@ class StaffController extends Controller
             DB::table('staff_work_days')->where('staff_id', '=', $staff['id'])->delete();
 
             $wrkdays = $request->input('work-days');
+//            var_dump($checkedboxes);
+//            exit(0);
             for ($i = 0; $i < 7; $i++) {// 7 days
-                if ($wrkdays[$i]['entry_time'] != null && $wrkdays[$i]['exit_time'] != null) {
+                if ($checkedboxes[$i+1] == 'true') {// $checkedboxes has 8 elements
                     $wd = new StaffWorkDays();
                     $wd->staff_id = $staff['id'];
                     $wd->work_days_id = $wrkdays[$i]['id'];
                     $wd->entry_time = $this->getFormattedTime($wrkdays[$i]['entry_time']);
+
                     $wd->exit_time = $this->getFormattedTime($wrkdays[$i]['exit_time']);
                     $wd->save();
                 }
@@ -193,6 +186,11 @@ class StaffController extends Controller
     {
         $h = substr($time, 0, 2);
         $m = substr($time, 3, 2);
+        $a = substr($time, 6, 2);
+        if ($a === 'PM' and $h !== '12'){
+            $h = (int)$h;
+            $h += 12;
+        }
         return strftime('%H:%M:%S', mktime($h, $m, 0));
     }
 
