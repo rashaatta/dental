@@ -173,8 +173,6 @@ class StaffController extends Controller
 
             DB::table('staff_work_days')->where('staff_id', '=', $staff['id'])->delete();
 
-            // $wd = new WorkDays(['work_days_id' => $wrkdays[0]['id'], 'entry_time' => $wrkdays[0]['entry_time'], 'exit_time' => $wrkdays[0]['exit_time']]);
-
             $wrkdays = $request->input('work-days');
             for ($i = 0; $i < 7; $i++) {// 7 days
                 if ($wrkdays[$i]['entry_time'] != null && $wrkdays[$i]['exit_time'] != null) {
@@ -186,28 +184,9 @@ class StaffController extends Controller
                     $wd->save();
                 }
             }
-
         }
 
         return (['success' => true]);
-
-        //$staff =json_decode($request->staff );
-        // $workdays = $request->workdays;
-
-
-        //$staff = $request->staff;
-
-        // $id = $request->input('id');
-
-//
-
-//        if($id >0){//update
-//            $this->edit($request);
-//
-//        }else{//add
-//            $this->create($request);
-//        }
-
     }
 
     private function getFormattedTime($time)
