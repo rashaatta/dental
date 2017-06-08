@@ -25,15 +25,24 @@
                 $scope.staffLabels = {};
                 $scope.staffLabels = constantService.getStaffLabels();
 
-                //$('#timepicker1').timepicker();
             };
 
             init();
 
 
-            $scope.checkboxChecked = function (event) {
-                // console.log(event);
-                console.log($scope.weekdays);
+            $scope.checkboxChecked = function (event, id) {
+                // console.log(event + ' : ' + id);
+                if (event === true) {
+
+                    if ($scope.weekdays[id].entry_time === null) {
+                        $scope.weekdays[id].entry_time = '09:00 AM';
+                    }
+
+                    if ($scope.weekdays[id].exit_time === null) {
+                        $scope.weekdays[id].exit_time = '05:00 PM';
+                    }
+                }
+                // console.log($scope.weekdays);
                 // console.log($scope.boxes);
             };
 
@@ -44,7 +53,7 @@
             };
 
             $scope.exitTimeChanged = function (exit_time, id) {
-                console.log(exit_time+ ' : ' + id);
+                console.log(exit_time + ' : ' + id);
                 // console.log($scope.weekdays);
                 // console.log($scope.boxes);
             };
@@ -65,7 +74,7 @@
                 }, 1000);
             };
 
-            loadTimepicker();
+            // loadTimepicker();
 
             if (coreService.getCurrentState() === "staff") {
                 $scope.listStaff();
@@ -101,42 +110,6 @@
                         }
                     );
 
-
-                    //
-                    // staffService.fillStaffForm().then(
-                    //     function (response) {
-                    //         $scope.weekdays = response.data.days;
-                    //         $scope.specialty = response.data.specialty;
-                    //         console.log($scope.weekdays);
-                    //         if (angular.isDefined($rootScope.selectedStaff) && $rootScope.selectedStaff !== null) {
-                    //
-                    //         }
-                    //         else {
-                    //             $scope.selectedStaff = {};
-                    //             var date = moment(new Date()).format('YYYY-MM-DD');
-                    //             var d1 = date + ' 18:23:34';
-                    //             var d2 = date + ' 00:00:00';
-                    //             console.log(d2);
-                    //
-                    //             $scope.selectedStaff.entry_time = d1;// new Date();
-                    //             $scope.selectedStaff.exit_time = d2;// new Date();
-                    //
-                    //             $scope.hstep = 1;
-                    //             $scope.mstep = 15;
-                    //
-                    //             $scope.options = {
-                    //                 hstep: [1, 2, 3],
-                    //                 mstep: [1, 5, 10, 15, 25, 30]
-                    //             };
-                    //
-                    //             $scope.ismeridian = true;
-                    //             $scope.toggleMode = function () {
-                    //                 $scope.ismeridian = !$scope.ismeridian;
-                    //             };
-                    //         }
-                    //     }, function (error) {
-                    //         console.log(error.data);
-                    //     });
                 }
                 else {
                     // add new staff
