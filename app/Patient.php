@@ -11,4 +11,9 @@ class Patient extends Model
     public function corporation(){
         return $this->hasOne(Corporation::class);
     }
+
+    public function medicalhist()
+    {
+        return $this->belongsToMany(MedicalHist::class);
+    }
 }

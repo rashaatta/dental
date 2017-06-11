@@ -98,10 +98,37 @@
 
             <label class="control-label col-md-2">{{staffLabels.workdays}}: </label>
 
-            <div ng-if="currentLang == 'ar'" ng-repeat="day in weekdays">
-                <input type="checkbox" name="{{day.id}}" value="{{day.id}}"
-                       data-ng-checked="day.work_days_id == day.id"><span> {{day.ar_value}}</span>
 
+            <div class="form-group col-md-12" ng-if="currentLang == 'ar'">
+
+                <table class="table table-bordered table-condensed table-responsive table-hover table-striped"
+                       style="margin-top: 20px">
+                    <thead>
+                    <tr class="tablehead">
+                        <th>{{staffLabels.workdays}}</th>
+                        <th style="text-align: center;">{{staffLabels.entry_time}}</th>
+                        <th>{{staffLabels.exit_time}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="day in weekdays">
+                        <td>
+                            <input type="checkbox" name="{{day.id}}" id="chkbox_{{day.id}}" ng-model="boxes[day.id]"
+                                   ng-change="checkboxChecked(boxes[day.id], day.id-1)"><span> {{day.ar_value}}</span>
+                        </td>
+                        <td style="text-align: center;">
+                            <input type="text" id="from{{day.id}}" class="timepicker form-control"
+                                   data-ng-show="boxes[day.id] > 0"
+                                   ng-model="day.entry_time" />
+                        </td>
+                        <td>
+                            <input type="text" id="to{{day.id}}" class="timepicker form-control"
+                                   data-ng-show="boxes[day.id] > 0"
+                                   ng-model="day.exit_time" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="form-group col-md-12" ng-if="currentLang == 'en'">

@@ -135,7 +135,7 @@
 
                         if (!data.hasOwnProperty('file')) {
                             console.log(data);
-                            //$state.go('staff');
+                            $state.go('staff');
                         }
                     }, function callbackError(error) {
                         console.log(error);
