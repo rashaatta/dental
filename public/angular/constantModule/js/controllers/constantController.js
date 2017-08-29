@@ -4,8 +4,8 @@
             console.log('code: '+ constantService.getMessage(code));
             return constantService.getMessage(code);
         })       
-    }  
+    };
     controller.$inject = ['$scope', 'constantService'];
     angular.module('constantModule')
             .controller('constantController', controller);
-}())
+}());

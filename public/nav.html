@@ -1,0 +1,73 @@
+
+    <nav class="navbar navbar-fixed-top navbar-default navbar-static-top" ng-controller="coreController as navCtrl">
+        <div class="container-fluid" >
+            <div class="navbar-header">
+
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="#">welcome
+                    <!--@lang('welcome.name')-->
+                    <!--  {{ config('app.name', 'Laravel-->
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+
+                <div ng-if="navCtrl.userLoggedIn()">
+                    <ul class="nav navbar-nav">
+                        &nbsp;<li class="dropdown">
+                        <a href="" data-ui-sref="staff" ui-sref-active="active">@lang('welcome.staff')</a>
+                    </li>
+                        <li class="dropdown">
+                            <a data-ui-route href="" data-ui-sref="patient"
+                               ui-sref-active="active">@lang('welcome.patients')
+                            </a>
+                        </li>
+                        <li class="dropdown"><a href="" class="dropdown-toggle"
+                                                data-toggle="dropdown">@lang('welcome.sessions')</a></li>
+                        <li class="dropdown"><a href="" class="dropdown-toggle"
+                                                data-toggle="dropdown">@lang('welcome.accounting')</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    <div ng-if="!navCtrl.userLoggedIn()">
+                        <li><a href="" data-ui-sref="login">login</a></li>
+                        <li><a href="" data-ui-sref="register" ui-sref-active="active">register</a>
+                        </li>
+                        <li><a ng-if="lang !== 'en'"
+                               href="#">English</a></li>
+                        <li><a ng-if="lang !== 'ar'"
+                               href="#">عربي</a></li>
+                    </div>
+
+                    <div ng-if="navCtrl.userLoggedIn()">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                                {{navCtrl.user.name}}<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript:void(0)" ng-click="navCtrl.doLogout()">
+                                        logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>

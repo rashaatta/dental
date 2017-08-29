@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html ng-app="dentalApp" lang="{{ lang }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <!-- CSRF Token -->
+    <!--<meta name="csrf-token" content="{{ csrf_token() }}">-->
+
+    <!--<title>{{ config('app.name', 'Laravel</title>-->
+    <!--<title>@lang('welcome.name')</title>-->
+    <title>welcome</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/jquery.timepicker.css"/>
+
+    <link rel="stylesheet" href="css/angular-datatables.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+    <link type="text/css" href="css/bootstrap.min.css"/>
+    <!--<link type="text/css" href="css/bootstrap-timepicker.css" />-->
+    <!--<link rel="stylesheet/less" type="text/css" href="css/timepicker.less" />-->
+    <!-- Styles -->
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link ng-if="lang === 'ar'" href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet"
+          type="text/css">
+    <link ng-if="lang === 'ar'" href="css/bootstrapRTL.css" rel="stylesheet">
+    <link ng-if="lang === 'ar'" href="css/appRtl.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        .modal {
+            top: 200px;
+        }
+    </style>
+
+    <!-- Scripts -->
+
+    <!--<script type="text/javascript">-->
+    <!--window.Laravel = {!! json_encode([-->
+    <!--'csrfToken' => csrf_token(),-->
+    <!--]) !!};-->
+    <!--</script>-->
+
+
+</head>
+<body ng-controller="coreController as core">
+<div id="app">
+    <div ng-include="core.navUrl"></div>
+</div>
+<div class="container">
+
+    <div data-ui-view style="width: 100%; height: 100%;">
+        <div style="width: 100%; height: 100%;  background-size:cover;">
+            <img src="images/dental.jpg">
+        </div>
+    </div>
+    <p>{{ core.user.name }} </p>
+</div>
+
+<!--&lt;!&ndash; Scripts &ndash;&gt;-->
+<!--&lt;!&ndash; Scripts &ndash;&gt;-->
+
+<!--&lt;!&ndash;<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>&ndash;&gt;-->
+<!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
+
+<!--<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+
+<!--<script src="js/app.js"></script>-->
+<!--&lt;!&ndash;<script src="../resources/assets/js/bootstrap.js"></script>&ndash;&gt;-->
+
+<!--<script src="js/site.js"></script>-->
+
+<!--&lt;!&ndash; Angular libs &ndash;&gt;-->
+<!--<script src="bower_components/angular/angular.min.js"></script>-->
+<!--<script src="bower_components/angular-animate/angular-animate.min.js"></script>-->
+<!--&lt;!&ndash;<script src="js/angular-route.min.js"></script>&ndash;&gt;-->
+<!--<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>-->
+<!--<script src="js/ct-ui-router-extras.min.js"></script>-->
+<!--<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>-->
+<!--<script src="js/angular-confirm/angular-confirm.min.js"></script>-->
+<!--&lt;!&ndash; Angular translate libs &ndash;&gt;-->
+<!--<script src="bower_components/angular-translate/angular-translate.js"></script>-->
+<!--<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>-->
+<!--<script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>-->
+<!--<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>-->
+<!--<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>-->
+<!--<script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>-->
+
+<!--&lt;!&ndash;Date Picker&ndash;&gt;-->
+<!--<script src="bower_components/moment/min/moment.min.js"></script>-->
+<!--<script src="js/jquery.timepicker.js"></script>-->
+
+
+<!--&lt;!&ndash;Date Picker&ndash;&gt;-->
+
+<!--&lt;!&ndash; Angular files &ndash;&gt;-->
+<!--<script src="angular/app.js"></script>-->
+<!--&lt;!&ndash;<script src="js/angular-confirm/angular-confirm.min.js"></script>&ndash;&gt;-->
+
+<!--&lt;!&ndash; Core &ndash;&gt;-->
+<!--<script src="angular/coreModule/coreModule.js"></script>-->
+<!--<script src="angular/coreModule/js/controllers/coreController.js"></script>-->
+<!--<script src="angular/coreModule/js/services/coreService.js"></script>-->
+<!--<script src="angular/coreModule/js/services/coreService.js"></script>-->
+
+
+<!--<script src="angular/coreModule/js/filters/utcToLocalFilter.js" type="text/javascript"></script>-->
+
+<!--&lt;!&ndash; auth module &ndash;&gt;-->
+<!--<script src="angular/authModule/authModule.js"></script>-->
+<!--<script src="angular/authModule/js/controllers/authController.js"></script>-->
+<!--<script src="angular/authModule/js/services/authService.js"></script>-->
+
+<!--&lt;!&ndash; auth module &ndash;&gt;-->
+
+<!--&lt;!&ndash; staff module &ndash;&gt;-->
+<!--<script src="angular/staffModule/staffModule.js"></script>-->
+<!--<script src="angular/staffModule/js/controllers/staffController.js"></script>-->
+<!--<script src="angular/staffModule/js/services/staffService.js"></script>-->
+
+
+<!--&lt;!&ndash; patient module &ndash;&gt;-->
+<!--<script src="angular/patientModule/patientModule.js"></script>-->
+<!--<script src="angular/patientModule/js/controllers/patientController.js"></script>-->
+<!--<script src="angular/patientModule/js/services/patientService.js"></script>-->
+
+
+<!--&lt;!&ndash;  constant Module  &ndash;&gt;-->
+<!--<script src="angular/constantModule/constantModule.js"></script>-->
+<!--<script src="angular/constantModule/js/services/constantService.js"></script>-->
+<!--&lt;!&ndash;  constant Module  &ndash;&gt;-->
+
+<!--&lt;!&ndash;  datatables  &ndash;&gt;-->
+<!--<script src="js/datatable/jquery.dataTables.min.js"></script>-->
+<!--<script src="js/datatable/angular-datatables.js"></script>-->
+<!--<script src="js/datatable/angular-datatables.directive.js"></script>-->
+<!--<script src="js/datatable/angular-datatables.instances.js"></script>-->
+<!--<script src="js/datatable/angular-datatables.util.js"></script>-->
+<!--<script src="js/datatable/angular-datatables.renderer.js"></script>-->
+<!--<script src="js/datatable/angular-datatables.factory.js"></script>-->
+<!--<script src="js/datatable/angular-datatables.options.js"></script>-->
+
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
+<!--<script type="text/javascript">var baseUrl = "{{ url('//";</script>-->
+
+
+<!--<script type="text/javascript">-->
+
+<!--var currentLang = 'en';// "{{App::getLocale()}}";-->
+
+<!--</script>-->
+
+
+<!-- Scripts -->
+<!-- Scripts -->
+
+<!--<script src="js/jquery.min.js"></script>-->
+<script src="js/jquery-1.11.3.min.js"></script>
+
+
+<!--<script src="js/jquery-3.1.1.min.js"></script>-->
+<script src="js/app.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/site.js"></script>
+
+
+<!-- Angular libs -->
+<script src="js/angular.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>
+<script src="js/ct-ui-router-extras.min.js"></script>
+<script src="js/angular-cookies.min.js"></script>
+<!-- Angular translate libs -->
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+
+<!--Date Picker-->
+<script src="js/moment.min.js"></script>
+<script src="js/jquery.timepicker.js"></script>
+
+
+<!--Date Picker-->
+
+<!-- Angular files -->
+<script src="angular/app.js"></script>
+<!--<script src="/js/angular-confirm/angular-confirm.min.js"></script>-->
+
+<!-- Core -->
+<script src="angular/coreModule/coreModule.js"></script>
+<script src="angular/coreModule/js/controllers/coreController.js"></script>
+<script src="angular/coreModule/js/services/coreService.js"></script>
+<script src="angular/coreModule/js/services/coreService.js"></script>
+
+
+<script src="angular/coreModule/js/filters/utcToLocalFilter.js" type="text/javascript"></script>
+
+<!-- auth module -->
+<script src="angular/authModule/authModule.js"></script>
+<script src="angular/authModule/js/controllers/authController.js"></script>
+<script src="angular/authModule/js/services/authService.js"></script>
+
+<!-- auth module -->
+
+<!-- staff module -->
+<script src="angular/staffModule/staffModule.js"></script>
+<script src="angular/staffModule/js/controllers/staffController.js"></script>
+<script src="angular/staffModule/js/services/staffService.js"></script>
+
+
+<!-- patient module -->
+<script src="angular/patientModule/patientModule.js"></script>
+<script src="angular/patientModule/js/controllers/patientController.js"></script>
+<script src="angular/patientModule/js/services/patientService.js"></script>
+
+
+<!--  constant Module  -->
+<script src="angular/constantModule/constantModule.js"></script>
+<script src="angular/constantModule/js/services/constantService.js"></script>
+<!--  constant Module  -->
+
+<!--  datatables  -->
+<script src="js/datatable/jquery.dataTables.min.js"></script>
+<script src="js/datatable/angular-datatables.js"></script>
+<script src="js/datatable/angular-datatables.directive.js"></script>
+<script src="js/datatable/angular-datatables.instances.js"></script>
+<script src="js/datatable/angular-datatables.util.js"></script>
+<script src="js/datatable/angular-datatables.renderer.js"></script>
+<script src="js/datatable/angular-datatables.factory.js"></script>
+<script src="js/datatable/angular-datatables.options.js"></script>
+
+
+<script src="js/ui-bootstrap-tpls.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+
+    var currentLang = "en";
+
+</script>
+
+</body>
+</html>
+
+

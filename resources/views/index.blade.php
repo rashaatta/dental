@@ -91,6 +91,13 @@
 <script src="{{ asset('js/angular.min.js') }}"></script>
 <script src="{{ asset('js/angular-animate.min.js') }}"></script>
 <script src="{{ asset('js/angular-route.min.js') }}"></script>
+<!-- Angular translate libs -->
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
 
 <!-- Angular files -->
 <script src="{{ asset('angular/app.js') }}"></script>

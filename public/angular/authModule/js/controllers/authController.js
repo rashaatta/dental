@@ -3,7 +3,7 @@
  */
 
 (function () {
-    var controller = function ($scope, coreService, authService, constantService, $state, $cookies) {
+    var controller = function ($rootScope, $scope, coreService, authService, constantService, $state, $cookies) {
 
         $scope.required = true;
         $scope.login = {
@@ -30,8 +30,10 @@
                 .then(function callbackSuccess(response) {
                     if (!response.data.hasOwnProperty('file')) {
                         $cookies.put('auth', JSON.stringify(response.data));
+                        coreService.initLocalUser();
                         // console.log(coreService.isLoggedIn());
-                        window.location = coreService.getBaseUrl();
+                        // window.location = coreService.getBaseUrl();
+                        $state.go('staff');
                     }
                 }, function callbackError(error) {
                     console.log(error.data);
@@ -40,7 +42,7 @@
 
     };
 
-    controller.$inject = ['$scope', 'coreService', 'authService', 'constantService', '$state', '$cookies'];
+    controller.$inject = ['$rootScope', '$scope', 'coreService', 'authService', 'constantService', '$state', '$cookies'];
     angular.module('authModule')
         .controller('authController', controller);
 }());

@@ -1,5 +1,5 @@
 (function () {
-    var factory = function ($http, $cookies) {
+    var factory = function ($http, $cookies, $q) {
         var service = {
             currentState: null,
             previousState: null,
@@ -23,35 +23,37 @@
             profileData: null
         };
 
+        var localUser = null;
+
         var alertSet = function (alert) {
             var m;
             var type;
             switch (alert.type) {
-            case "exception":
-                m = 'Exception: ';
-                angular.forEach(alert.message, function (value, key) {
-                    if (key !== 'type') {
-                        if (key === 'file') {
-                            m += key + ':' + value.replace(/\/data\/www\/api\//, '') + ' ';
-                        } else
-                            m += key + '' + value + '';
-                    }
-                });
-                type = 'danger';
-                break;
-            case "error":
-                m = alert.message;
-                type = 'danger';
-                break;
-            case "success":
-            case "info":
-                m = alert.message;
-                type = 'success';
-                break;
-            case "wait":
-                m = alert.message;
-                type = 'info';
-                break;
+                case "exception":
+                    m = 'Exception: ';
+                    angular.forEach(alert.message, function (value, key) {
+                        if (key !== 'type') {
+                            if (key === 'file') {
+                                m += key + ':' + value.replace(/\/data\/www\/api\//, '') + ' ';
+                            } else
+                                m += key + '' + value + '';
+                        }
+                    });
+                    type = 'danger';
+                    break;
+                case "error":
+                    m = alert.message;
+                    type = 'danger';
+                    break;
+                case "success":
+                case "info":
+                    m = alert.message;
+                    type = 'success';
+                    break;
+                case "wait":
+                    m = alert.message;
+                    type = 'info';
+                    break;
             }
             return {
                 type: type,
@@ -60,11 +62,27 @@
             };
         };
 
+        var getCurrUser = function(){
+            return localUser;
+        };
+
+        var initLocalUser = function(){
+            localUser = angular.fromJson($cookies.get('auth'));
+        };
+
+        var resetLocalUser = function(){
+            localUser = {};
+        };
+
+        var isLoggedIn = function () {
+            return (localUser !== null && localUser.id > 0);
+        };
+
         return {
-            isLoggedIn: function(){
-                var localUser = angular.fromJson($cookies.get('auth'));
-                return (localUser !== undefined && localUser.id > 0);
-            },
+            isLoggedIn: isLoggedIn,
+            initLocalUser : initLocalUser,
+            resetLocalUser: resetLocalUser,
+            getCurrentUser: getCurrUser,
             clearAll: function () {
                 angular.forEach(service, function (val, key) {
                     if (Array.isArray(val)) {
@@ -168,16 +186,16 @@
             removeWarning: function (val) {
                 service.warnings.splice(service.warnings.indexOf(val), 1);
             },
-            setProfileData: function(profileData){
+            setProfileData: function (profileData) {
                 service.profileData = profileData;
             },
-            getProfileData: function(){
+            getProfileData: function () {
                 return service.profileData;
             }
         }
     };
 
-    factory.$inject = ['$http', '$cookies'];
+    factory.$inject = ['$http', '$cookies', '$q'];
     angular.module('coreModule')
         .factory('coreService', factory);
 }());

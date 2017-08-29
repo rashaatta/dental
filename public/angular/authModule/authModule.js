@@ -22,13 +22,7 @@
                 ncyBreadcrumb: {
                     label: 'register'
                 }
-            })
-            .state('/', {
-                templateUrl: 'http://dental.dev:8080/index.php',
-                controller: function () {
-                    window.location.href = window.location.href;
-                }
-
             });
+
     }])
 }());

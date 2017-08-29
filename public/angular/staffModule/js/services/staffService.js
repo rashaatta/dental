@@ -3,7 +3,7 @@
  */
 
 (function () {
-    var factory = function ($http, coreService) {
+    var factory = function ($http, $q, coreService) {
 
         var getStaffDataById = function (staffId) {
             return $http.get(coreService.getApi() + 'staff/getStaffDataById/' + staffId)
@@ -20,9 +20,13 @@
         };
 
         var getStaff = function () {
+            // var defferd = $q.defer();
             return $http.get(coreService.getApi() + 'staff')
                 .then(function (response) {
                     return response.data;
+                },
+                function(response){
+                    return response;
                 });
         };
 
@@ -50,7 +54,7 @@
         }
     };
 
-    factory.$inject = ['$http', 'coreService'];
+    factory.$inject = ['$http', '$q', 'coreService'];
     angular.module('staffModule')
         .factory('staffService', factory);
 }());

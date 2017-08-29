@@ -12,3 +12,7 @@ npm-debug.log
 .env
 /resources/lang/other
 nbproject/
+bower_components/
+php_errors.log
+public/bower_components/
+public/fonts/

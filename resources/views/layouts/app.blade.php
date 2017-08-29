@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<base href="/">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -45,7 +45,7 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
-    {{--<base href="/">--}}
+
 
 </head>
 <body ng-app="dentalApp" ng-controller="CoreController">
@@ -154,7 +154,13 @@
 <script src="{{ asset('js/angular-ui-router.min.js') }}"></script>
 <script src="{{ asset('js/ct-ui-router-extras.min.js') }}"></script>
 <script src="{{ asset('js/angular-cookies.min.js') }}"></script>
-
+<!-- Angular translate libs -->
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
 
 <!--Date Picker-->
 <script src="{{ asset('js/moment.min.js') }}"></script>
@@ -198,7 +204,7 @@
 
 <!--  constant Module  -->
 <script src="{{ asset('angular/constantModule/constantModule.js') }}"></script>
-<script src="{{ asset('angular/constantModule/services/constantService.js') }}"></script>
+<script src="{{ asset('angular/constantModule/js/services/constantService.js') }}"></script>
 <!--  constant Module  -->
 
 <!--  datatables  -->

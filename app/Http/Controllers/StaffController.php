@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Specialty;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-
 use App\StaffWorkDays;
-use App\WorkDays;
 use App\Staff;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 
@@ -167,7 +162,7 @@ class StaffController extends Controller
 //            var_dump($checkedboxes);
 //            exit(0);
             for ($i = 0; $i < 7; $i++) {// 7 days
-                if ($checkedboxes[$i+1] == 'true') {// $checkedboxes has 8 elements
+                if ($checkedboxes[$i + 1] == 'true') {// $checkedboxes has 8 elements
                     $wd = new StaffWorkDays();
                     $wd->staff_id = $staff['id'];
                     $wd->work_days_id = $wrkdays[$i]['id'];
@@ -188,7 +183,7 @@ class StaffController extends Controller
         $h = substr($time, 0, 2);
         $m = substr($time, 3, 2);
         $a = substr($time, 6, 2);
-        if ($a === 'PM' and $h !== '12'){
+        if ($a === 'PM' and $h !== '12') {
             $h = (int)$h;
             $h += 12;
         }
