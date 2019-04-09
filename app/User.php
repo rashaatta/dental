@@ -26,6 +26,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+	
+	//test
 
     public function staff(){
         return $this->hasOne(Staff::class);
